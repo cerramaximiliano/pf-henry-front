@@ -18,7 +18,6 @@ export default function Carousel() {
   return (
     <div className='mt-[200px] mb-[200px]'>
       <Swiper
-        className='w-[800px] h-[500px]'
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
@@ -35,7 +34,7 @@ export default function Carousel() {
           delay: 1500,
         }}
         modules={[Autoplay,Navigation, EffectCoverflow]}
-        className="mySwiper"
+        className="mySwiper w-[800px] h-[500px]"
       >
         <SwiperSlide>
           <img src={slide_image_1} alt="slide_image" />
