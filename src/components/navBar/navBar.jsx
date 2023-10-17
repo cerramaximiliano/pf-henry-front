@@ -15,37 +15,6 @@ function classNames(...classes) {
 
 export default function NavBar () {
   const { pathname } = useLocation();
-
-/*   useEffect(() => {
-    // Event listener para el botón de búsqueda
-    const searchButton = document.getElementById("searchButton");
-    const handleButtonClick = () => {
-      const searchInput = document.getElementById("searchInput");
-      const searchText = searchInput.value;
-      console.log(searchText);
-      searchInput.value = ""; // Borra el contenido del campo de búsqueda
-    };
-    searchButton.addEventListener("click", handleButtonClick);
-
-    // Event listener para la tecla "Enter" en el campo de búsqueda
-     const searchInput = document.getElementById("searchInput");
-    const handleEnterKey = (event) => {
-      if (event.key === "Enter") {
-        const searchText = searchInput.value;
-        console.log(searchText);
-        searchInput.value = ""; // Borra el contenido del campo de búsqueda
-      }
-    }; 
-    searchInput.addEventListener("keydown", handleEnterKey);
-
-    // Limpia los event listeners cuando el componente se desmonta
-
-    return () => {
-      searchButton.removeEventListener("click", handleButtonClick);
-      searchInput.removeEventListener("keydown", handleEnterKey);
-    };
-  }, []); */
-
   return (
     <div>
       <div>
