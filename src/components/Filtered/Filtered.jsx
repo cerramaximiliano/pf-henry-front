@@ -27,11 +27,11 @@ export default function Filtered() {
     weightMax: "",
   });
 
-  // useEffect(() => {
-  //   console.log(applyFilters(filters), 'query' );
-  //   dispatch(createQuery(applyFilters(filters)));
-  //   dispatch(getProductFiltered(applyFilters(filters) + query));
-  // }, [filters, dispatch]);
+  useEffect(() => {
+    // console.log(applyFilters(filters), 'query' );
+    dispatch(createQuery(applyFilters(filters)));
+    dispatch(getProductFiltered(applyFilters(filters)));
+  }, [filters, dispatch]);
 
 
   const handleChange = (event) => {
@@ -40,7 +40,6 @@ export default function Filtered() {
       ...prevFilters,
       [name]: value,
     }));
-    dispatch(getProductFiltered(applyFilters(filters)))
   };
 
   const handleReset = () => {
