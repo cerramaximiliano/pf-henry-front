@@ -7,7 +7,7 @@ import Profile from "./views/Myaccount/Myaccount";
 import Us from "./views/Aboutus/us";
 import Cart from "./views/cart/cart";
 import NavBar from "./components/navBar/navBar";
-import Landing from "./views/landing/landing";
+import Landing from "./views/Landing/Landing";
 
 
 function App() {
