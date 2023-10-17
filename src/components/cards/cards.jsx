@@ -5,7 +5,7 @@ import { getProducts, getProductFiltered } from "../../redux/products/productsAc
 import { setCurrentPage } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 
 export function Cards() {
-  const { products, currentPage, totalPages, query } = useSelector(
+  const { products, currentPage, totalPages, query, searchByName } = useSelector(
     (state) => state.products
   );
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export function Cards() {
       elements.push(
         <button
           key={i}
-          onClick={() => dispatch(getProductFiltered(`${query}&page=${i + 1}`))}
+          onClick={() => dispatch(getProductFiltered(`${query}&${searchByName}&page=${i + 1}`))}
           className={i + 1 === currentPage ? "active" : ""}
         >
           {i + 1}
@@ -49,7 +49,7 @@ export function Cards() {
           value="Prev"
           name="Prev"
           onClick={() => {
-            dispatch(getProductFiltered(`${query}&page=${currentPage - 1}`));
+            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage - 1}`));
           }}
           disabled={currentPage === 1}
         />
@@ -61,7 +61,7 @@ export function Cards() {
           value="Next"
           name="Next"
           onClick={() => {
-            dispatch(getProductFiltered(`${query}&page=${currentPage + 1}`));
+            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage + 1}`));
           }}
           disabled={currentPage === totalPages}
         />

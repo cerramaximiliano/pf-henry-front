@@ -5,7 +5,8 @@ import {
   getProductById,
   getProductsByFilter,
   addProduct,
-  setQuery
+  setQuery,
+  setSearchName,
   //setTotalPages,
 } from "./productSlice.js";
 
@@ -77,3 +78,7 @@ export const postProduct = (product) => {
 export const createQuery = (query) => {
   return (dispatch) => dispatch(setQuery(query))
 };
+
+export const searchName = (name) => {
+  return (dispatch) => dispatch(setSearchName(name))
+}
