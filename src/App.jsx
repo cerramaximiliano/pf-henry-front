@@ -6,7 +6,7 @@ import Product from "./views/Products/Products";
 import Profile from "./views/Myaccount/Myaccount";
 import Us from "./views/Aboutus/us";
 import Cart from "./views/cart/cart";
-import NavBar from "./components/NavBar/navBar";
+import NavBar from "./components/navBar/navBar";
 import Landing from "./views/landing/landing";
 
 
