@@ -18,7 +18,6 @@ export default function Carousel() {
   return (
     <div className='mt-[200px] mb-[200px]'>
       <Swiper
-        className='mySwipe'
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
