@@ -34,7 +34,7 @@ export default function Carousel() {
           delay: 1500,
         }}
         modules={[Autoplay,Navigation, EffectCoverflow]}
-        className="mySwiper"
+        className="mySwiper w-auto h-auto"
       >
         <SwiperSlide>
           <img src={slide_image_1} alt="slide_image" />
