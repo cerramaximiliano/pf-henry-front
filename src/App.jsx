@@ -6,8 +6,8 @@ import Home from "./views/home/home";
 import Product from "./views/Products/Products";
 import Profile from "./views/Myaccount/Myaccount";
 import Us from "./views/Aboutus/us";
-import NavBar from "./components/NavBar/NavBar";
 import Cart from "./views/cart/cart";
+import NavBar from "./components/NavBar/navBar";
 
 
 function App() {
