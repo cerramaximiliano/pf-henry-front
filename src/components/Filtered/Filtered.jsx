@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
-import { getProductFiltered } from "../../redux/products/productsActions";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductFiltered, createQuery } from "../../redux/products/productsActions";
 import React, { useState, useEffect } from "react";
 
 export default function Filtered() {
   const dispatch = useDispatch();
+  const { query } = useSelector((state) => (state.products))
 
   // const handleChange = (event) => {
   //   const { name, value } = event.target;
@@ -26,10 +27,11 @@ export default function Filtered() {
     weightMax: "",
   });
 
-  useEffect(() => {
-    console.log(applyFilters(filters), 'query' );
-    dispatch(getProductFiltered(applyFilters(filters)));
-  }, [filters, dispatch]);
+  // useEffect(() => {
+  //   console.log(applyFilters(filters), 'query' );
+  //   dispatch(createQuery(applyFilters(filters)));
+  //   dispatch(getProductFiltered(applyFilters(filters) + query));
+  // }, [filters, dispatch]);
 
 
   const handleChange = (event) => {
@@ -38,12 +40,14 @@ export default function Filtered() {
       ...prevFilters,
       [name]: value,
     }));
+    dispatch(getProductFiltered(applyFilters(filters)))
   };
 
   const handleReset = () => {
     setFilters({
-      orderBy: "",
+      title: "",
       category: "",
+      price:"",
       diet: "",
       weightType: "",
       weightMin: "",
@@ -53,7 +57,7 @@ export default function Filtered() {
   };
 
   const applyFilters = () => {
-    const query = Object.entries(filters)
+    const newQuery = Object.entries(filters)
       .map(([key, value]) => {
         if (value) {
           return `${key}=${value}`;
@@ -62,15 +66,15 @@ export default function Filtered() {
       })
       .filter(Boolean)
       .join("&");
-      return query;
+      return newQuery;
   };
 
   return (
     <div className="flex flex-row justify-center mb-6">
       <div>
         <h3>Alphabetic</h3>
-        <select name="orderBy" onChange={handleChange} defaultValue="Default">
-          <option value="Default">Select Order</option>
+        <select name="orderBy" onChange={handleChange} value={filters.title}>
+          <option value="">Select Order</option>
           <option value="title">A - Z</option>
           <option value="-title">Z - A</option>
         </select>
@@ -78,8 +82,8 @@ export default function Filtered() {
 
       <div>
         <h3>Price</h3>
-        <select name="orderBy" onChange={handleChange} defaultValue="Default">
-          <option value="Default">Select Price</option>
+        <select name="orderBy" onChange={handleChange} value={filters.price}>
+          <option value="">Select Price</option>
           <option value="-price">Maximum</option>
           <option value="price">Minimum</option>
         </select>
@@ -90,11 +94,11 @@ export default function Filtered() {
         <select
           name="category"
           onChange={handleChange}
-          defaultValue="Default"
+          value={filters.category}
         >
-          <option value="Default">Select Category</option>
+          <option value="">Select Category</option>
           <option value="food">Food</option>
-          <option value="suplements">suplements</option>
+          <option value="protein">Protein</option>
           <option value="beverages">beverages</option>
           <option value="vitamins and minerals">vitamins and minerals</option>
         </select>
@@ -102,8 +106,8 @@ export default function Filtered() {
 
       <div>
         <h3>Diet</h3>
-        <select name="diet" onChange={handleChange} defaultValue="Default">
-          <option value="Default">Select Diet</option>
+        <select name="diet" onChange={handleChange} value={filters.diet}>
+          <option value="">Select Diet</option>
           <option value="vegetarian">Vegetarian</option>
           <option value="vegan">Vegan</option>
           <option value="unespecified">unespecified</option>
@@ -115,9 +119,9 @@ export default function Filtered() {
         <select
           name="weightType"
           onChange={handleChange}
-          defaultValue="Default"
+          value={filters.weightType}
         >
-          <option value="Default">Select a Weight Type</option>
+          <option value="">Select a Weight Type</option>
           <option value="l">l</option>
           <option value="ml">ml</option>
           <option value="g">g</option>

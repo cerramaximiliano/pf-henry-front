@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { getProductName } from "../../redux/products/productsActions";
-import { useDispatch } from "react-redux";
+import { createQuery, getProductFiltered, getProductName } from "../../redux/products/productsActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SearchBar() {
   const [name, setName] = useState("");
+  const { query } = useSelector((state) => (state.products))
 
   const dispatch = useDispatch();
 
@@ -13,8 +14,9 @@ export default function SearchBar() {
   };
 
   const searchProduct = () => {
-    dispatch(getProductName(name));
-    setName("");
+    const newQuery = query + '&name= ' + name
+    dispatch(getProductFiltered(newQuery));
+    dispatch(createQuery(newQuery))
   };
 
   return (

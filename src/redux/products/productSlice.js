@@ -8,6 +8,7 @@ const productSlice = createSlice({
     currentPage: "",
     totalPages: "",
     totalResults: "",
+    query: "",
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -38,6 +39,9 @@ const productSlice = createSlice({
     setTotalPages: (state, action) => {
       state.totalPages = action.payload;
     },
+    setQuery: (state, action) => {
+      state.query = action.payload
+    }
   },
 });
 
@@ -49,6 +53,7 @@ export const {
   addProduct,
   setCurrentPage,
   setTotalPages,
+  setQuery,
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;

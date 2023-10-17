@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "../card/card";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../../redux/products/productsActions"; // Importa tus acciones
+import { getProducts, getProductFiltered } from "../../redux/products/productsActions"; // Importa tus acciones
 import { setCurrentPage } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 
 export function Cards() {
-  const { products, currentPage, totalPages } = useSelector(
+  const { products, currentPage, totalPages, query } = useSelector(
     (state) => state.products
   );
   const dispatch = useDispatch();
@@ -13,15 +13,14 @@ export function Cards() {
   let elements = [];
 
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  }, [products, currentPage]);
 
   {
     for (let i = 0; i < Number(totalPages); i++) {
       elements.push(
         <button
           key={i}
-          onClick={() => dispatch(getProducts(i + 1))}
+          onClick={() => dispatch(getProductFiltered(`${query}&page=${i + 1}`))}
           className={i + 1 === currentPage ? "active" : ""}
         >
           {i + 1}
@@ -50,7 +49,7 @@ export function Cards() {
           value="Prev"
           name="Prev"
           onClick={() => {
-            dispatch(getProducts(currentPage - 1));
+            dispatch(getProductFiltered(`${query}&page=${currentPage - 1}`));
           }}
           disabled={currentPage === 1}
         />
@@ -62,7 +61,7 @@ export function Cards() {
           value="Next"
           name="Next"
           onClick={() => {
-            dispatch(getProducts(currentPage + 1));
+            dispatch(getProductFiltered(`${query}&page=${currentPage + 1}`));
           }}
           disabled={currentPage === totalPages}
         />

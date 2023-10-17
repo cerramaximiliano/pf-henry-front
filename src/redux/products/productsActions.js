@@ -5,10 +5,11 @@ import {
   getProductById,
   getProductsByFilter,
   addProduct,
+  setQuery
   //setTotalPages,
 } from "./productSlice.js";
 
-const URLBASE = "https://pf-ab.onrender.com"
+const URLBASE = "http://localhost:3001"
 
 export const getProducts = (page) => {
   return (dispatch) => {
@@ -49,7 +50,7 @@ export const getProductId = (id) => {
 
 export const getProductFiltered = (query) => {
   return (dispatch) => {
-    console.log(query);
+    console.log('la actoin: ' + query);
     axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
@@ -71,4 +72,8 @@ export const postProduct = (product) => {
       })
       .catch((e) => console.log(e));
   };
+};
+
+export const createQuery = (query) => {
+  return (dispatch) => dispatch(setQuery(query))
 };
