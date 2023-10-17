@@ -7,7 +7,6 @@ import slide_image_6 from '../../assets/img_6.png';
 import slide_image_7 from '../../assets/img_7.png';
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
