@@ -1,13 +1,13 @@
 import {Route, Routes, useLocation} from "react-router-dom"  
 
 import './App.css'
-import Landing from "./views/Landing/Landing"
 import Home from "./views/home/home";
 import Product from "./views/Products/Products";
 import Profile from "./views/Myaccount/Myaccount";
 import Us from "./views/Aboutus/us";
 import Cart from "./views/cart/cart";
 import NavBar from "./components/NavBar/navBar";
+import Landing from "./views/Landing/Landing";
 
 
 function App() {
