@@ -14,6 +14,8 @@ module.exports = {
       fontFamily: {
         impact: "Impact",
         bayon: "Bayon",
+        bebas: 'Bebas Neue',
+        monse: 'Montserrat',
       },
     },
     fontSize: {

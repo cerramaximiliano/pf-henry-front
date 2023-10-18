@@ -31,8 +31,8 @@ export function Cards() {
   }
 
   return (
-    <div>
-    <div className="flex flex-row flex-wrap w-[1600px] mx-auto gap-6" >
+    <div className="mx-[auto]">
+    <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[100px] " >
       {products.map((product) => (
         <Card
           key={product._id}
