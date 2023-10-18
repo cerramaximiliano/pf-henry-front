@@ -4,17 +4,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: {
-          "100": "#f9fdfe",
-          "200": "#121212",
-          "300": "rgba(0, 0, 0, 0.56)",
+        redFred:{
+          "100": "#EE6D76",
+          "200": "#EC5B64",
+          "300": "#E83B46",
         },
-        darkorange: "#ff9505",
-        white: "#fafdfe",
-        gray: "#f9fdfe",
-        black: "#121212",
-        crimson: "#e93b45",
-        gainsboro: "#d9d9d9"
+        blackFred:{
+          "100": "#292929",
+          "200": "#1F1F1F",
+          "300": "#121212",
+        },
+        whiteFred:{
+          "100": "#FAFDFE",
+          "200": "#EEF8FC",
+          "300": "#DCF1F9",
+        },
+        orangeFred:{
+          "100": "#FFAA33",
+          "200": "#FFA21F",
+          "300": "#FF9505",
+        },
       },
       spacing: {},
       fontFamily: {
@@ -39,3 +48,23 @@ module.exports = {
     preflight: false,
   },
 };
+
+/*  colors: {
+        gray: {
+          "100": "#f9fdfe",
+          "200": "#121212",
+          "300": "rgba(0, 0, 0, 0.56)",
+        },
+        darkorange: "#ff9505",
+        white: "#fafdfe",
+        gray: "#f9fdfe",
+        black: "#121212",
+        crimson: "#e93b45",
+        gainsboro: "#d9d9d9"
+
+
+
+          "100": "#EE6D76",
+          "200": "#EC5B64",
+          "300": "#E83B46",
+      }, */

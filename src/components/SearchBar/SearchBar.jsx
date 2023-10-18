@@ -27,8 +27,8 @@ export default function SearchBar() {
     if (event.key === 'Enter' && name.trim() !== '') {
       searchProduct();
       navigate('/products')
-    }
-  const handleKeypress = (event) => {
+    }}
+/*   const handleKeypress = (event) => {
     //it triggers by pressing the enter key
     if (event.keyCode === 13) {
       if (name.trim() === '') alert('Name should be a non empty string')
@@ -36,7 +36,7 @@ export default function SearchBar() {
       dispatch(getProductFiltered(newQuery));
       dispatch(searchName(newQuery))
     }
-  };
+  }; */
 
 
   return (

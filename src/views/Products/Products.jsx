@@ -16,9 +16,9 @@ export default function Products() {
   }, [])
 
   return (
-    <div className="flex flex-row mx-[5%] mt-[5%]">
+    <div className="flex flex-row mx-[5%] mt-[5%] min-h-[600px] ">
       <Filtered />
-      <span className="w-[10%]"></span>
+      <span className="w-[30%]"></span>
       <Cards />
     </div>
   );
