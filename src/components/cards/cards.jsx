@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Card } from "../card/card";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts, getProductFiltered } from "../../redux/products/productsActions"; // Importa tus acciones
-import { setCurrentPage } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
+import { setCurrentPage, startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
+import Loader from "../loader/loaer";
+
 
 export function Cards() {
-  const { products, currentPage, totalPages, query, searchByName } = useSelector(
+  const { products, currentPage, totalPages, query, searchByName, isLoading } = useSelector(
     (state) => state.products
   );
   const dispatch = useDispatch();
@@ -13,6 +15,12 @@ export function Cards() {
   let elements = [];
 
   useEffect(() => {
+    dispatch(startLoading());
+
+    // Simula una carga asincrónica
+    setTimeout(() => {
+      dispatch(stopLoading());
+    }, 3000);
   }, [products, currentPage]);
 
   {
@@ -32,7 +40,7 @@ export function Cards() {
   return (
     <div>
     <div className="flex flex-row flex-wrap w-[1600px] mx-auto gap-6" >
-      {products.map((product) => (
+      {isLoading ? <Loader/> : (products.map((product) => (
         <Card
           key={product._id}
           id={product._id}
@@ -41,7 +49,7 @@ export function Cards() {
           category={product.category}
           price={product.price}
         />
-      ))}
+      )))}
     </div>
       <div className="mt-[200px]">
         <input
