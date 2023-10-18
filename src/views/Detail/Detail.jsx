@@ -1,4 +1,4 @@
-import CardDetail from "../../components/CardDetail/CardDetail";
+ import CardDetail from "../../components/CardDetail/CardDetail";
 
 export default function Detail() {
   return (
@@ -7,3 +7,4 @@ export default function Detail() {
     </>
   );
 }
+ 

@@ -10,7 +10,7 @@ import {
   //setTotalPages,
 } from "./productSlice.js";
 
-const URLBASE = "http://localhost:3001"
+const URLBASE = "http://localhost:3001";
 
 export const getProducts = (page) => {
   return (dispatch) => {
@@ -30,8 +30,8 @@ export const getProductName = (name) => {
     axios
       .get(`${URLBASE}/products/name?name=${name}`)
       .then((res) => {
-        dispatch(getProductByName(res.data));
         console.log(res.data);
+        dispatch(getProductByName(res.data));
       })
       .catch((e) => console.log(e));
   };
@@ -51,7 +51,7 @@ export const getProductId = (id) => {
 
 export const getProductFiltered = (query) => {
   return (dispatch) => {
-    console.log('la actoin: ' + query);
+    console.log("la actoin: " + query);
     axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
@@ -76,9 +76,9 @@ export const postProduct = (product) => {
 };
 
 export const createQuery = (query) => {
-  return (dispatch) => dispatch(setQuery(query))
+  return (dispatch) => dispatch(setQuery(query));
 };
 
 export const searchName = (name) => {
-  return (dispatch) => dispatch(setSearchName(name))
-}
+  return (dispatch) => dispatch(setSearchName(name));
+};
