@@ -8,7 +8,7 @@ import {
   //setTotalPages,
 } from "./productSlice.js";
 
-const URLBASE = "https://pf-ab.onrender.com"
+const URLBASE = import.meta.env.VITE_URL_BASE
 
 export const getProducts = (page) => {
   return (dispatch) => {
