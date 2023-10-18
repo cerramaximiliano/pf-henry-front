@@ -82,3 +82,4 @@ export const createQuery = (query) => {
 export const searchName = (name) => {
   return (dispatch) => dispatch(setSearchName(name))
 }
+

@@ -28,7 +28,16 @@ export default function SearchBar() {
       searchProduct();
       navigate('/products')
     }
+  const handleKeypress = (event) => {
+    //it triggers by pressing the enter key
+    if (event.keyCode === 13) {
+      if (name.trim() === '') alert('Name should be a non empty string')
+      const newQuery = '&name=' + name
+      dispatch(getProductFiltered(newQuery));
+      dispatch(searchName(newQuery))
+    }
   };
+
 
   return (
     <div>
