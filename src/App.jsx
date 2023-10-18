@@ -8,6 +8,7 @@ import Us from "./views/Aboutus/us";
 import Cart from "./views/cart/cart";
 import NavBar from "./components/navBar/navBar";
 import Landing from "./views/landing/landing";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   const {pathname} = useLocation();
@@ -23,7 +24,7 @@ function App() {
                 <Route path="/cart" element={<Cart/>}/>
                 <Route path="*" element={<Error/>}/>
             </Routes>
-
+    {pathname !== "/" && <Footer/>}
     </>
   )
 }

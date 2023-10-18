@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "../card/card";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../../redux/products/productsActions"; // Importa tus acciones
-import { setCurrentPage } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
+import { getProducts, getProductFiltered } from "../../redux/products/productsActions"; // Importa tus acciones
+import { setCurrentPage, startLoading, stopLoading } from "../../redux/products/productSlice";
+import Loader from "../Loader/Loader";
 
 export function Cards() {
-  const { products, currentPage, totalPages } = useSelector(
+  const { products, currentPage, totalPages, query, searchByName, isLoading } = useSelector(
     (state) => state.products
   );
   const dispatch = useDispatch();
@@ -13,15 +14,20 @@ export function Cards() {
   let elements = [];
 
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    dispatch(startLoading());
+
+    // Simula una carga asincrónica
+    setTimeout(() => {
+      dispatch(stopLoading());
+    }, 3000);
+  }, [products, currentPage]);
 
   {
     for (let i = 0; i < Number(totalPages); i++) {
       elements.push(
         <button
           key={i}
-          onClick={() => dispatch(getProducts(i + 1))}
+          onClick={() => dispatch(getProductFiltered(`${query}&${searchByName}&page=${i + 1}`))}
           className={i + 1 === currentPage ? "active" : ""}
         >
           {i + 1}
@@ -31,9 +37,9 @@ export function Cards() {
   }
 
   return (
-    <div>
-    <div className="flex flex-row flex-wrap w-[1600px] mx-auto gap-6" >
-      {products.map((product) => (
+    <div className="mx-[auto]">
+    <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[100px]" >
+    {isLoading ? <Loader/> : (products.map((product) => (
         <Card
           key={product._id}
           id={product._id}
@@ -42,7 +48,7 @@ export function Cards() {
           category={product.category}
           price={product.price}
         />
-      ))}
+      )))}
     </div>
       <div className="mt-[200px]">
         <input
@@ -50,7 +56,7 @@ export function Cards() {
           value="Prev"
           name="Prev"
           onClick={() => {
-            dispatch(getProducts(currentPage - 1));
+            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage - 1}`));
           }}
           disabled={currentPage === 1}
         />
@@ -62,7 +68,7 @@ export function Cards() {
           value="Next"
           name="Next"
           onClick={() => {
-            dispatch(getProducts(currentPage + 1));
+            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage + 1}`));
           }}
           disabled={currentPage === totalPages}
         />

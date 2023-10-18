@@ -66,82 +66,92 @@ export default function Filtered() {
   };
 
   return (
-    <div className="flex flex-row justify-center mb-6">
-      <div>
-        <h3>Alphabetic</h3>
-        <select name="orderBy" onChange={handleChange} defaultValue="Default">
-          <option value="Default">Select Order</option>
-          <option value="title">A - Z</option>
-          <option value="-title">Z - A</option>
-        </select>
-      </div>
+    <div className="fixed top-1/2 left-[5%] transform -translate-y-1/2 p-5 shadow-md bg-[#fafdfe] text-black rounded-[20px]	">
+      <span className=" ">
+        <h2 className=" mb-[10px] mt-[0px]">Sort by:</h2>
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">Name</h3>
+          <select name="orderBy" onChange={handleChange} defaultValue="Default" className=" w-[125px] rounded-[5px]">
+            <option value="Default">-----</option>
+            <option value="title">A - Z</option>
+            <option value="-title">Z - A</option>
+          </select>
+        </div>
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">Price</h3>
+          <select name="orderBy" onChange={handleChange} defaultValue="Default" className=" w-[125px] rounded-[5px]">
+            <option value="Default">-----</option>
+            <option value="-price">Maximum</option>
+            <option value="price">Minimum</option>
+          </select>
+        </div>
+      </span>
+      <span> 
+        <h2 className="mb-[10px] mt-[35px]">Filter:</h2>            
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">Category</h3>
+          <select
+            name="category"
+            onChange={handleChange}
+            defaultValue="Default"
+            className=" w-[125px] rounded-[5px]"
+          >
+            <option value="Default">All</option>
+            <option value="food">Food</option>
+            <option value="suplements">Suplements</option>
+            <option value="beverages">Beverages</option>
+            <option value="vitamins and minerals">Nutrients</option>
+          </select>
+        </div>
 
-      <div>
-        <h3>Price</h3>
-        <select name="orderBy" onChange={handleChange} defaultValue="Default">
-          <option value="Default">Select Price</option>
-          <option value="-price">Maximum</option>
-          <option value="price">Minimum</option>
-        </select>
-      </div>
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">Diet</h3>
+          <select name="diet" onChange={handleChange} defaultValue="Default" className=" w-[125px] rounded-[5px]">
+            <option value="Default">All</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="unespecified">unespecified</option>
+          </select>
+        </div>
 
-      <div>
-        <h3>Category</h3>
-        <select
-          name="category"
-          onChange={handleChange}
-          defaultValue="Default"
-        >
-          <option value="Default">Select Category</option>
-          <option value="food">Food</option>
-          <option value="suplements">suplements</option>
-          <option value="beverages">beverages</option>
-          <option value="vitamins and minerals">vitamins and minerals</option>
-        </select>
-      </div>
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">WeightType</h3>
+          <select
+            name="weightType"
+            onChange={handleChange}
+            defaultValue="Default"
+            className=" w-[125px] rounded-[5px]"
+          >
+            <option value="Default">All</option>
+            <option value="l">l</option>
+            <option value="ml">ml</option>
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+          </select>
+        </div>
 
-      <div>
-        <h3>Diet</h3>
-        <select name="diet" onChange={handleChange} defaultValue="Default">
-          <option value="Default">Select Diet</option>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="unespecified">unespecified</option>
-        </select>
-      </div>
-
-      <div>
-        <h3>weightType</h3>
-        <select
-          name="weightType"
-          onChange={handleChange}
-          defaultValue="Default"
-        >
-          <option value="Default">Select a Weight Type</option>
-          <option value="l">l</option>
-          <option value="ml">ml</option>
-          <option value="g">g</option>
-          <option value="kg">kg</option>
-        </select>
-      </div>
-
-      <div>
-        <h3>min-max size</h3>
-        <input
-          name="weightMin"
-          onChange={handleChange}
-          id="weightMix"
-          type="number"
-          placeholder="Minimum"
-        />
-        <input
-          name="weightMax"
-          onChange={handleChange}
-          id="weightMax"
-          type="number"
-          placeholder="maximum"
-        />
-      </div>
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">Size</h3>
+          <span className="grid">            
+            <input
+              name="weightMin"
+              onChange={handleChange}
+              id="weightMix"
+              type="number"
+              placeholder="Min"
+              className=" w-[117px] rounded-[5px]"
+              />
+            <input
+              name="weightMax"
+              onChange={handleChange}
+              id="weightMax"
+              type="number"
+              placeholder="Max"
+              className=" w-[117px] rounded-[5px]"
+              />
+            </span>
+        </div>
+      </span>
       <button onClick={handleReset}> Reset</button>
     </div>
   );
