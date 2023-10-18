@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { getProductName } from "../../redux/products/productsActions";
-import { useDispatch } from "react-redux";
+import { createQuery, getProductFiltered, getProductName, searchName } from "../../redux/products/productsActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SearchBar() {
   const [name, setName] = useState("");
+  const { query } = useSelector((state) => (state.products))
 
   const dispatch = useDispatch();
 
@@ -13,21 +14,36 @@ export default function SearchBar() {
   };
 
   const searchProduct = () => {
-    dispatch(getProductName(name));
-    setName("");
+    if (name.trim() === '') alert('Name should be a non empty string')
+    const newQuery = '&name=' + name
+  console.log(newQuery);
+    dispatch(getProductFiltered(newQuery));
+    dispatch(searchName(newQuery))
   };
+
+  const handleKeypress = (event) => {
+    //it triggers by pressing the enter key
+    if (event.keyCode === 13) {
+      if (name.trim() === '') alert('Name should be a non empty string')
+      const newQuery = '&name=' + name
+      dispatch(getProductFiltered(newQuery));
+      dispatch(searchName(newQuery))
+    }
+  };
+
 
   return (
     <div>
       <input
         value={name}
         onChange={handleChange}
+        onKeyDown={handleKeypress}
         type="search"
         placeholder="Enter a product"
         className="border-2 placeholder:bg-transparent border-gray-300  h-10 px-5 pr-16 rounded-lg text-white-300 hover: hover:text-darkorange rounded-md px-3 py-2 text-sm font-medium"
       />
 
-      <button onClick={searchProduct}>
+      <button onClick={() => searchProduct(name)}>
         <svg
           className="text-darkorange h-4 w-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +51,7 @@ export default function SearchBar() {
           version="1.1"
           id="Capa_1"
           x="0px"
-          y="0px" 
+          y="0px"
           width="512px"
           height="512px"
           viewBox="0 0 56.966 56.966"
