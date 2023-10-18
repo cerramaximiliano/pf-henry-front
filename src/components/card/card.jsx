@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export function Card({ image, title, category, price, id }) {
   
-  return (
+return (
     <span className="grid justify-center	rounded-[15px] items-center bg-[#fafdfe]	 w-[380px] h-[500px] mx-[auto]">
       <span className="justify-center 	"  href={`/product/${id}`}>
         <NavLink to={`/Detail/${id}`} >
