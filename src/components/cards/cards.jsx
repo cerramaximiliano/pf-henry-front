@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProducts, getProductFiltered } from "../../redux/products/productsActions"; // Importa tus acciones
 import { setCurrentPage, startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import Loader from "../loader/loaer";
+import NotFound from "../notFound/notFound";
 
 
 export function Cards() {
@@ -39,18 +40,24 @@ export function Cards() {
 
   return (
     <div>
-    <div className="flex flex-row flex-wrap w-[1600px] mx-auto gap-6" >
-      {isLoading ? <Loader/> : (products.map((product) => (
-        <Card
-          key={product._id}
-          id={product._id}
-          image={product.image ?? null}
-          title={product.title}
-          category={product.category}
-          price={product.price}
-        />
-      )))}
-    </div>
+      {isLoading ? <Loader /> : (
+        <div className="flex flex-row flex-wrap w-[1600px] mx-auto gap-6">
+          {products.length > 0 ? (
+            products.map((product) => (
+              <Card
+                key={product._id}
+                id={product._id}
+                image={product.image ?? null}
+                title={product.title}
+                category={product.category}
+                price={product.price}
+              />
+            ))
+          ) : (
+            <NotFound/>
+          )}
+        </div>
+      )}
       <div className="mt-[200px]">
         <input
           type="button"
