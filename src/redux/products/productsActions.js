@@ -5,6 +5,8 @@ import {
   getProductById,
   getProductsByFilter,
   addProduct,
+  setQuery,
+  setSearchName,
   //setTotalPages,
 } from "./productSlice.js";
 
@@ -49,7 +51,7 @@ export const getProductId = (id) => {
 
 export const getProductFiltered = (query) => {
   return (dispatch) => {
-    console.log(query);
+    console.log('la actoin: ' + query);
     axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
@@ -72,3 +74,12 @@ export const postProduct = (product) => {
       .catch((e) => console.log(e));
   };
 };
+
+export const createQuery = (query) => {
+  return (dispatch) => dispatch(setQuery(query))
+};
+
+export const searchName = (name) => {
+  return (dispatch) => dispatch(setSearchName(name))
+}
+

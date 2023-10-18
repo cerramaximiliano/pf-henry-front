@@ -16,7 +16,7 @@ import { Autoplay, Navigation, EffectCoverflow} from 'swiper/modules';
 
 export default function Carousel() {
   return (
-    <div className='mt-[200px] mb-[200px]'>
+    <div className=' mt-[200px] mb-[200px]'>
       <Swiper
         // className='w-[800px] h-[500px]'
         effect={'coverflow'}

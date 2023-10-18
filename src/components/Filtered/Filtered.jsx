@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
-import { getProductFiltered } from "../../redux/products/productsActions";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductFiltered, createQuery, searchName } from "../../redux/products/productsActions";
 import React, { useState, useEffect } from "react";
 
 export default function Filtered() {
   const dispatch = useDispatch();
+  // const { query } = useSelector((state) => (state.products))
 
   // const handleChange = (event) => {
   //   const { name, value } = event.target;
@@ -15,7 +16,7 @@ export default function Filtered() {
   // const handleReset = () => {
   //   setQuery(""); // Restablecer el estado query
   // };
-
+  const { searchByName } = useSelector((state) => (state.products))
   const [filters, setFilters] = useState({
     title: "",
     price: "",
@@ -27,8 +28,8 @@ export default function Filtered() {
   });
 
   useEffect(() => {
-    console.log(applyFilters(filters), 'query' );
-    dispatch(getProductFiltered(applyFilters(filters)));
+    console.log('query' + searchByName);
+    dispatch(getProductFiltered(applyFilters(filters) + searchByName));
   }, [filters, dispatch]);
 
 
@@ -42,18 +43,22 @@ export default function Filtered() {
 
   const handleReset = () => {
     setFilters({
-      orderBy: "",
+      title: "",
       category: "",
+      price:"",
       diet: "",
       weightType: "",
       weightMin: "",
       weightMax: "",
 
     });
+    dispatch(createQuery(''))
+    dispatch(searchName(''))
+    dispatch(getProductFiltered(''))
   };
 
   const applyFilters = () => {
-    const query = Object.entries(filters)
+    const newQuery = Object.entries(filters)
       .map(([key, value]) => {
         if (value) {
           return `${key}=${value}`;
@@ -62,7 +67,8 @@ export default function Filtered() {
       })
       .filter(Boolean)
       .join("&");
-      return query;
+      dispatch(createQuery(newQuery))
+      return newQuery;
   };
 
   return (
