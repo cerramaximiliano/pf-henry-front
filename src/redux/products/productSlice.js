@@ -8,6 +8,9 @@ const productSlice = createSlice({
     currentPage: "",
     totalPages: "",
     totalResults: "",
+    query: "",
+    searchByName: "",
+    isLoading: false,
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -38,6 +41,18 @@ const productSlice = createSlice({
     setTotalPages: (state, action) => {
       state.totalPages = action.payload;
     },
+    setQuery: (state, action) => {
+      state.query = action.payload
+    },
+    setSearchName: (state, action) => {
+      state.searchByName = action.payload
+    },
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
+    stopLoading: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 
@@ -49,6 +64,10 @@ export const {
   addProduct,
   setCurrentPage,
   setTotalPages,
+  setQuery,
+  setSearchName,
+  startLoading,
+  stopLoading
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;

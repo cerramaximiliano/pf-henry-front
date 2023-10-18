@@ -5,7 +5,7 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -16,16 +16,16 @@ function classNames(...classes) {
 export default function NavBar () {
   const { pathname } = useLocation();
   return (
-    <div>
+    <div className=" sticky z-10 top-0 bg-[#121212]">  
       <div>
-        <Disclosure as="nav" className="w-full bg-[#121212]">
+        <Disclosure as="nav" className=" top-0 w-full bg-[#121212]">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="w-8 h-auto mx-rigth-[200px]">
-                      <img src={Logo} alt="" className="h-[40px] w-[60px]" />
+                      <Link to="/home"><img src={Logo} alt="" className="h-[40px] w-[60px]" /></Link>
                     </div>
                     <div className="hidden sm:ml-[250px] sm:block">
                       <div className="flex space-x-4">
