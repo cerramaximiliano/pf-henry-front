@@ -1,74 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getProductFiltered, createQuery, searchName } from "../../redux/products/productsActions";
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import { FiltersContext } from "../../context/filter";
 
 export default function Filtered() {
-  const dispatch = useDispatch();
-  // const { query } = useSelector((state) => (state.products))
-
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setQuery((prevQuery) => {
-  //     return `${prevQuery}&${[name]}=${value}`
-  //   });
-  // };
-
-  // const handleReset = () => {
-  //   setQuery(""); // Restablecer el estado query
-  // };
-  const { searchByName } = useSelector((state) => (state.products))
-  const [filters, setFilters] = useState({
-    title: "",
-    price: "",
-    category: "",
-    diet: "",
-    weightType: "",
-    weightMin: "",
-    weightMax: "",
-  });
-
-  useEffect(() => {
-    console.log('query' + searchByName);
-    dispatch(getProductFiltered(applyFilters(filters) + searchByName));
-  }, [filters, dispatch]);
-
+  const { filters, setFilters } = useContext(FiltersContext)
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFilters((prevFilters) => ({
-      ...prevFilters,
+    const currentSelect = {
+      ...filters,
+      page: 1,
       [name]: value,
-    }));
+    }
+
+    setFilters(currentSelect);
   };
 
   const handleReset = () => {
     setFilters({
-      title: "",
+      orderBy: "",
       category: "",
-      price:"",
       diet: "",
       weightType: "",
       weightMin: "",
       weightMax: "",
-
+      page: 1,
+      name: ""
     });
-    dispatch(createQuery(''))
-    dispatch(searchName(''))
-    dispatch(getProductFiltered(''))
-  };
-
-  const applyFilters = () => {
-    const newQuery = Object.entries(filters)
-      .map(([key, value]) => {
-        if (value) {
-          return `${key}=${value}`;
-        }
-        return "";
-      })
-      .filter(Boolean)
-      .join("&");
-      dispatch(createQuery(newQuery))
-      return newQuery;
   };
 
   return (
@@ -77,18 +35,18 @@ export default function Filtered() {
         <h2 className=" mb-[10px] mt-[0px]">Sort by:</h2>
         <div className=" grid justify-between	">
           <h3 className=" my-[3px]">Name</h3>
-          <select name="orderBy" onChange={handleChange} defaultValue="Default" className=" w-[125px] rounded-[5px]">
-            <option value="Default">-----</option>
+          <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[125px] rounded-[5px]">
+            <option value="">-----</option>
             <option value="title">A - Z</option>
             <option value="-title">Z - A</option>
           </select>
         </div>
         <div className=" grid justify-between	">
           <h3 className=" my-[3px]">Price</h3>
-          <select name="orderBy" onChange={handleChange} defaultValue="Default" className=" w-[125px] rounded-[5px]">
-            <option value="Default">-----</option>
-            <option value="-price">Maximum</option>
-            <option value="price">Minimum</option>
+          <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[125px] rounded-[5px]">
+            <option value="">-----</option>
+            <option value="-price">Max - Min</option>
+            <option value="price">Min - Max</option>
           </select>
         </div>
       </span>
@@ -99,10 +57,10 @@ export default function Filtered() {
           <select
             name="category"
             onChange={handleChange}
-            defaultValue="Default"
+            value={filters.category}
             className=" w-[125px] rounded-[5px]"
           >
-            <option value="Default">All</option>
+            <option value="">All</option>
             <option value="food">Food</option>
             <option value="suplements">Suplements</option>
             <option value="beverages">Beverages</option>
@@ -112,8 +70,8 @@ export default function Filtered() {
 
         <div className=" grid justify-between	">
           <h3 className=" my-[3px]">Diet</h3>
-          <select name="diet" onChange={handleChange} defaultValue="Default" className=" w-[125px] rounded-[5px]">
-            <option value="Default">All</option>
+          <select name="diet" onChange={handleChange} value={filters.diet} className=" w-[125px] rounded-[5px]">
+            <option value="">All</option>
             <option value="vegetarian">Vegetarian</option>
             <option value="vegan">Vegan</option>
             <option value="unespecified">unespecified</option>
@@ -121,14 +79,14 @@ export default function Filtered() {
         </div>
 
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">WeightType</h3>
+          <h3 className=" my-[3px]">Weight Unit</h3>
           <select
             name="weightType"
             onChange={handleChange}
-            defaultValue="Default"
+            value={filters.weightType}
             className=" w-[125px] rounded-[5px]"
           >
-            <option value="Default">All</option>
+            <option value="">All</option>
             <option value="l">l</option>
             <option value="ml">ml</option>
             <option value="g">g</option>
@@ -151,6 +109,27 @@ export default function Filtered() {
               name="weightMax"
               onChange={handleChange}
               id="weightMax"
+              type="number"
+              placeholder="Max"
+              className=" w-[117px] rounded-[5px]"
+              />
+            </span>
+        </div>
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px]">Price</h3>
+          <span className="grid">            
+            <input
+              name="priceMin"
+              onChange={handleChange}
+              id="priceMin"
+              type="number"
+              placeholder="Min"
+              className=" w-[117px] rounded-[5px]"
+              />
+            <input
+              name="priceMax"
+              onChange={handleChange}
+              id="priceMax"
               type="number"
               placeholder="Max"
               className=" w-[117px] rounded-[5px]"

@@ -1,48 +1,32 @@
 import React from "react";
-import { useState } from "react";
-import { createQuery, getProductFiltered, getProductName, searchName } from "../../redux/products/productsActions";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink,useNavigate} from 'react-router-dom';
+import { useContext } from "react";
+import { Link, useNavigate} from 'react-router-dom';
+import { FiltersContext } from "../../context/filter";
 
 export default function SearchBar() {
-  const [name, setName] = useState("");
-  const { query } = useSelector((state) => (state.products));
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { filters, setFilters } = useContext(FiltersContext)
   
   const handleChange = (event) => {
-    setName(event.target.value);
+    setFilters({name: event.target.value})
   };
 
   const searchProduct = () => {
     if (name.trim() === '') alert('Name should be a non-empty string');
-    const newQuery = '&name=' + name;
-    console.log(newQuery);
-    dispatch(getProductFiltered(newQuery));
-    dispatch(searchName(newQuery));
+    setFilters({name:name})
   };
-
+  
   
   const handleKeyPress = (event) => {
     if (event.key === 'Enter' && name.trim() !== '') {
       searchProduct();
       navigate('/products')
-    }
-  const handleKeypress = (event) => {
-    //it triggers by pressing the enter key
-    if (event.keyCode === 13) {
-      if (name.trim() === '') alert('Name should be a non empty string')
-      const newQuery = '&name=' + name
-      dispatch(getProductFiltered(newQuery));
-      dispatch(searchName(newQuery))
-    }
-  };
-
+    }}
 
   return (
     <div>
       <input
-        value={name}
+        value={filters.name}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
         type="search"

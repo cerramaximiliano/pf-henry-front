@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Card } from "../card/card";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts, getProductFiltered } from "../../redux/products/productsActions"; // Importa tus acciones
-import { setCurrentPage, startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
+import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import Loader from "../loader/loaer";
 import NotFound from "../notFound/notFound";
+import { FiltersContext } from "../../context/filter";
 
 export function Cards() {
-  const { products, currentPage, totalPages, query, searchByName, isLoading } = useSelector(
+  const { products, currentPage, totalPages, isLoading } = useSelector(
     (state) => state.products
   );
   const dispatch = useDispatch();
+  const { filters, setFilters } = useContext(FiltersContext)
 
   let elements = [];
 
@@ -28,7 +29,7 @@ export function Cards() {
       elements.push(
         <button
           key={i}
-          onClick={() => dispatch(getProductFiltered(`${query}&${searchByName}&page=${i + 1}`))}
+          onClick={() => setFilters({...filters, page: i + 1})}
           className={i + 1 === currentPage ? "active" : ""}
         >
           {i + 1}
@@ -63,7 +64,7 @@ export function Cards() {
           value="Prev"
           name="Prev"
           onClick={() => {
-            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage - 1}`));
+            setFilters({...filters, page: currentPage - 1});
           }}
           disabled={currentPage === 1}
         />
@@ -75,7 +76,7 @@ export function Cards() {
           value="Next"
           name="Next"
           onClick={() => {
-            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage + 1}`));
+            setFilters({...filters, page: currentPage + 1});
           }}
           disabled={currentPage === totalPages}
         />
