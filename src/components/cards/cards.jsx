@@ -29,7 +29,7 @@ export function Cards() {
         <button
           key={i}
           onClick={() => dispatch(getProductFiltered(`${query}&${searchByName}&page=${i + 1}`))}
-          className={i + 1 === currentPage ? "active" : ""}
+          className={i + 1 === currentPage ? "active py-[8px] px-[24px] font-bebas rounded-none ml-[8px]" : " py-[8px] px-[24px] font-bebas rounded-none ml-[8px]" }
         >
           {i + 1}
         </button>
@@ -40,7 +40,7 @@ export function Cards() {
   return (
     <div className="mx-[auto]">
       {isLoading ? <Loader /> : (
-        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[100px]">
+        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
           {products.length > 0 ? (
             products.map((product) => (
               <Card
@@ -57,11 +57,12 @@ export function Cards() {
           )}
         </div>
       )}
-      <div className="mt-[200px]">
+      <div className="mt-[25px] mb-[50px]">
         <input
           type="button"
           value="Prev"
           name="Prev"
+          className=" bg-orangeFred-300 text-blackFred-300 font-bebas py-[8px] px-[24px] p-[0.6em] rounded-none"
           onClick={() => {
             dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage - 1}`));
           }}
@@ -74,6 +75,7 @@ export function Cards() {
           type="button"
           value="Next"
           name="Next"
+          className=" bg-orangeFred-300 text-blackFred-300 font-bebas py-[8px] px-[24px] p-[0.6em] rounded-none ml-[8px]"
           onClick={() => {
             dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage + 1}`));
           }}

@@ -16,7 +16,7 @@ export default function Products() {
   }, [])
 
   return (
-    <div className="flex flex-row mx-[5%] mt-[5%] min-h-[600px] ">
+    <div className="flex flex-row mx-[5%] mt-[5%] min-h-[1000px] ">
       <Filtered />
       <span className="w-[30%]"></span>
       <Cards />

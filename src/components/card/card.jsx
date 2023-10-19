@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export function Card({ image, title, category, price, id }) {
   
 return (
-    <span className="grid justify-center	 items-center bg-[#373737]	 w-[380px] h-[500px] mx-[auto]">
+    <span className="grid justify-center	 items-center bg-[#373737]	 w-[380px] h-[500px] mx-[auto] mb-[8%]">
       <span className="justify-center 	"  href={`/product/${id}`}>
         <NavLink to={`/Detail/${id}`} >
           <img 
@@ -15,9 +15,9 @@ return (
         </NavLink>
       </span>
       <span className=" flex justify-between items-center">
-        <span className="grid justify-start text-left	 text-white font-bebas 	">
+        <span className="grid justify-start text-left	 text-whiteFred-300 font-bebas 	">
           <NavLink to={`/Detail/${id}`}>
-            <span className="justify-start text-white text-[24px]">
+            <span className="justify-start text-whiteFred-300 text-[24px]">
               <span>{title}</span>
             </span>
           </NavLink>

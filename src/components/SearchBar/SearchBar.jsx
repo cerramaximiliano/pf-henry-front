@@ -40,19 +40,19 @@ export default function SearchBar() {
 
 
   return (
-    <div>
+    <div className=" flex items-center	">
       <input
         value={name}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
         type="search"
         placeholder="Enter a product"
-        className="border-2 bg-[#121212] border-gray-300 h-10 px-5 pr-16 rounded-lg text-darkorange hover: hover:text-darkorange rounded-md px-3 py-2 text-sm font-medium"
+        className="border-2 bg-[#121212] rounded-none h-[39px] font-[16px] border-whiteFred-300 py-[8px] px-[24px] outline-none hover:border-transparent  text-orangeFred-300 font-bebas hover: hover:text-orangeFred-300  text-sm "
       />
       <Link to="/products">
-        <button onClick={searchProduct}>
+        <button onClick={searchProduct} className="bg-orangeFred-300 rounded-none py-[8px] px-[24px] outline-none hover:border-transparent">
         <svg
-          className="text-darkorange h-4 w-4 fill-current"
+          className="text-blackFred-300 h-4 w-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           version="1.1"

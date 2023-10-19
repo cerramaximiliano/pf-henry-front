@@ -72,7 +72,7 @@ export default function Filtered() {
   };
 
   return (
-    <div className="fixed top-[55vh] left-[5%] transform -translate-y-1/2 p-5 shadow-md bg-[#373737] text-white font-bebas w-[300px]	">
+    <div className="fixed top-[55vh] left-[5%] transform -translate-y-1/2 p-5 shadow-md bg-[#373737] text-whiteFred-300 font-bebas w-[300px]	">
       <span className="">
         <h2 className=" mb-[10px] mt-[15px] text-left	" >Sort by:</h2>
         <div className=" grid justify-between	">
