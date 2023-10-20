@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Card } from "../card/card";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts, getProductFiltered } from "../../redux/products/productsActions"; // Importa tus acciones
-import { setCurrentPage, startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
+import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import Loader from "../loader/loaer";
 import NotFound from "../notFound/notFound";
+import { Paginated } from "../../components/Paginated/Paginated";
 
 export function Cards() {
-  const { products, currentPage, totalPages, query, searchByName, isLoading } = useSelector(
+  const { products, currentPage, totalPages, isLoading } = useSelector(
     (state) => state.products
   );
   const dispatch = useDispatch();
-
-  let elements = [];
 
   useEffect(() => {
     dispatch(startLoading());
@@ -23,19 +21,6 @@ export function Cards() {
     }, 3000);
   }, [products, currentPage]);
 
-  {
-    for (let i = 0; i < Number(totalPages); i++) {
-      elements.push(
-        <button
-          key={i}
-          onClick={() => dispatch(getProductFiltered(`${query}&${searchByName}&page=${i + 1}`))}
-          className={i + 1 === currentPage ? "active py-[8px] px-[24px] font-bebas rounded-none ml-[8px]" : " py-[8px] px-[24px] font-bebas rounded-none ml-[8px]" }
-        >
-          {i + 1}
-        </button>
-      );
-    }
-  }
 
   return (
     <div className="mx-[auto]">
@@ -57,31 +42,7 @@ export function Cards() {
           )}
         </div>
       )}
-      <div className="mt-[25px] mb-[50px]">
-        <input
-          type="button"
-          value="Prev"
-          name="Prev"
-          className=" bg-orangeFred-300 text-blackFred-300 font-bebas py-[8px] px-[24px] p-[0.6em] rounded-none"
-          onClick={() => {
-            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage - 1}`));
-          }}
-          disabled={currentPage === 1}
-        />
-
-        {elements}
-
-        <input
-          type="button"
-          value="Next"
-          name="Next"
-          className=" bg-orangeFred-300 text-blackFred-300 font-bebas py-[8px] px-[24px] p-[0.6em] rounded-none ml-[8px]"
-          onClick={() => {
-            dispatch(getProductFiltered(`${query}&${searchByName}&page=${currentPage + 1}`));
-          }}
-          disabled={currentPage === totalPages}
-        />
-      </div>
+      <Paginated />
     </div>
   );
 }

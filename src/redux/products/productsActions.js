@@ -1,41 +1,11 @@
 import axios from "axios";
 import {
-  getAllProducts,
-  getProductByName,
   getProductById,
   getProductsByFilter,
   addProduct,
-  setQuery,
-  setSearchName,
-  //setTotalPages,
 } from "./productSlice.js";
 
 const URLBASE = import.meta.env.VITE_URL_BASE
-
-export const getProducts = (page) => {
-  return (dispatch) => {
-    axios
-      .get(`${URLBASE}/products/?page=${page}`)
-      .then((res) => {
-        dispatch(getAllProducts(res.data));
-
-        console.log(res.data);
-      })
-      .catch((e) => console.log(e));
-  };
-};
-
-export const getProductName = (name) => {
-  return (dispatch) => {
-    axios
-      .get(`${URLBASE}/products/name?name=${name}`)
-      .then((res) => {
-        dispatch(getProductByName(res.data));
-        console.log(res.data);
-      })
-      .catch((e) => console.log(e));
-  };
-};
 
 export const getProductId = (id) => {
   return (dispatch) => {
@@ -49,7 +19,16 @@ export const getProductId = (id) => {
   };
 };
 
-export const getProductFiltered = (query) => {
+export const getProductFiltered = (filters) => {
+  const query = Object.entries(filters)
+      .map(([key, value]) => {
+        if (value) {
+          return `${key}=${value}`;
+        }
+        return "";
+      })
+      .filter(Boolean)
+      .join("&");
   return (dispatch) => {
     console.log('la actoin: ' + query);
     axios
@@ -74,12 +53,3 @@ export const postProduct = (product) => {
       .catch((e) => console.log(e));
   };
 };
-
-export const createQuery = (query) => {
-  return (dispatch) => dispatch(setQuery(query))
-};
-
-export const searchName = (name) => {
-  return (dispatch) => dispatch(setSearchName(name))
-}
-

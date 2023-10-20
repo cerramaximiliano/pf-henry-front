@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
@@ -8,15 +9,20 @@ import {
 import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SearchBar from "../SearchBar/SearchBar";
+import { LoginButton } from "../Buttons/Login-button";
+import { SignupButton } from "../Buttons/signup-button";
+import { LogoutButton } from "../Buttons/Logout-button";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar () {
+export default function NavBar() {
   const { pathname } = useLocation();
+  const { isAuthenticated } = useAuth0();
+
   return (
-    <div className=" sticky z-10 top-0 bg-[#121212]">  
+    <div className=" sticky z-10 top-0 bg-[#121212]">
       <div>
         <Disclosure as="nav" className=" top-0 w-full bg-[#121212]">
           {({ open }) => (
@@ -66,7 +72,7 @@ export default function NavBar () {
                       </div>
                     </div>
                   </div>
-                  <SearchBar/>
+                  <SearchBar />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                     <a href="/cart ">
                       <button
@@ -99,8 +105,21 @@ export default function NavBar () {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#121212] py-1 shadow-lg">
-                          <Menu.Item>
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#121212] py-1 shadow-lg ">
+                          <div className="nav-bar__buttons">
+                            {!isAuthenticated && (
+                              <>
+                                <SignupButton />
+                                <LoginButton />
+                              </>
+                            )}
+                            {isAuthenticated && (
+                              <>
+                                <LogoutButton />
+                              </>
+                            )}
+                          </div>
+                          {/* <Menu.Item>
                             {({ active }) => (
                               <a
                                 href="/login"
@@ -138,7 +157,7 @@ export default function NavBar () {
                                 Sign out
                               </a>
                             )}
-                          </Menu.Item>
+                          </Menu.Item> */}
                         </Menu.Items>
                       </Transition>
                     </Menu>
