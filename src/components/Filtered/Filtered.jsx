@@ -132,7 +132,7 @@ export default function Filtered() {
               id="priceMax"
               type="number"
               placeholder="Max"
-              className=" w-[128px] h-[35px]"
+              className=" w-[117px] rounded-[5px]"
               />
             </span>
         </div>
