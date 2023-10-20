@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
@@ -5,27 +6,32 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SearchBar from "../SearchBar/SearchBar";
+import { LoginButton } from "../Buttons/Login-button";
+import { SignupButton } from "../Buttons/signup-button";
+import { LogoutButton } from "../Buttons/Logout-button";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar () {
+export default function NavBar() {
   const { pathname } = useLocation();
+  const { isAuthenticated } = useAuth0();
+
   return (
-    <div>
+    <div className=" sticky z-10 top-0 bg-[#121212]">
       <div>
-        <Disclosure as="nav" className="w-full bg-[#121212]">
+        <Disclosure as="nav" className=" top-0 w-full bg-[#121212]">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="w-8 h-auto mx-rigth-[200px]">
-                      <img src={Logo} alt="" className="h-[40px] w-[60px]" />
+                      <Link to="/home"><img src={Logo} alt="" className="h-[40px] w-[60px]" /></Link>
                     </div>
                     <div className="hidden sm:ml-[250px] sm:block">
                       <div className="flex space-x-4">
@@ -66,7 +72,7 @@ export default function NavBar () {
                       </div>
                     </div>
                   </div>
-                  <SearchBar/>
+                  <SearchBar />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                     <a href="/cart ">
                       <button
@@ -100,7 +106,20 @@ export default function NavBar () {
                         leaveTo="transform opacity-0 scale-95"
                       >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#121212] py-1 shadow-lg">
-                          <Menu.Item>
+                          <div className="nav-bar__buttons">
+                            {!isAuthenticated && (
+                              <>
+                                <SignupButton />
+                                <LoginButton />
+                              </>
+                            )}
+                            {isAuthenticated && (
+                              <>
+                                <LogoutButton />
+                              </>
+                            )}
+                          </div>
+                          {/* <Menu.Item>
                             {({ active }) => (
                               <a
                                 href="/login"
@@ -138,7 +157,7 @@ export default function NavBar () {
                                 Sign out
                               </a>
                             )}
-                          </Menu.Item>
+                          </Menu.Item> */}
                         </Menu.Items>
                       </Transition>
                     </Menu>

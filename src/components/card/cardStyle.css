@@ -1,8 +1,0 @@
-/* custom-styles.css */
-.group:hover .object-contain {
-    transform: translateY(-5%);
-    transition: transform 0.5s; 
-  }
-  .prueba{
-    width:10px;
-  }
