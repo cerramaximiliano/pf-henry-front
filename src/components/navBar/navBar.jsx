@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -12,6 +12,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { LoginButton } from "../Buttons/Login-button";
 import { SignupButton } from "../Buttons/signup-button";
 import { LogoutButton } from "../Buttons/Logout-button";
+import Cart from "../Cart/Cart";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -20,6 +21,15 @@ function classNames(...classes) {
 export default function NavBar() {
   const { pathname } = useLocation();
   const { isAuthenticated } = useAuth0();
+  const [toggleCart, setToggleCart] = useState(false);
+
+  const desplegarCart = () => {
+    toggleCart === false ? setToggleCart(true) : setToggleCart(false);
+  };
+
+  /*  const toggleCart = () => {
+      setIsCartOpen(prev => !prev); // Cambiar el estado del carrito al contrario del estado actual
+    } */
 
   return (
     <div className=" sticky z-10 top-0 bg-[#121212]">
@@ -31,7 +41,9 @@ export default function NavBar() {
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="w-8 h-auto mx-rigth-[200px]">
-                      <Link to="/home"><img src={Logo} alt="" className="h-[40px] w-[60px]" /></Link>
+                      <Link to="/home">
+                        <img src={Logo} alt="" className="h-[40px] w-[60px]" />
+                      </Link>
                     </div>
                     <div className="hidden sm:ml-[250px] sm:block">
                       <div className="flex space-x-4">
@@ -74,19 +86,17 @@ export default function NavBar() {
                   </div>
                   <SearchBar />
                   <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
-                    <a href="/cart ">
-                      <button
-                        type="button"
-                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 text-darkorange hover:text-crimson"
-                      >
-                        <span className="absolute -inset-1.5" />
-                        <span className="sr-only">View notifications</span>
-                        <ShoppingCartIcon
-                          className="h-6 w-6"
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </a>
+                    <button
+                      onClick={desplegarCart}
+                      type="button"
+                      className="relative rounded-full bg-gray-800 p-1 text-gray-400 text-darkorange hover:text-crimson"
+                    >
+                      <ShoppingCartIcon
+                        className="h-6 w-6"
+                        aria-hidden="true"
+                      />
+                      {toggleCart ? <Cart/> : null}
+                    </button>
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
