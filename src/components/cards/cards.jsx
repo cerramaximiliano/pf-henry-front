@@ -12,14 +12,14 @@ export function Cards() {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(startLoading());
+  // useEffect(() => {
+  //   dispatch(startLoading());
 
-    // Simula una carga asincrónica
-    setTimeout(() => {
-      dispatch(stopLoading());
-    }, 3000);
-  }, [products, currentPage]);
+  //   // Simula una carga asincrónica
+  //   setTimeout(() => {
+  //     dispatch(stopLoading());
+  //   }, 3000);
+  // }, [products, currentPage]);
 
 
   return (
