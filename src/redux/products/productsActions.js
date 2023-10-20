@@ -4,6 +4,7 @@ import {
   getProductsByFilter,
   addProduct,
 } from "./productSlice.js";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const URLBASE = import.meta.env.VITE_URL_BASE
 
@@ -19,7 +20,7 @@ export const getProductId = (id) => {
   };
 };
 
-export const getProductFiltered = (filters) => {
+export const getProductFiltered =  (filters) => {
   const query = Object.entries(filters)
       .map(([key, value]) => {
         if (value) {
@@ -29,9 +30,9 @@ export const getProductFiltered = (filters) => {
       })
       .filter(Boolean)
       .join("&");
-  return (dispatch) => {
+  return async (dispatch) => {
     console.log('la actoin: ' + query);
-    axios
+    await axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
         dispatch(getProductsByFilter(res.data));
