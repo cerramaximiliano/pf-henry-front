@@ -4,20 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: {
-          "100": "#f9fdfe",
-          "200": "#121212",
-          "300": "rgba(0, 0, 0, 0.56)",
-        },
         darkorange: "#ff9505",
-        white: "#fafdfe",
-        gray: "#f9fdfe",
-        black: "#121212",
+        whitem: "#f9fdfe",
+        graym: "#3d3d3d",
+        blackm: "#121212",
         crimson: "#e93b45",
-        gainsboro: "#d9d9d9"
       },
       spacing: {},
       fontFamily: {
+        roboto: "roboto",
         inter: "Inter",
         impact: "Impact",
         bayon: "Bayon",
