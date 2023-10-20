@@ -25,7 +25,7 @@ export function Cards() {
   return (
     <div className="mx-[auto]">
       {isLoading ? <Loader /> : (
-        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[100px]">
+        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
           {products.length > 0 ? (
             products.map((product) => (
               <Card

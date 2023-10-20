@@ -19,9 +19,9 @@ export default function Products() {
   }, [filters])
 
   return (
-    <div className="flex flex-row mx-[5%] mt-[5%]">
+    <div className="flex flex-row mx-[5%] mt-[5%] min-h-[1000px] ">
       <Filtered />
-      <span className="w-[10%]"></span>
+      <span className="w-[30%]"></span>
       {isLoading ? <Loader/> : <Cards />}
     </div>
   );
