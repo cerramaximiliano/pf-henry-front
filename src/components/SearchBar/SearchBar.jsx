@@ -1,26 +1,27 @@
 import React from "react";
 import { useContext } from "react";
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import { FiltersContext } from "../../context/filter";
 
 export default function SearchBar() {
   const navigate = useNavigate();
   const { filters, setFilters } = useContext(FiltersContext)
+  const location = useLocation()
+  const path = location.pathname
   
   const handleChange = (event) => {
     setFilters({name: event.target.value})
   };
 
   const searchProduct = () => {
-    if (name.trim() === '') alert('Name should be a non-empty string');
-    setFilters({name:name})
+    if (filters.name.trim() === '') alert('Name should be a non-empty string');
+    if(path === '/home') navigate('/products')
   };
   
   
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' && name.trim() !== '') {
+    if (event.key === 'Enter' && filters.name.trim() !== '') {
       searchProduct();
-      navigate('/products')
     }}
 
   return (
