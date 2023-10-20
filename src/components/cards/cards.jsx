@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card } from "../card/card";
+import { Card } from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import Loader from "../loader/loaer";
