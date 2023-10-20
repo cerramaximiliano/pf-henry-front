@@ -11,7 +11,7 @@ export const postUser = (data) => {
         .post(`${URLBASE}/users/create`, data)
         .then((res) => {
           dispatch(setUser(data));
-          console.log(res.data);
+          console.log(res.data, data);
         })
         .catch((e) => console.log(e));
     };
