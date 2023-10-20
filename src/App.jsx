@@ -11,15 +11,26 @@ import Landing from "./views/landing/landing";
 import { Footer } from "./components/Footer/Footer";
 import { CallbackPage } from "./components/Callback/callback";
 import Loader from "./components/loader/loaer";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { postUser } from "./redux/users/usersActions";
 
 function App() {
+  const dispatch = useDispatch()
   const {pathname} = useLocation();
-  const { isLoading, user } = useAuth0();
+  const { isLoading, user, isAuthenticated } = useAuth0();
 
-  console.log(user);
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(user);
+      dispatch(postUser(user))
+    }
+  }, [user, dispatch])
+  
+
   if (isLoading) {
     return (
-      <div className="page-layout">
+      <div>
         <Loader />
       </div>
     );
