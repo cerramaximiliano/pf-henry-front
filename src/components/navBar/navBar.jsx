@@ -10,6 +10,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SearchBar from "../SearchBar/SearchBar";
 import { LoginButton } from "../Buttons/Login-button";
+import { SignupButton } from "../Buttons/Signup-button";
 import { LogoutButton } from "../Buttons/Logout-button";
 import Cart from "../Cart/Cart";
 import { SignupButton } from "../Buttons/Signup-button";
