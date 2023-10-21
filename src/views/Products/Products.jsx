@@ -4,7 +4,7 @@ import { Cards } from "../../components/cards/cards";
 import { useContext, useEffect, useState } from "react";
 import { getProductFiltered } from "../../redux/products/productsActions";
 import { FiltersContext } from "../../context/filter";
-import Loader from "../../components/loader/loaer";
+import Loader from "../../components/Loader/Loader";
 
 export default function Products() {
 
@@ -19,9 +19,9 @@ export default function Products() {
   }, [filters])
 
   return (
-    <div className="flex flex-row mx-[5%] mt-[5%] min-h-[1000px] ">
+    <div className="flex flex-row">
       <Filtered />
-      <span className="w-[30%]"></span>
+      <span className="w-[20%]" ></span>
       {isLoading ? <Loader/> : <Cards />}
     </div>
   );

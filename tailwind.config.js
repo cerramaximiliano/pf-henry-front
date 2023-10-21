@@ -9,6 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        graym: "#3d3d3d",
         redFred:{
           "100": "#EE6D76",
           "200": "#EC5B64",

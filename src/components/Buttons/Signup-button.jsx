@@ -16,7 +16,7 @@ export const SignupButton = () => {
   };
 
   return (
-    <button onClick={handleSignUp}>
+    <button  className="block px-4 py-2  mt-2 text-sm ml-2 w-[180px]  text-white hover:text-orangeFred-100" onClick={handleSignUp}>
       Sign Up
     </button>
   );

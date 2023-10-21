@@ -1,12 +1,9 @@
+import CarouselAbout from "../../components/CarrouselAbout/CarouselAbout";
+
 export default function Aboutus () {
     return (
         <div>
-           <p>
-                MOTIVATE & <br/>
-                SUPPORT THE<br/>
-                DESIRE TO<br/>
-                LIVE WELL<br/>
-            </p>
+            <CarouselAbout/>
         </div>
     )
 }
