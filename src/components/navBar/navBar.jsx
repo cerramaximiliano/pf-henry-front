@@ -13,7 +13,6 @@ import { LoginButton } from "../Buttons/Login-button";
 import { SignupButton } from "../Buttons/Signup-button";
 import { LogoutButton } from "../Buttons/Logout-button";
 import Cart from "../Cart/Cart";
-import { SignupButton } from "../Buttons/Signup-button";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
