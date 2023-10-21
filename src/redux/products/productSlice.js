@@ -12,7 +12,7 @@ const productSlice = createSlice({
   },
   reducers: {
     getProductById: (state, action) => {
-      state.detail = action.payload;
+      state.detail = [...action.payload]
     },
     getProductsByFilter: (state, action) => {
       state.totalPages = action.payload.totalPages;

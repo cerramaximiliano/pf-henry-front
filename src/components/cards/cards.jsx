@@ -15,16 +15,16 @@ export function Cards() {
   useEffect(() => {
     dispatch(startLoading());
 
-  
     setTimeout(() => {
       dispatch(stopLoading());
     }, 3000);
   }, [products, currentPage]);
 
-
   return (
     <div className=" overflow-hidden mx-[auto]">
-      {isLoading ? <Loader/> : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
           {products.length > 0 ? (
             products.map((product) => (
@@ -38,7 +38,7 @@ export function Cards() {
               />
             ))
           ) : (
-            <NotFound/>
+            <NotFound />
           )}
         </div>
       )}

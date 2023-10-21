@@ -1,85 +1,12 @@
-/* import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { CartMoldel } from "../../components/Cart/Cart";
-
-export default function Cart() {
-  const { products, query, searchByName, isLoading } = useSelector(
-    (state) => state.products
-  );
-  const dispatch = useDispatch();
- */
-
-/*   useEffect(() => {
-    dispatch(startLoading());
-
-    // Simula una carga asincrónica
-    setTimeout(() => {
-      dispatch(stopLoading());
-    }, 3000);
-  }, [products]);
- */
-/*  return (
-        <div className=" mx-[10%] min-h-[700px] my-[5%] bg-blackFred-100 flex place-content-evenly	">
-          <span >
-            <span>Item</span>
-            <div>
-          {products.length > 0 ? (
-            products.map((product) => (
-              <CartMoldel
-                key={product._id}
-                title={product.title}
-                price={product.price}
-              />
-            ))
-          ) : (
-            <div>
-              This cart is empty
-            </div>
-          )}
-        </div>
-          </span>
-          <span className=" grid">
-            <span>Price</span>
-            <span>Total:</span>
-          </span>
-        </div>
-    );
-} */
-
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useSelector, useDispatch } from "react-redux";
+//import { addToCart, removeFromCart } from "./cartSlice"; // Importa las acciones y el slice
 
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
-
-export default function Cart() {
+export default function Cart({ image, title, id }) {
   const [open, setOpen] = useState(true);
+  const { productsInCart } = useSelector((state) => state.cart);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -130,7 +57,7 @@ export default function Cart() {
                       <div className="mt-8">
                         <div className="flow-root bg-blackFred-100 p-[20px]">
                           <ul role="list" className=" m-0 p-0">
-                            {products.map((product) => (
+                            {productsInCart.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
@@ -147,10 +74,9 @@ export default function Cart() {
                                           href={product.href}
                                           className="text-whiteFred-100 hover:text-orangeFred-300"
                                         >
-                                          {product.name}
+                                          {product.title}
                                         </a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
                                     </div>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">

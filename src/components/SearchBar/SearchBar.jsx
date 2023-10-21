@@ -24,7 +24,6 @@ export default function SearchBar() {
     }
   };
 
-
   return (
     <div className=" flex items-center	">
       <input

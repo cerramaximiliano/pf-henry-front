@@ -32,25 +32,32 @@ export default function CardDetail() {
 } */
 
   return (
-    <div>
+    <div className="flex items-center justify-center h-screen ">
       {detail.map((det) => {
         return (
-          <div key={det.id}>
-            <p>Name: {det.title}</p>
-            <p>category: {det.category}</p>
-            <p>diet: {det.diet}</p>
-            <p>
-              weight: {det?.weight?.value} {det?.weight?.type}
-            </p>
-            <p>price: {det.price}</p>
-            <p></p>
+          <div className="flex gap-8 border border-gray-900" key={det.id}>
             {det.image ? (
-              <img
-                src={det.image}
-                srcSet={`${det.image} 352w, ${det.image} 832w, ${det.image} 1200w`}
-                alt="Product Image"
-              />
+              <div
+                className=" flex items-center justify-center  w-[218px] h-[253px] p-[50px] relative bg-cyan-800 rounded  
+              "
+              >
+                <img
+                  className="  w-[245px] h-[307px] rounded-tl-lg rounded-tr-xl rounded-bl-xl rounded-br-xl border border-cyan-800"
+                  src={det.image}
+                  srcSet={`${det.image} 352w, ${det.image} 832w, ${det.image} 1200w`}
+                  alt="Product Image"
+                />
+              </div>
             ) : null}
+            <div className=" flex flex-col items-center justify-center  ">
+              <p>Name: {det.title}</p>
+              <p>category: {det.category}</p>
+              <p>diet: {det.diet}</p>
+              <p>
+                weight: {det?.weight?.value} {det?.weight?.type}
+              </p>
+              <p>price: {det.price}</p>
+            </div>
           </div>
         );
       })}
