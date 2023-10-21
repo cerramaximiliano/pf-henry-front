@@ -9,7 +9,7 @@ import NavBar from "./components/navBar/navBar";
 import Landing from "./views/landing/landing";
 import { Footer } from "./components/Footer/Footer";
 import { CallbackPage } from "./components/Callback/callback";
-import Loader from "./components/loader/loaer";
+import Loader from "./components/Loader/Loader";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postUser } from "./redux/users/usersActions";

@@ -25,16 +25,16 @@ export default function Filtered() {
       weightMin: "",
       weightMax: "",
       page: 1,
-      name: ""
+      name: "",
     });
   };
 
   return (
-    <div className="fixed top-[55vh] left-[5%] transform -translate-y-1/2 p-5 shadow-md bg-[#373737] text-whiteFred-300 font-bebas w-[300px]">
-      <span className="">
-        <h2 className=" mb-[10px] mt-[15px] text-left	" >Sort by:</h2>
+    <div className=" fixed p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]">
+      <span>
+        <h2 className=" mb-[2px] mt-[0px] text-left	" >Sort by:</h2>
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]  text-left">Name</h3>
+          <h3 className=" my-[1px]  text-left">Name</h3>
           <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[280px] h-[35px]">
             <option value="">-----</option>
             <option value="title">A - Z</option>
@@ -42,7 +42,7 @@ export default function Filtered() {
           </select>
         </div>
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]  text-left">Price</h3>
+          <h3 className=" my-[1px]  text-left">Price</h3>
           <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[280px] h-[35px]">
             <option value="">-----</option>
             <option value="-price">Max - Min</option>
@@ -51,7 +51,7 @@ export default function Filtered() {
         </div>
       </span>
       <span> 
-        <h2 className="mb-[10px] mt-[35px] text-left">Filter:</h2>            
+        <h2 className="mb-[2px] mt-[3px] text-left">Filter:</h2>            
         <div className=" grid justify-between	">
           <h3 className=" my-[3px] text-left">Category</h3>
           <select
@@ -124,7 +124,7 @@ export default function Filtered() {
               id="priceMin"
               type="number"
               placeholder="Min"
-              className=" w-[128px] h-[35px]"
+              className=" w-[128px] h-[35px] "
               />
             <input
               name="priceMax"
@@ -132,12 +132,12 @@ export default function Filtered() {
               id="priceMax"
               type="number"
               placeholder="Max"
-              className=" w-[117px] rounded-[5px]"
+              className=" w-[128px] h-[35px]"
               />
             </span>
         </div>
       </span>
-      <button onClick={handleReset} className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent	"> Reset</button>
+      <button onClick={handleReset} className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
     </div>
   );
 }

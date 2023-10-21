@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Card } from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
-import Loader from "../loader/loaer";
 import NotFound from "../notFound/notFound";
 import { Paginated } from "../../components/Paginated/Paginated";
+import Loader from "../Loader/Loader";
 
 export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
@@ -12,19 +12,19 @@ export function Cards() {
   );
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(startLoading());
+  useEffect(() => {
+    dispatch(startLoading());
 
-  //   // Simula una carga asincrónica
-  //   setTimeout(() => {
-  //     dispatch(stopLoading());
-  //   }, 3000);
-  // }, [products, currentPage]);
+  
+    setTimeout(() => {
+      dispatch(stopLoading());
+    }, 3000);
+  }, [products, currentPage]);
 
 
   return (
-    <div className="mx-[auto]">
-      {isLoading ? <Loader /> : (
+    <div className=" overflow-hidden mx-[auto]">
+      {isLoading ? <Loader/> : (
         <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
           {products.length > 0 ? (
             products.map((product) => (
