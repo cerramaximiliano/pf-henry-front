@@ -30,9 +30,9 @@ export const getProductFiltered =  (filters) => {
       })
       .filter(Boolean)
       .join("&");
-  return (dispatch) => {
-    console.log("la actoin: " + query);
-    axios
+  return async (dispatch) => {
+    console.log('la actoin: ' + query);
+    await axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
         dispatch(getProductsByFilter(res.data));
