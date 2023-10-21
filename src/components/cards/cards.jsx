@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import NotFound from "../notFound/notFound";
 import { Paginated } from "../../components/Paginated/Paginated";
-import Loader from "../Loader/Loader";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
 export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
@@ -46,3 +46,8 @@ export function Cards() {
     </div>
   );
 }
+
+
+export default withAuthenticationRequired(Card, {
+ onRedirecting: () => <div>Loading...</div>, 
+});

@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
-import {useDispatch} from "react-redux"
-import {
-  postProductToCart,
-} from '../../redux/cart/cartsActions'
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "../../redux/cart/cartActions";
+
+
 export function Card({ image, title, category, price, id }) {
   const dispatch = useDispatch();
 
   const addToCart = (data) => {
-    dispatch(postProductToCart(data));
+    dispatch(addProductToCart(data));
     console.log("producto agregado al carrito");
   };
 
@@ -34,13 +34,13 @@ export function Card({ image, title, category, price, id }) {
             <span >{category}</span>
           </span>
           <span className="text-[24px]">
-            <span>${price}</span>
+            <span>${price}</span>price
           </span>
         </span>
-        <span className="font-bebas">
-        <button
-            onClick={addToCart}
-            className="rounded-sm font-impact bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"
+        <span className="font-bebas 	">
+          <button
+            onClick={() => addToCart({ id, title, image, price })}
+            className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"
           >
             Add to Cart
           </button>
