@@ -4,8 +4,7 @@ import {
   postProductToCart,
 } from '../../redux/cart/cartsActions'
 export function Card({ image, title, category, price, id }) {
-  
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
 
 const addToCart = (data)=>{
@@ -13,12 +12,8 @@ dispatch(postProductToCart(data))
 console.log('producto agregado al carrito')
 
 }
-
-
-
-
 return (
-    <span className="grid justify-center	 items-center bg-[#373737]	 w-[380px] h-[500px] mx-[auto] mb-[8%]">
+    <span className="grid justify-center	rounded-[15px] items-center bg-[#fafdfe]	 w-[380px] h-[500px] mx-[auto]">
       <span className="justify-center 	"  href={`/product/${id}`}>
         <NavLink to={`/Detail/${id}`} >
           <img 
@@ -36,15 +31,20 @@ return (
               <span>{title}</span>
             </span>
           </NavLink>
-          <span className="my-[15px]">
+          <span >
             <span >{category}</span>
           </span>
           <span className="text-[24px]">
             <span>${price}</span>
           </span>
         </span>
-        <span className="font-bebas 	">
-          <button onClick={addToCart} className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent">Add to Cart</button>
+        <span className="font-bebas">
+        <button
+            onClick={addToCart}
+            className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"
+          >
+            Add to Cart
+          </button>
         </span>
       </span>
     </span>

@@ -15,7 +15,7 @@ export function Paginated() {
             <button
               key={i}
               onClick={() => setFilters({...filters, page: i + 1})}
-              className={i + 1 === currentPage ? "active" : ""}
+              className={i + 1 === currentPage ? "active py-[8px] px-[24px] font-bebas rounded-none ml-[8px]" : "py-[8px] px-[24px] font-bebas rounded-none ml-[8px]"}
             >
               {i + 1}
             </button>
@@ -24,11 +24,12 @@ export function Paginated() {
       }
 
     return <>
-    <div className="mt-[200px]">
+    <div className="mt-[25px] mb-[50px]">
         <input
           type="button"
           value="Prev"
           name="Prev"
+          className="bg-orangeFred-300 text-blackFred-300 font-bebas py-[8px] px-[24px] p-[0.6em] rounded-none"
           onClick={() => {
             setFilters({...filters, page: currentPage - 1});
           }}
@@ -41,6 +42,7 @@ export function Paginated() {
           type="button"
           value="Next"
           name="Next"
+          className="bg-orangeFred-300 text-blackFred-300 font-bebas py-[8px] px-[24px] p-[0.6em] rounded-none ml-[8px]"
           onClick={() => {
             setFilters({...filters, page: currentPage + 1});
           }}

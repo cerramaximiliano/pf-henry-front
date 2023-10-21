@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card } from "../card/card";
+import { Card } from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import Loader from "../loader/loaer";
@@ -12,20 +12,20 @@ export function Cards() {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(startLoading());
+  // useEffect(() => {
+  //   dispatch(startLoading());
 
-    // Simula una carga asincrónica
-    setTimeout(() => {
-      dispatch(stopLoading());
-    }, 3000);
-  }, [products, currentPage]);
+  //   // Simula una carga asincrónica
+  //   setTimeout(() => {
+  //     dispatch(stopLoading());
+  //   }, 3000);
+  // }, [products, currentPage]);
 
 
   return (
     <div className="mx-[auto]">
       {isLoading ? <Loader /> : (
-        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[100px]">
+        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
           {products.length > 0 ? (
             products.map((product) => (
               <Card

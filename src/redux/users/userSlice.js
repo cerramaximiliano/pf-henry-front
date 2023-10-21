@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: {},
+    user_detail: {},
     users: [],
 };
 
@@ -11,7 +11,9 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            state.user = action.payload
+            state.user_detail = action.payload
+            console.log('llegue al reducer');
+            console.log(state.user_detail);
         },
         setAllUsers: (state, action) => {
             state.users = action.payload
@@ -19,15 +21,15 @@ export const userSlice = createSlice({
     },
     updateUserData: (state, action) => {
         if (state.user) {
-          state.user = { ...state.user, ...action.payload };
+            state.user = { ...state.user, ...action.payload };
         }
-      },
+    },
 });
 
 export const {
     setAllUsers,
     updateUserData,
- setUser  
+    setUser
 } = userSlice.actions;
 
 export default userSlice.reducer;
