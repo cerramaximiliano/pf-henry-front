@@ -1,19 +1,23 @@
 import axios from "axios";
 import{
-    addProductCart,
-    deleteProductCart,
+    addProduct,
+    deleteProduct,
 } from './cartSlice.js'
 
-const URLBASE = import.meta.env.VITE_URL_BASE
+export const addProductToCart = (product) => {
+  return (dispatch) => {
+    dispatch(addProduct(product));
+  };
+};
 
-export const postProductToCart = (product) => {
-    return (dispatch) => {
-      axios
-        .post(`${URLBASE}/productsCart/add`, product)
-        .then((res) => {
-          dispatch(addProductCart(product));
-          console.log(res.data);
-        })
-        .catch((e) => console.log(e));
-    };
-  }; 
+export const deleteProductToCart = (productId) => {
+  return (dispatch) => {
+    dispatch(deleteProduct(productId));
+  };
+};
+
+
+
+  //delete eliminar productos del estado global del carrito (en el carrito)
+  //Agregar productos del carrito al estado global (se usa en detalle y en producto)
+  // Funcion multiplicar mismo producto (producto en si ) 
