@@ -1,9 +1,15 @@
+//         darkorange: "#ff9505",
+//         whitem: "#f9fdfe",
+//         graym: "#3d3d3d",
+//         blackm: "#121212",
+//         crimson: "#e93b45",
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        graym: "#3d3d3d",
         redFred:{
           "100": "#EE6D76",
           "200": "#EC5B64",
@@ -27,6 +33,7 @@ module.exports = {
       },
       spacing: {},
       fontFamily: {
+        roboto: "roboto",
         inter: "Inter",
         impact: "Impact",
         bayon: "Bayon",

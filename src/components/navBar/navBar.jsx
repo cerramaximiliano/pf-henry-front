@@ -32,9 +32,9 @@ export default function NavBar() {
     } */
 
   return (
-    <div className=" sticky z-10 top-0 bg-[#121212]">
+    <div className="sticky z-10 top-0 bg-[#121212]">
       <div>
-        <Disclosure as="nav" className=" top-0 w-full bg-[#121212]">
+        <Disclosure as="nav" className="sticky top-0 w-full bg-graym">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ export default function NavBar() {
                           {pathname !== "/" && (
                             <NavLink
                               to="/home"
-                              className=" text-whiteFred-300 font-bebas hover:text-orangeFred-300"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               Home
                             </NavLink>
@@ -59,7 +59,7 @@ export default function NavBar() {
                           {pathname !== "/Products" && (
                             <NavLink
                               to="/products"
-                              className=" text-whiteFred-300 font-bebas hover:text-orangeFred-300"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               Products
                             </NavLink>
@@ -67,7 +67,7 @@ export default function NavBar() {
                           {pathname !== "/" && (
                             <NavLink
                               to="/aboutus"
-                              className=" text-whiteFred-300 font-bebas hover:text-orangeFred-300"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               About Us
                             </NavLink>
@@ -75,7 +75,7 @@ export default function NavBar() {
                           {pathname !== "/Myaccount" && (
                             <NavLink
                               to="/myaccount"
-                              className=" space-x-96  text-whiteFred-300 font-bebas hover:text-orangeFred-300"
+                              className=" space-x-96  text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               My acount
                             </NavLink>
@@ -115,7 +115,7 @@ export default function NavBar() {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#121212] py-1 shadow-lg ">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-graym py-1 shadow-lg ">
                           <div className="nav-bar__buttons">
                             {!isAuthenticated && (
                               <>
