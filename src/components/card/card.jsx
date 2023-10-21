@@ -12,21 +12,21 @@ export function Card({ image, title, category, price, id }) {
   };
 
   return (
-    <span className="grid justify-center	 items-center bg-[#373737]	 w-[380px] h-[500px] mx-[auto] mb-[8%]">
+    <span className="grid justify-center rounded-sm items-center bg-graym w-[380px] h-[550px] mx-[auto] mt-[2%]">
       <span className="justify-center 	" href={`/product/${id}`}>
         <NavLink to={`/Detail/${id}`}>
           <img
             src={image}
-            className="object-contain  h-[335px] w-[335px]"
+            className="object-contain h-[335px] w-[335px]"
             srcSet={`${image} 352w, ${image} 832w, ${image} 1200w`}
             alt="Product Image"
           />
         </NavLink>
       </span>
       <span className=" flex justify-between items-center">
-        <span className="grid justify-start text-left	 text-whiteFred-300 font-bebas 	">
+        <span className="grid justify-start text-left	 text-whiteFred-100">
           <NavLink to={`/Detail/${id}`}>
-            <span className="justify-start text-whiteFred-300 text-[24px]">
+            <span className="justify-start text-orangeFred-100 text-[25px] font-bebas">
               <span>{title}</span>
             </span>
           </NavLink>

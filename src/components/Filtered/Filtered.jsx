@@ -25,25 +25,25 @@ export default function Filtered() {
       weightMin: "",
       weightMax: "",
       page: 1,
-      name: ""
+      name: "",
     });
   };
 
   return (
-    <div className="fixed top-1/2 left-[5%] transform -translate-y-1/2 p-5 shadow-md bg-[#fafdfe] text-black rounded-[20px]	">
-      <span className=" ">
-        <h2 className=" mb-[10px] mt-[0px]">Sort by:</h2>
+    <div className=" fixed p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]">
+      <span>
+        <h2 className=" mb-[2px] mt-[0px] text-left	" >Sort by:</h2>
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Name</h3>
-          <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[125px] rounded-[5px]">
+          <h3 className=" my-[1px]  text-left">Name</h3>
+          <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[280px] h-[35px]">
             <option value="">-----</option>
             <option value="title">A - Z</option>
             <option value="-title">Z - A</option>
           </select>
         </div>
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Price</h3>
-          <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[125px] rounded-[5px]">
+          <h3 className=" my-[1px]  text-left">Price</h3>
+          <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[280px] h-[35px]">
             <option value="">-----</option>
             <option value="-price">Max - Min</option>
             <option value="price">Min - Max</option>
@@ -51,14 +51,14 @@ export default function Filtered() {
         </div>
       </span>
       <span> 
-        <h2 className="mb-[10px] mt-[35px]">Filter:</h2>            
+        <h2 className="mb-[2px] mt-[3px] text-left">Filter:</h2>            
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Category</h3>
+          <h3 className=" my-[3px] text-left">Category</h3>
           <select
             name="category"
             onChange={handleChange}
             value={filters.category}
-            className=" w-[125px] rounded-[5px]"
+            className=" w-[280px] h-[35px]"
           >
             <option value="">All</option>
             <option value="food">Food</option>
@@ -69,8 +69,8 @@ export default function Filtered() {
         </div>
 
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Diet</h3>
-          <select name="diet" onChange={handleChange} value={filters.diet} className=" w-[125px] rounded-[5px]">
+          <h3 className=" my-[3px] text-left">Diet</h3>
+          <select name="diet" onChange={handleChange} value={filters.diet} className="  w-[280px] h-[35px]">
             <option value="">All</option>
             <option value="vegetarian">Vegetarian</option>
             <option value="vegan">Vegan</option>
@@ -79,12 +79,12 @@ export default function Filtered() {
         </div>
 
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Weight Unit</h3>
+          <h3 className=" my-[3px] text-left">Weight Unit</h3>
           <select
             name="weightType"
             onChange={handleChange}
             value={filters.weightType}
-            className=" w-[125px] rounded-[5px]"
+            className=" w-[280px] h-[35px]"
           >
             <option value="">All</option>
             <option value="l">l</option>
@@ -95,15 +95,15 @@ export default function Filtered() {
         </div>
 
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Size</h3>
-          <span className="grid">            
+          <h3 className=" my-[3px] text-left">Size</h3>
+          <span className="flex space-x-[10px]">            
             <input
               name="weightMin"
               onChange={handleChange}
               id="weightMix"
               type="number"
               placeholder="Min"
-              className=" w-[117px] rounded-[5px]"
+              className=" w-[128px] h-[35px] "
               />
             <input
               name="weightMax"
@@ -111,20 +111,20 @@ export default function Filtered() {
               id="weightMax"
               type="number"
               placeholder="Max"
-              className=" w-[117px] rounded-[5px]"
+              className=" w-[128px] h-[35px] "
               />
             </span>
         </div>
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px]">Price</h3>
-          <span className="grid">            
+          <h3 className=" my-[3px] text-left">Price</h3>
+          <span className="flex space-x-[10px]">            
             <input
               name="priceMin"
               onChange={handleChange}
               id="priceMin"
               type="number"
               placeholder="Min"
-              className=" w-[117px] rounded-[5px]"
+              className=" w-[128px] h-[35px] "
               />
             <input
               name="priceMax"
@@ -132,12 +132,12 @@ export default function Filtered() {
               id="priceMax"
               type="number"
               placeholder="Max"
-              className=" w-[117px] rounded-[5px]"
+              className=" w-[128px] h-[35px]"
               />
             </span>
         </div>
       </span>
-      <button onClick={handleReset}> Reset</button>
+      <button onClick={handleReset} className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
     </div>
   );
 }

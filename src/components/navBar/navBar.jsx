@@ -10,7 +10,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SearchBar from "../SearchBar/SearchBar";
 import { LoginButton } from "../Buttons/Login-button";
-import { SignupButton } from "../Buttons/signup-button";
+import { SignupButton } from "../Buttons/Signup-button";
 import { LogoutButton } from "../Buttons/Logout-button";
 import Cart from "../Cart/Cart";
 
@@ -32,9 +32,9 @@ export default function NavBar() {
     } */
 
   return (
-    <div className=" sticky z-10 top-0 bg-[#121212]">
+    <div className="sticky z-10 top-0 bg-[#121212]">
       <div>
-        <Disclosure as="nav" className=" top-0 w-full bg-[#121212]">
+        <Disclosure as="nav" className="sticky top-0 w-full bg-graym">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ export default function NavBar() {
                           {pathname !== "/" && (
                             <NavLink
                               to="/home"
-                              className=" text-white hover:text-darkorange"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               Home
                             </NavLink>
@@ -59,7 +59,7 @@ export default function NavBar() {
                           {pathname !== "/Products" && (
                             <NavLink
                               to="/products"
-                              className=" text-white hover:text-darkorange"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               Products
                             </NavLink>
@@ -67,7 +67,7 @@ export default function NavBar() {
                           {pathname !== "/" && (
                             <NavLink
                               to="/aboutus"
-                              className=" text-white hover:text-darkorange"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               About Us
                             </NavLink>
@@ -75,7 +75,7 @@ export default function NavBar() {
                           {pathname !== "/Myaccount" && (
                             <NavLink
                               to="/myaccount"
-                              className=" space-x-96  text-white hover:text-darkorange"
+                              className=" space-x-96  text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               My acount
                             </NavLink>
@@ -89,10 +89,10 @@ export default function NavBar() {
                     <button
                       onClick={desplegarCart}
                       type="button"
-                      className="relative rounded-full bg-gray-800 p-1 text-gray-400 text-darkorange hover:text-crimson"
+                      className="relative rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent"
                     >
                       <ShoppingCartIcon
-                        className="h-6 w-6"
+                        className="h-4 w-4"
                         aria-hidden="true"
                       />
                       {toggleCart ? <Cart/> : null}
@@ -100,8 +100,8 @@ export default function NavBar() {
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
-                        <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm">
-                          <span className="absolute -inset-1.5" />
+                        <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-orangeFred-300 text-sm">
+                          <span className="absolute -inset-1.5  h-[39]" />
                           <span className="sr-only">Open user menu</span>
                           <img className="h-8 w-8 rounded-full" src="" alt="" />
                         </Menu.Button>
@@ -115,7 +115,7 @@ export default function NavBar() {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#121212] py-1 shadow-lg">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-graym py-1 shadow-lg ">
                           <div className="nav-bar__buttons">
                             {!isAuthenticated && (
                               <>
@@ -134,8 +134,8 @@ export default function NavBar() {
                               <a
                                 href="/login"
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm  text-white hover:text-darkorange"
+                                  active ? "bg-whiteFred-300" : "",
+                                  "block px-4 py-2 text-sm  text-whiteFred-300 hover:text-orangeFred-300"
                                 )}
                               >
                                 Log In
@@ -147,8 +147,8 @@ export default function NavBar() {
                               <a
                                 href="#"
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm  text-white hover:text-darkorange"
+                                  active ? "bg-whiteFred-300" : "",
+                                  "block px-4 py-2 text-sm  text-whiteFred-300 hover:text-orangeFred-300"
                                 )}
                               >
                                 Settings
@@ -160,8 +160,8 @@ export default function NavBar() {
                               <a
                                 href="/"
                                 className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm  text-white hover:text-darkorange"
+                                  active ? "bg-whiteFred-300" : "",
+                                  "block px-4 py-2 text-sm  text-whiteFred-300 hover:text-orangeFred-300"
                                 )}
                               >
                                 Sign out

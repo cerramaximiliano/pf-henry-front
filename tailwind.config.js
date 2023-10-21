@@ -1,9 +1,15 @@
+//         darkorange: "#ff9505",
+//         whitem: "#f9fdfe",
+//         graym: "#3d3d3d",
+//         blackm: "#121212",
+//         crimson: "#e93b45",
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        graym: "#3d3d3d",
         redFred:{
           "100": "#EE6D76",
           "200": "#EC5B64",
@@ -27,6 +33,7 @@ module.exports = {
       },
       spacing: {},
       fontFamily: {
+        roboto: "roboto",
         inter: "Inter",
         impact: "Impact",
         bayon: "Bayon",
@@ -48,3 +55,23 @@ module.exports = {
     preflight: false,
   },
 };
+
+/*  colors: {
+        gray: {
+          "100": "#f9fdfe",
+          "200": "#121212",
+          "300": "rgba(0, 0, 0, 0.56)",
+        },
+        darkorange: "#ff9505",
+        white: "#fafdfe",
+        gray: "#f9fdfe",
+        black: "#121212",
+        crimson: "#e93b45",
+        gainsboro: "#d9d9d9"
+
+
+
+          "100": "#EE6D76",
+          "200": "#EC5B64",
+          "300": "#E83B46",
+      }, */

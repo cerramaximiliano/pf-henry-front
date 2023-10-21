@@ -9,16 +9,29 @@ import NavBar from "./components/navBar/navBar";
 import Landing from "./views/landing/landing";
 import { Footer } from "./components/Footer/Footer";
 import { CallbackPage } from "./components/Callback/callback";
-import Loader from "./components/loader/loaer";
+import Loader from "./components/Loader/Loader";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { postUser } from "./redux/users/usersActions";
 
 function App() {
-  const { pathname } = useLocation();
-  const { isLoading, user } = useAuth0();
 
-  console.log(user);
+  const dispatch = useDispatch()
+  const {pathname} = useLocation();
+  const { isLoading, user, isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(user);
+      dispatch(postUser(user))
+    }
+  }, [user, dispatch])
+  
+
+
   if (isLoading) {
     return (
-      <div className="page-layout">
+      <div>
         <Loader />
       </div>
     );
