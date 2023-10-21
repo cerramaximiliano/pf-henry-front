@@ -30,7 +30,7 @@ export default function Filtered() {
   };
 
   return (
-    <div className=" fixed p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]">
+    <div className=" fixed mt-1 p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]">
       <span>
         <h2 className=" mb-[2px] mt-[0px] text-left	" >Sort by:</h2>
         <div className=" grid justify-between	">
@@ -95,7 +95,7 @@ export default function Filtered() {
         </div>
 
         <div className=" grid justify-between	">
-          <h3 className=" my-[3px] text-left">Size</h3>
+          <h3 className=" my-[3px] text-left">Weight</h3>
           <span className="flex space-x-[10px]">            
             <input
               name="weightMin"
