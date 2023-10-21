@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
 import NotFound from "../notFound/notFound";
 import { Paginated } from "../../components/Paginated/Paginated";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
+import Loader from "../Loader/Loader";
 
 export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
@@ -15,16 +15,16 @@ export function Cards() {
   useEffect(() => {
     dispatch(startLoading());
 
-  
     setTimeout(() => {
       dispatch(stopLoading());
     }, 3000);
   }, [products, currentPage]);
 
-
   return (
     <div className=" overflow-hidden mx-[auto]">
-      {isLoading ? <Loader/> : (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
           {products.length > 0 ? (
             products.map((product) => (
@@ -38,7 +38,7 @@ export function Cards() {
               />
             ))
           ) : (
-            <NotFound/>
+            <NotFound />
           )}
         </div>
       )}
@@ -46,8 +46,3 @@ export function Cards() {
     </div>
   );
 }
-
-
-export default withAuthenticationRequired(Card, {
- onRedirecting: () => <div>Loading...</div>, 
-});
