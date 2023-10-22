@@ -2,18 +2,17 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../redux/Cart/cartActions";
 
-
 export function Card({ image, title, category, price, id }) {
   const dispatch = useDispatch();
 
-  const handleAddClick = (data) => {
-    dispatch(addProductToCart(data));
-    console.log("producto agregado al carrito");
+  const handleAddClick = () => {
+    dispatch(addProductToCart({ id, title, image, price }));
+    console.log("Producto agregado al carrito");
   };
 
   return (
     <span className="grid justify-center rounded-sm items-center bg-graym w-[380px] h-[550px] mx-[auto] mt-[2%]">
-      <span className="justify-center 	" href={`/product/${id}`}>
+      <span className="justify-center  ">
         <NavLink to={`/products/detail/${id}`}>
           <img
             src={image}
@@ -24,7 +23,7 @@ export function Card({ image, title, category, price, id }) {
         </NavLink>
       </span>
       <span className=" flex justify-between items-center">
-        <span className="grid justify-start text-left	 text-whiteFred-100">
+        <span className="grid justify-start text-left  text-whiteFred-100">
           <NavLink to={`/Detail/${id}`}>
             <span className="justify-start text-orangeFred-100 text-[25px] font-bebas">
               <span>{title}</span>
@@ -37,9 +36,9 @@ export function Card({ image, title, category, price, id }) {
             <span>${price}</span>price
           </span>
         </span>
-        <span className="font-bebas 	">
+        <span className="font-bebas  ">
           <button
-            onClick={() => handleAddClick({ id, title, image, price })}
+            onClick={handleAddClick}
             className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"
           >
             Add to Cart
@@ -49,6 +48,7 @@ export function Card({ image, title, category, price, id }) {
     </span>
   );
 }
+
 
 // import { NavLink } from "react-router-dom";
 // import { useDispatch } from "react-redux";

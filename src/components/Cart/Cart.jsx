@@ -2,19 +2,35 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProductToCart } from "../../redux/Cart/cartActions";
-//import { addToCart, removeFromCart } from "./cartSlice"; // Importa las acciones y el slice
+import {
+  deleteProductToCart,
+  addProductToCart,
+  updateProductQuantity,
+} from "../../redux/Cart/cartActions";
 
 export default function Cart({ image, title, id }) {
   const [open, setOpen] = useState(true);
   const { productsInCart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const [uniqueProducts, setUniqueProducts] = useState(new Set());
+
+  const handleAddToCart = (product) => {
+    if (!uniqueProducts.has(product.id)) {
+      dispatch(addProductToCart(product));
+      setUniqueProducts(new Set(uniqueProducts).add(product.id));
+    }
+  };
 
   const handleDeleteClick = (event) => {
-    const id = event.target.value
-    console.log(id)
+    const id = event.target.value;
+    console.log(id);
     dispatch(deleteProductToCart(id));
-    console.log('eliminar del carrito')
+    setUniqueProducts((prevSet) => {
+      const updatedSet = new Set(prevSet);
+      updatedSet.delete(id);
+      return updatedSet;
+    });
+    console.log('eliminar del carrito');
   };
 
   return (
@@ -90,13 +106,34 @@ export default function Cart({ image, title, id }) {
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-white-300">
-                                      Quantity {product.quantity}
+                                      Quantity{" "}
+                                      <select
+                                        value={product.quantity}
+                                        onChange={(e) => {
+                                          const newQuantity = parseInt(
+                                            e.target.value,
+                                            10
+                                          );
+                                          dispatch(
+                                            updateProductQuantity(
+                                              product.id,
+                                              newQuantity
+                                            )
+                                          );
+                                        }}
+                                      >
+                                        {Array.from({ length: 10 }, (_, i) => (
+                                          <option key={i} value={i + 1}>
+                                            {i + 1}
+                                          </option>
+                                        ))}
+                                      </select>
                                     </p>
 
                                     <div className="flex">
                                       <button
-                                     onClick={handleDeleteClick}
-                                     value={product.id}
+                                        onClick={handleDeleteClick}
+                                        value={product.id}
                                         type="button"
                                         className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
                                       >
