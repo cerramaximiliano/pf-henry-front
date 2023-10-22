@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addProductToCart } from "../../redux/cart/cartActions";
+import { addProductToCart } from "../../redux/Cart/cartActions";
 
 
 export function Card({ image, title, category, price, id }) {
   const dispatch = useDispatch();
 
-  const addToCart = (data) => {
+  const handleAddClick = (data) => {
     dispatch(addProductToCart(data));
     console.log("producto agregado al carrito");
   };
@@ -14,7 +14,7 @@ export function Card({ image, title, category, price, id }) {
   return (
     <span className="grid justify-center rounded-sm items-center bg-graym w-[380px] h-[550px] mx-[auto] mt-[2%]">
       <span className="justify-center 	" href={`/product/${id}`}>
-        <NavLink to={`/Detail/${id}`}>
+        <NavLink to={`/products/detail/${id}`}>
           <img
             src={image}
             className="object-contain h-[335px] w-[335px]"
@@ -39,7 +39,7 @@ export function Card({ image, title, category, price, id }) {
         </span>
         <span className="font-bebas 	">
           <button
-            onClick={() => addToCart({ id, title, image, price })}
+            onClick={() => handleAddClick({ id, title, image, price })}
             className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"
           >
             Add to Cart
