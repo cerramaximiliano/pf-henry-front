@@ -6,8 +6,11 @@ export function Paginated() {
   const { currentPage, totalPages } = useSelector(
     (state) => state.products
   );
+
   const { filters, setFilters } = useContext(FiltersContext);
   let elements = [];
+  
+  console.log(filters)
 
   for (let i = 0; i < Number(totalPages); i++) {
     elements.push(
