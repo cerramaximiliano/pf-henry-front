@@ -18,7 +18,7 @@ export function Card({ image, title, category, price, id }) {
       })
     );
   };
-
+ 
   return (
     <span className="grid justify-center rounded-sm items-center bg-graym w-[380px] h-[550px] mx-[auto] mt-[2%]">
       <span className="justify-center 	" href={`/product/${id}`}>
