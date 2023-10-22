@@ -10,8 +10,7 @@ export const postUser = (data) => {
       axios
         .post(`${URLBASE}/users/create`, data)
         .then((res) => {
-          dispatch(setUser(data));
-          console.log(res.data, data);
+          dispatch(setUser(res.data));
         })
         .catch((e) => console.log(e));
     };
