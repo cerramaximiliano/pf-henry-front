@@ -2,7 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
 import CardDetail from "./components/CardDetail/CardDetail";
-import Home from "./views/home/home";
+import Home from "./views/Home/Home";
 import Product from "./views/Products/Products";
 import Profile from "./views/Myaccount/Myaccount";
 import Us from "./views/Aboutus/us";
