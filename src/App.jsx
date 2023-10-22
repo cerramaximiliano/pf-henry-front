@@ -7,7 +7,6 @@ import Product from "./views/Products/Products";
 import Profile from "./views/AddProduct/AddProduct";
 import Us from "./views/Aboutus/us";
 import NavBar from "./components/navBar/navBar";
-import MyAccount from "./views/Myaccount/Myaccount";
 import NavBarAdmin from "./components/Admin/navBarAdmin/navBarAdmin";
 import Admin from './views/Admin/Admin';
 import Landing from "./views/Landing/Landing";
@@ -18,6 +17,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
+import MyAccount from "./views/MyAccount/MyAccount";
 function App() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
