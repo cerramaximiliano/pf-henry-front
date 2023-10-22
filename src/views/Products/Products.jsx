@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Filtered from "../../components/Filtered/Filtered";
-import { Cards } from "../../components/cards/cards";
+import { Cards } from "../../components/Cards/cards";
 import { useContext, useEffect, useState } from "react";
 import { getProductFiltered } from "../../redux/products/productsActions";
 import { FiltersContext } from "../../context/filter";
