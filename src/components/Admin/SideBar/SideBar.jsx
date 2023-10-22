@@ -20,6 +20,11 @@ export default function NavBar() {
                 <button className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Orders</button>
             </div>
             </span>
+            <span>
+            <div className=" grid justify-between">
+                <button className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Add Product</button>
+            </div>
+            </span>
 
         </div>
     )
