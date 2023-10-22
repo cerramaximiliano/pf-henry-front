@@ -1,4 +1,4 @@
-import Form from "../../components/FormProduct/Form";
+import Form from "../../components/FormProduct/FormProduct";
 
 export default function Profile() {
     return (

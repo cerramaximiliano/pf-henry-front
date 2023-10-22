@@ -1,89 +1,33 @@
-/* import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { CartMoldel } from "../../components/Cart/Cart";
-
-export default function Cart() {
-  const { products, query, searchByName, isLoading } = useSelector(
-    (state) => state.products
-  );
-  const dispatch = useDispatch();
- */
-
-/*   useEffect(() => {
-    dispatch(startLoading());
-
-    // Simula una carga asincrónica
-    setTimeout(() => {
-      dispatch(stopLoading());
-    }, 3000);
-  }, [products]);
- */
-/*  return (
-        <div className=" mx-[10%] min-h-[700px] my-[5%] bg-blackFred-100 flex place-content-evenly	">
-          <span >
-            <span>Item</span>
-            <div>
-          {products.length > 0 ? (
-            products.map((product) => (
-              <CartMoldel
-                key={product._id}
-                title={product.title}
-                price={product.price}
-              />
-            ))
-          ) : (
-            <div>
-              This cart is empty
-            </div>
-          )}
-        </div>
-          </span>
-          <span className=" grid">
-            <span>Price</span>
-            <span>Total:</span>
-          </span>
-        </div>
-    );
-} */
-
-import { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
+import { useSelector, useDispatch } from "react-redux";
+import { deleteProductFromCart, updateProductQuantityInCart } from "../../redux/Cart/cartActions";
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
+  const { productsInCart } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDeleteClick = (productId) => {
+    dispatch(deleteProductFromCart(productId));
+  };
+
+  const handleQuantityChange = (productId, newQuantity) => {
+    dispatch(updateProductQuantityInCart(productId, newQuantity));
+  };
+
+  useEffect(() => {
+    // Handle any actions when the cart is opened or closed
+  }, [open]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" onClose={handleClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -119,7 +63,7 @@ export default function Cart() {
                           <button
                             type="button"
                             className="relative py-[8px] px-[24px] font-bebas bg-orangeFred-300 rounded-none text-blackFred-300 outline-none hover:border-transparent"
-                            onClick={() => setOpen(false)}
+                            onClick={handleClose}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -130,12 +74,12 @@ export default function Cart() {
                       <div className="mt-8">
                         <div className="flow-root bg-blackFred-100 p-[20px]">
                           <ul role="list" className=" m-0 p-0">
-                            {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {Object.keys(productsInCart).map((productId) => (
+                              <li key={productId} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={productsInCart[productId].imageSrc}
+                                    alt={productsInCart[productId].imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -144,22 +88,38 @@ export default function Cart() {
                                     <div className="flex justify-between text-base font-monse text-whiteFred-100">
                                       <h3>
                                         <a
-                                          href={product.href}
+                                          href={productsInCart[productId].href}
                                           className="text-whiteFred-100 hover:text-orangeFred-300"
                                         >
-                                          {product.name}
+                                          {productsInCart[productId].title}
                                         </a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
                                     </div>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-white-300">
-                                      Quantity {product.quantity}
+                                      Quantity{" "}
+                                      <select
+                                        value={productsInCart[productId].quantity}
+                                        onChange={(e) => handleQuantityChange(productId, e.target.value)}
+                                        onKeyPress={(e) => {
+                                          if (e.key === "Enter") {
+                                            e.preventDefault();
+                                          }
+                                        }}
+                                      >
+                                        {[...Array(21).keys()].map((value) => (
+                                          <option key={value} value={value}>
+                                            {value}
+                                          </option>
+                                        ))}
+                                      </select>
                                     </p>
+
 
                                     <div className="flex">
                                       <button
+                                        onClick={() => handleDeleteClick(productId)}
                                         type="button"
                                         className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
                                       >
@@ -191,12 +151,12 @@ export default function Cart() {
                           Checkout
                         </a>
                       </div>
-                      <div className="mt-6 flex place-content-evenly	 text-center text-sm text-whiteFred-300">
+                      <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>
                         <button
                           type="button"
                           className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent"
-                          onClick={() => setOpen(false)}
+                          onClick={handleClose}
                         >
                           Continue Shopping
                           <span aria-hidden="true"> &rarr;</span>
