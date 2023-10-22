@@ -2,11 +2,20 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
+import { deleteProductToCart } from "../../redux/Cart/cartActions";
 //import { addToCart, removeFromCart } from "./cartSlice"; // Importa las acciones y el slice
 
 export default function Cart({ image, title, id }) {
   const [open, setOpen] = useState(true);
   const { productsInCart } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const handleDeleteClick = (event) => {
+    const id = event.target.value
+    console.log(id)
+    dispatch(deleteProductToCart(id));
+    console.log('eliminar del carrito')
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -86,6 +95,8 @@ export default function Cart({ image, title, id }) {
 
                                     <div className="flex">
                                       <button
+                                     onClick={handleDeleteClick}
+                                     value={product.id}
                                         type="button"
                                         className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
                                       >
