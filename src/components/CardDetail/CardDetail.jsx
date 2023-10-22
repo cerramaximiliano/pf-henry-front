@@ -10,39 +10,40 @@ export default function CardDetail() {
   useEffect(() => {
     dispatch(getProductId(id));
   }, [id]);
-  console.log(id)
 
-  const { detail } = useSelector((state) => state.products);
-  console.log(detail);
+  const { detail, loading } = useSelector((state) => state.products);
 
   return (
     <div className="flex items-center justify-center h-screen">
-      {detail ? (
-        <div className="flex gap-8 border border-gray-900" key={detail.id}>
-          {detail.image ? (
-            <div className="flex items-center justify-center w-[218px] h-[253px] p-[50px] relative bg-cyan-800 rounded">
-              <img
-                className="w-[245px] h-[307px] rounded-tl-lg rounded-tr-xl rounded-bl-xl rounded-br-xl border border-cyan-800"
-                src={detail.image}
-                srcSet={`${detail.image} 352w, ${detail.image} 832w, ${detail.image} 1200w`}
-                alt="Product Image"
-              />
-            </div>
-          ) : null}
-          <div className="flex flex-col items-center justify-center">
-            <p>Name: {detail.title}</p>
-            <p>category: {detail.category}</p>
-            <p>diet: {detail.diet}</p>
-            <p>
-              weight: {detail.weight?.value} {detail.weight?.type}
-            </p>
-            <p>price: {detail.price}</p>
-          </div>
-        </div>
-      ) : (
+      {loading ? (
         <p>Loading...</p>
+      ) : detail && detail.length === 1 ? (
+        detail.map((product) => (
+          <div className="flex gap-8 border border-gray-900" key={product.id}>
+            {product.image ? (
+              <div className="flex items-center justify-center w-[218px] h-[253px] p-[50px] relative bg-cyan-800 rounded">
+                <img
+                  className="w-[245px] h-[307px] rounded-tl-lg rounded-tr-xl rounded-bl-xl rounded-br-xl border border-cyan-800"
+                  src={product.image}
+                  srcSet={`${product.image} 352w, ${product.image} 832w, ${product.image} 1200w`}
+                  alt="Product Image"
+                />
+              </div>
+            ) : null}
+            <div className="flex flex-col items-center justify-center">
+              <p>Name: {product.title}</p>
+              <p>Category: {product.category}</p>
+              <p>Diet: {product.diet}</p>
+              <p>
+                Weight: {product.weight?.value} {product.weight?.type}
+              </p>
+              <p>Price: {product.price}</p>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No product data available.</p>
       )}
     </div>
   );
 }
-

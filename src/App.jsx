@@ -14,7 +14,6 @@ import Loader from "./components/Loader/Loader";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
-import CardDetail from "./components/CardDetail/CardDetail"
 import Error from "./views/error/error";
 function App() {
   const dispatch = useDispatch();

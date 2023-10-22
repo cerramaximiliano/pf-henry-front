@@ -1,15 +1,16 @@
-import { addProduct, deleteProduct } from './cartSlice';
-import { updateProductQuantity as updateProductQuantityAction } from './cartSlice';
+import { addProduct, deleteProduct, updateProductQuantity } from './cartslice';
+
 export const addProductToCart = (product) => (dispatch) => {
   dispatch(addProduct(product));
 };
 
-export const deleteProductToCart = (product) => (dispatch) => {
-  dispatch(deleteProduct(product));
-};  
-
-export const updateProductQuantity = (product, newQuantity) => (dispatch) => {
-  dispatch(updateProductQuantityAction({ product, newQuantity }));
+export const deleteProductFromCart = (productId) => (dispatch) => {
+  dispatch(deleteProduct(productId));
 };
 
- 
+export const updateProductQuantityInCart = (productId, quantity) => (dispatch) => {
+  dispatch(updateProductQuantity({ id: productId, quantity }));
+};
+  //delete eliminar productos del estado global del carrito (en el carrito)
+  //Agregar productos del carrito al estado global (se usa en detalle y en producto)
+  // Funcion multiplicar mismo producto (producto en si ) 

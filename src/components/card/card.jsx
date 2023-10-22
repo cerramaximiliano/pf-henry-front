@@ -6,13 +6,22 @@ export function Card({ image, title, category, price, id }) {
   const dispatch = useDispatch();
 
   const handleAddClick = () => {
-    dispatch(addProductToCart({ id, title, image, price }));
-    console.log("Producto agregado al carrito");
+    dispatch(
+      addProductToCart({
+        id,
+        product: {
+          imageSrc: image,
+          imageAlt: title,
+          href: `/Detail/${id}`,
+          title,
+        },
+      })
+    );
   };
 
   return (
     <span className="grid justify-center rounded-sm items-center bg-graym w-[380px] h-[550px] mx-[auto] mt-[2%]">
-      <span className="justify-center  ">
+      <span className="justify-center 	" href={`/product/${id}`}>
         <NavLink to={`/products/detail/${id}`}>
           <img
             src={image}
@@ -23,20 +32,20 @@ export function Card({ image, title, category, price, id }) {
         </NavLink>
       </span>
       <span className=" flex justify-between items-center">
-        <span className="grid justify-start text-left  text-whiteFred-100">
+        <span className="grid justify-start text-left	 text-whiteFred-100">
           <NavLink to={`/Detail/${id}`}>
             <span className="justify-start text-orangeFred-100 text-[25px] font-bebas">
               <span>{title}</span>
             </span>
           </NavLink>
-          <span >
-            <span >{category}</span>
+          <span>
+            <span>{category}</span>
           </span>
           <span className="text-[24px]">
             <span>${price}</span>price
           </span>
         </span>
-        <span className="font-bebas  ">
+        <span className="font-bebas 	">
           <button
             onClick={handleAddClick}
             className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"

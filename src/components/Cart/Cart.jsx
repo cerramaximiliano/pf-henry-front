@@ -1,41 +1,33 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  deleteProductToCart,
-  addProductToCart,
-  updateProductQuantity,
-} from "../../redux/Cart/cartActions";
+import { deleteProductFromCart, updateProductQuantityInCart } from "../../redux/Cart/cartActions";
 
-export default function Cart({ image, title, id }) {
+export default function Cart() {
   const [open, setOpen] = useState(true);
   const { productsInCart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const [uniqueProducts, setUniqueProducts] = useState(new Set());
 
-  const handleAddToCart = (product) => {
-    if (!uniqueProducts.has(product.id)) {
-      dispatch(addProductToCart(product));
-      setUniqueProducts(new Set(uniqueProducts).add(product.id));
-    }
+  const handleClose = () => {
+    setOpen(false);
   };
 
-  const handleDeleteClick = (event) => {
-    const id = event.target.value;
-    console.log(id);
-    dispatch(deleteProductToCart(id));
-    setUniqueProducts((prevSet) => {
-      const updatedSet = new Set(prevSet);
-      updatedSet.delete(id);
-      return updatedSet;
-    });
-    console.log('eliminar del carrito');
+  const handleDeleteClick = (productId) => {
+    dispatch(deleteProductFromCart(productId));
   };
+
+  const handleQuantityChange = (productId, newQuantity) => {
+    dispatch(updateProductQuantityInCart(productId, newQuantity));
+  };
+
+  useEffect(() => {
+    // Handle any actions when the cart is opened or closed
+  }, [open]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" onClose={handleClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
@@ -71,7 +63,7 @@ export default function Cart({ image, title, id }) {
                           <button
                             type="button"
                             className="relative py-[8px] px-[24px] font-bebas bg-orangeFred-300 rounded-none text-blackFred-300 outline-none hover:border-transparent"
-                            onClick={() => setOpen(false)}
+                            onClick={handleClose}
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
@@ -82,12 +74,12 @@ export default function Cart({ image, title, id }) {
                       <div className="mt-8">
                         <div className="flow-root bg-blackFred-100 p-[20px]">
                           <ul role="list" className=" m-0 p-0">
-                            {productsInCart.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {Object.keys(productsInCart).map((productId) => (
+                              <li key={productId} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={productsInCart[productId].imageSrc}
+                                    alt={productsInCart[productId].imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -96,10 +88,10 @@ export default function Cart({ image, title, id }) {
                                     <div className="flex justify-between text-base font-monse text-whiteFred-100">
                                       <h3>
                                         <a
-                                          href={product.href}
+                                          href={productsInCart[productId].href}
                                           className="text-whiteFred-100 hover:text-orangeFred-300"
                                         >
-                                          {product.title}
+                                          {productsInCart[productId].title}
                                         </a>
                                       </h3>
                                     </div>
@@ -108,32 +100,26 @@ export default function Cart({ image, title, id }) {
                                     <p className="text-white-300">
                                       Quantity{" "}
                                       <select
-                                        value={product.quantity}
-                                        onChange={(e) => {
-                                          const newQuantity = parseInt(
-                                            e.target.value,
-                                            10
-                                          );
-                                          dispatch(
-                                            updateProductQuantity(
-                                              product.id,
-                                              newQuantity
-                                            )
-                                          );
+                                        value={productsInCart[productId].quantity}
+                                        onChange={(e) => handleQuantityChange(productId, e.target.value)}
+                                        onKeyPress={(e) => {
+                                          if (e.key === "Enter") {
+                                            e.preventDefault();
+                                          }
                                         }}
                                       >
-                                        {Array.from({ length: 10 }, (_, i) => (
-                                          <option key={i} value={i + 1}>
-                                            {i + 1}
+                                        {[...Array(21).keys()].map((value) => (
+                                          <option key={value} value={value}>
+                                            {value}
                                           </option>
                                         ))}
                                       </select>
                                     </p>
 
+
                                     <div className="flex">
                                       <button
-                                        onClick={handleDeleteClick}
-                                        value={product.id}
+                                        onClick={() => handleDeleteClick(productId)}
                                         type="button"
                                         className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
                                       >
@@ -165,12 +151,12 @@ export default function Cart({ image, title, id }) {
                           Checkout
                         </a>
                       </div>
-                      <div className="mt-6 flex place-content-evenly	 text-center text-sm text-whiteFred-300">
+                      <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>
                         <button
                           type="button"
                           className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent"
-                          onClick={() => setOpen(false)}
+                          onClick={handleClose}
                         >
                           Continue Shopping
                           <span aria-hidden="true"> &rarr;</span>
