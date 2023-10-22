@@ -137,7 +137,7 @@ export default function Filtered() {
             </span>
         </div>
       </span>
-      <button onClick={handleReset} className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
+      <button onClick={handleReset} className="	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
     </div>
   );
 }
