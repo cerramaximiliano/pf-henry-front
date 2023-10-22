@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
+import CardDetail from "./components/CardDetail/CardDetail";
 import Home from "./views/home/home";
 import Product from "./views/Products/Products";
 import Profile from "./views/Myaccount/Myaccount";
@@ -15,19 +16,16 @@ import { useDispatch } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
 
 function App() {
-
-  const dispatch = useDispatch()
-  const {pathname} = useLocation();
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated) {
       console.log(user);
-      dispatch(postUser(user))
+      dispatch(postUser(user));
     }
-  }, [user, dispatch])
-  
-
+  }, [user, dispatch]);
 
   if (isLoading) {
     return (
@@ -46,7 +44,7 @@ function App() {
         <Route path="/aboutus" element={<Us />} />
         <Route path="/myaccount" element={<Profile />} />
         <Route path="/callback" element={<CallbackPage />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/Detail/:id" element={<CardDetail />} />
       </Routes>
       {pathname !== "/" && <Footer />}
     </>

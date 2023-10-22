@@ -6,32 +6,32 @@ import {
 } from "./productSlice.js";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const URLBASE = import.meta.env.VITE_URL_BASE
+const URLBASE = import.meta.env.VITE_URL_BASE;
 
 export const getProductId = (id) => {
   return (dispatch) => {
     axios
       .get(`${URLBASE}/products/${id}`)
       .then((res) => {
-        dispatch(getProductById(res.data));
         console.log(res.data);
+        dispatch(getProductById(res.data));
       })
       .catch((e) => console.log(e));
   };
 };
 
-export const getProductFiltered =  (filters) => {
+export const getProductFiltered = (filters) => {
   const query = Object.entries(filters)
-      .map(([key, value]) => {
-        if (value) {
-          return `${key}=${value}`;
-        }
-        return "";
-      })
-      .filter(Boolean)
-      .join("&");
+    .map(([key, value]) => {
+      if (value) {
+        return `${key}=${value}`;
+      }
+      return "";
+    })
+    .filter(Boolean)
+    .join("&");
   return async (dispatch) => {
-    console.log('la actoin: ' + query);
+    console.log("la actoin: " + query);
     await axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
