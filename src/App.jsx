@@ -4,13 +4,12 @@ import "./App.css";
 import CardDetail from "./components/CardDetail/CardDetail";
 import Home from "./views/Home/Home";
 import Product from "./views/Products/Products";
-import Profile from "./views/Myaccount/Myaccount";
+import Profile from "./views/AddProduct/AddProduct";
 import Us from "./views/Aboutus/us";
 import NavBar from "./components/navBar/navBar";
-
 import NavBarAdmin from "./components/Admin/navBarAdmin/navBarAdmin";
 import Admin from './views/Admin/Admin';
-import Landing from "./views/landing/landing";
+import Landing from "./views/Landing/Landing";
 import { Footer } from "./components/Footer/Footer";
 import { CallbackPage } from "./components/Callback/callback";
 import Loader from "./components/Loader/Loader";
@@ -18,15 +17,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
+import MyAccount from "./views/MyAccount/MyAccount";
 function App() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
 
-  const { user_detail }  = useSelector(
+  const { user_detail } = useSelector(
     (state) => state.users
   );
-  
+
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(postUser(user))
@@ -40,19 +40,20 @@ function App() {
       </div>
     );
   }
-    
+
   return (
     <>
-      {pathname !== "/" && (user_detail.role === 'ADMIN' ? <NavBarAdmin /> :  <NavBar />) }
+      {pathname !== "/" && (user_detail.role === 'ADMIN' ? <NavBarAdmin /> : <NavBar />)}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/products" element={
-          user_detail.role === 'ADMIN' ? <Admin /> : <Product /> 
-          } />
+          user_detail.role === 'ADMIN' ? <Admin /> : <Product />
+        } />
         <Route path="/aboutus" element={<Us />} />
-        <Route path="/myaccount" element={<Profile />} />
+        <Route path="/addproduct" element={<Profile />} />
         <Route path="/callback" element={<CallbackPage />} />
+        <Route path="/myaccount" element={<MyAccount/>} />
         <Route path="/Detail/:id" element={<CardDetail />} />
       </Routes>
       {pathname !== "/" && <Footer />}
