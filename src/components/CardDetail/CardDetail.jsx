@@ -28,7 +28,7 @@ export default function CardDetail() {
                   srcSet={`${product.image} 352w, ${product.image} 832w, ${product.image} 1200w`}
                   alt="Product Image"
                 />
-              </div>
+          </div>
             ) : null}
             <div className="flex flex-col items-center justify-center">
               <p>Name: {product.title}</p>

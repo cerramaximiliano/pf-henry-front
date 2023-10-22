@@ -17,7 +17,7 @@ export function Cards() {
 
     setTimeout(() => {
       dispatch(stopLoading());
-    }, 3000);
+    }, 1500);
   }, [products, currentPage]);
 
   return (

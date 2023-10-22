@@ -10,7 +10,6 @@ import NavBar from "./components/navBar/navBar";
 
 import NavBarAdmin from "./components/Admin/navBarAdmin/navBarAdmin";
 import Admin from './views/Admin/Admin';
-
 import Landing from "./views/landing/landing";
 import { Footer } from "./components/Footer/Footer";
 import { CallbackPage } from "./components/Callback/callback";
