@@ -10,7 +10,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import Logo from "../../../assets/Logo.png";
 import SearchBar from "../../SearchBar/SearchBar";
 import { LoginButton } from "../../Buttons/Login-button";
-import { SignupButton } from "../../Buttons/signup-button";
+import { SignupButton } from "../../Buttons/Signup-button";
 import { LogoutButton } from "../../Buttons/Logout-button";
 import Cart from "../../Cart/Cart";
 
@@ -58,14 +58,6 @@ export default function NavBar() {
                               className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
                               Dashboard
-                            </NavLink>
-                          )}
-                          {pathname !== "/Myaccount" && (
-                            <NavLink
-                              to="/myaccount"
-                              className=" space-x-96  text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
-                            >
-                              Add Products
                             </NavLink>
                           )}
                         </div>

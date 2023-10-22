@@ -72,6 +72,14 @@ export default function NavBar() {
                               About Us
                             </NavLink>
                           )}
+                          {pathname !== "/" && (
+                            <NavLink
+                              to="/myaccount"
+                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
+                            >
+                              My Account
+                            </NavLink>
+                          )}
                         </div>
                       </div>
                     </div>

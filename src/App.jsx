@@ -4,10 +4,10 @@ import "./App.css";
 import CardDetail from "./components/CardDetail/CardDetail";
 import Home from "./views/Home/Home";
 import Product from "./views/Products/Products";
-import Profile from "./views/Myaccount/Myaccount";
+import Profile from "./views/AddProduct/AddProduct";
 import Us from "./views/Aboutus/us";
 import NavBar from "./components/navBar/navBar";
-
+import MyAccount from "./views/Myaccount/Myaccount";
 import NavBarAdmin from "./components/Admin/navBarAdmin/navBarAdmin";
 import Admin from './views/Admin/Admin';
 import Landing from "./views/Landing/Landing";
@@ -23,10 +23,10 @@ function App() {
   const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
 
-  const { user_detail }  = useSelector(
+  const { user_detail } = useSelector(
     (state) => state.users
   );
-  
+
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(postUser(user))
@@ -40,19 +40,20 @@ function App() {
       </div>
     );
   }
-    
+
   return (
     <>
-      {pathname !== "/" && (user_detail.role === 'ADMIN' ? <NavBarAdmin /> :  <NavBar />) }
+      {pathname !== "/" && (user_detail.role === 'ADMIN' ? <NavBarAdmin /> : <NavBar />)}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/products" element={
-          user_detail.role === 'ADMIN' ? <Admin /> : <Product /> 
-          } />
+          user_detail.role === 'ADMIN' ? <Admin /> : <Product />
+        } />
         <Route path="/aboutus" element={<Us />} />
-        <Route path="/myaccount" element={<Profile />} />
+        <Route path="/addproduct" element={<Profile />} />
         <Route path="/callback" element={<CallbackPage />} />
+        <Route path="/myaccount" element={<MyAccount/>} />
         <Route path="/Detail/:id" element={<CardDetail />} />
       </Routes>
       {pathname !== "/" && <Footer />}

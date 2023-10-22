@@ -1,5 +1,5 @@
 
-
+import { NavLink } from "react-router-dom"
 
 export default function NavBar() {
 
@@ -22,7 +22,8 @@ export default function NavBar() {
             </span>
             <span>
             <div className=" grid justify-between">
-                <button className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Add Product</button>
+                <NavLink to="/addproduct">
+                <button  className="rounded-none	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Add Product</button></NavLink>
             </div>
             </span>
 
