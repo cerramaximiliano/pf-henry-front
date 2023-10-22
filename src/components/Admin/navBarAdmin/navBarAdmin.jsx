@@ -7,12 +7,12 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import Logo from "../../assets/Logo.png";
-import SearchBar from "../SearchBar/SearchBar";
-import { LoginButton } from "../Buttons/Login-button";
-import { SignupButton } from "../Buttons/Signup-button";
-import { LogoutButton } from "../Buttons/Logout-button";
-import Cart from "../Cart/Cart";
+import Logo from "../../../assets/Logo.png";
+import SearchBar from "../../SearchBar/SearchBar";
+import { LoginButton } from "../../Buttons/Login-button";
+import { SignupButton } from "../../Buttons/signup-button";
+import { LogoutButton } from "../../Buttons/Logout-button";
+import Cart from "../../Cart/Cart";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -26,10 +26,6 @@ export default function NavBar() {
   const desplegarCart = () => {
     toggleCart === false ? setToggleCart(true) : setToggleCart(false);
   };
-
-  /*  const toggleCart = () => {
-      setIsCartOpen(prev => !prev); // Cambiar el estado del carrito al contrario del estado actual
-    } */
 
   return (
     <div className="sticky z-10 top-0 bg-[#121212]">
@@ -61,15 +57,15 @@ export default function NavBar() {
                               to="/products"
                               className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
-                              Products
+                              Dashboard
                             </NavLink>
                           )}
-                          {pathname !== "/" && (
+                          {pathname !== "/Myaccount" && (
                             <NavLink
-                              to="/aboutus"
-                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
+                              to="/myaccount"
+                              className=" space-x-96  text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
                             >
-                              About Us
+                              Add Products
                             </NavLink>
                           )}
                         </div>
