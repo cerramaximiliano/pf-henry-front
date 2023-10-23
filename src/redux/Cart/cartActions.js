@@ -1,4 +1,4 @@
-import { addProduct, deleteProduct, updateProductQuantity } from './cartslice';
+import { addProduct, deleteProduct, updateProductQuantity } from './cartSlice';
 
 export const addProductToCart = (product) => (dispatch) => {
   dispatch(addProduct(product));
