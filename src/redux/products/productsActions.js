@@ -1,58 +1,38 @@
 import axios from "axios";
 import {
-  getAllProducts,
-  getProductByName,
   getProductById,
   getProductsByFilter,
   addProduct,
-  setQuery,
-  setSearchName,
-  //setTotalPages,
 } from "./productSlice.js";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const URLBASE = import.meta.env.VITE_URL_BASE
-
-export const getProducts = (page) => {
-  return (dispatch) => {
-    axios
-      .get(`${URLBASE}/products/?page=${page}`)
-      .then((res) => {
-        dispatch(getAllProducts(res.data));
-
-        console.log(res.data);
-      })
-      .catch((e) => console.log(e));
-  };
-};
-
-export const getProductName = (name) => {
-  return (dispatch) => {
-    axios
-      .get(`${URLBASE}/products/name?name=${name}`)
-      .then((res) => {
-        dispatch(getProductByName(res.data));
-        console.log(res.data);
-      })
-      .catch((e) => console.log(e));
-  };
-};
+const URLBASE = import.meta.env.VITE_URL_BASE;
 
 export const getProductId = (id) => {
   return (dispatch) => {
     axios
       .get(`${URLBASE}/products/${id}`)
       .then((res) => {
-        dispatch(getProductById(res.data));
         console.log(res.data);
+        dispatch(getProductById(res.data));
       })
       .catch((e) => console.log(e));
   };
 };
 
-export const getProductFiltered = (query) => {
-  return (dispatch) => {
-    console.log('la actoin: ' + query);
-    axios
+export const getProductFiltered = (filters) => {
+  const query = Object.entries(filters)
+    .map(([key, value]) => {
+      if (value) {
+        return `${key}=${value}`;
+      }
+      return "";
+    })
+    .filter(Boolean)
+    .join("&");
+  return async (dispatch) => {
+    console.log("la actoin: " + query);
+    await axios
       .get(`${URLBASE}/products?${query}`)
       .then((res) => {
         dispatch(getProductsByFilter(res.data));
@@ -74,11 +54,3 @@ export const postProduct = (product) => {
       .catch((e) => console.log(e));
   };
 };
-
-export const createQuery = (query) => {
-  return (dispatch) => dispatch(setQuery(query))
-};
-
-export const searchName = (name) => {
-  return (dispatch) => dispatch(setSearchName(name))
-}

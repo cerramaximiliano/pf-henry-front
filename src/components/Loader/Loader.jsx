@@ -1,9 +1,14 @@
-export  default function Loader(props){
+import Logo from '../../assets/Logo.png';
+
+export default function Loader(){
     return(
-        <div class="flex justify-center items-center gap-2">
-  <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]"></div>
-  <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]"></div>
-  <div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]"></div>
-</div>
+        <div>
+            <div className="flex justify-center items-center w-[1500px] h-[1000px]">
+            <img src={Logo} alt="" className="absolute mb-[120px] mx-0 left-auto flex"  />
+            <div className="w-4 h-4 rounded-full ml-1 bg-orangeFred-100 animate-bounce" style={{animationDelay: '.7s'}}></div>
+            <div className="w-4 h-4 rounded-full ml-1 bg-orangeFred-100 animate-bounce" style={{animationDelay: '.3s'}}></div>
+            <div className="w-4 h-4 rounded-full ml-1 bg-orangeFred-100 animate-bounce" style={{animationDelay: '.7s'}}></div>
+            </div>
+        </div>
     )
 }

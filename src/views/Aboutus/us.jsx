@@ -1,9 +1,9 @@
-import React from "react";
+import CarouselAbout from "../../components/CarrouselAbout/CarouselAbout";
 
 export default function Aboutus () {
     return (
         <div>
-           <h1>Aboout Us</h1>
+            <CarouselAbout/>
         </div>
     )
-};
+}
