@@ -8,21 +8,19 @@ const initialState = {
 
 export const userSlice = createSlice({
     name: "user",
-    initialState,
+    initialState: initialState,
     reducers: {
         setUser: (state, action) => {
             state.user_detail = action.payload
-            console.log('llegue al reducer');
-            console.log(state.user_detail);
         },
         setAllUsers: (state, action) => {
             state.users = action.payload
-        }
-    },
-    updateUserData: (state, action) => {
-        if (state.user) {
-            state.user = { ...state.user, ...action.payload };
-        }
+        },
+        updateUserData: (state, action) => {
+            if (state.user) {
+                state.user = { ...state.user, ...action.payload };
+            }
+        },
     },
 });
 

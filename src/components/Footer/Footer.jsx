@@ -2,7 +2,7 @@ import logo from "../../assets/Logo.png";
 
 export function Footer() {
     return (
-        <div className="absolute overflow-hidden top-auto bg-blackFred-100 w-full h-[250px] overflow-hidden text-left text-xl text-blackFred-100 font-monse">
+        <div className="absolute top-auto bg-blackFred-100 w-full h-[250px] overflow-hidden text-left text-xl text-blackFred-100 font-monse">
             {/* Botón de suscripción */}
             <button className="absolute top-[82px] left-[1735px]  bg-orangeFred-300 text-blackFred-300 py-[8px] px-[24px] font-bebas rounded-sm">
                 submit

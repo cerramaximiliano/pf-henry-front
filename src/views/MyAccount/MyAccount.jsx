@@ -1,9 +1,9 @@
-import Form from "../../components/FormProduct/FormProduct";
+import Dashboard from "../../components/Dashboard/Dashboard"
 
-export default function Profile() {
+export default function MyAccount() {
     return (
         <div>
-            <Form/>
+            <Dashboard />
         </div>
     )
 }

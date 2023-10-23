@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Card } from "../Card/Card";
+import { Card } from "../card/card";
 import { useSelector, useDispatch } from "react-redux";
-import { startLoading, stopLoading } from "../../redux/products/productSlice"; // Importa la acción setCurrentPage
+import { startLoading, stopLoading } from "../../redux/products/productSlice";
 import NotFound from "../notFound/notFound";
-import { Paginated } from "../../components/Paginated/Paginated";
+import { Paginated } from "../Paginated/Paginated";
 import Loader from "../Loader/Loader";
 
 export function Cards() {
@@ -17,7 +17,7 @@ export function Cards() {
 
     setTimeout(() => {
       dispatch(stopLoading());
-    }, 3000);
+    }, 1500);
   }, [products, currentPage]);
 
   return (
@@ -35,6 +35,7 @@ export function Cards() {
                 title={product.title}
                 category={product.category}
                 price={product.price}
+                stock={product.stock}
               />
             ))
           ) : (

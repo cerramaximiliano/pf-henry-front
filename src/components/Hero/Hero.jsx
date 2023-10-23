@@ -2,7 +2,6 @@ import SPAM1 from "../../assets/SPAM1.png"
 import SPAM2 from "../../assets/SPAM2.png"
 import SPAM3 from "../../assets/SPAM3.png"
 import { NavLink } from "react-router-dom"
-// import Carousel from "../Carrousel/Carrousel"
 
 export default function Hero() {
     return (
