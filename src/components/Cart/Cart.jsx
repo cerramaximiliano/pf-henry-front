@@ -112,7 +112,7 @@ export default function Cart() {
                                       Quantity{" "}
                                     </p>
                                     <select
-                                      className="relative max-h-[200px] max-w-[200px] w-[100px] h-[20px]"
+                                      className="relative ml-[-50px] max-h-[200px] max-w-[200px] w-[100px] h-[20px]"
                                       value={productsInCart[productId].quantity}
                                       onChange={(e) =>
                                         handleQuantityChange(
