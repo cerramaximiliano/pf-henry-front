@@ -119,7 +119,7 @@ export default function NavBar() {
                           <div className="nav-bar__buttons">
                             {!isAuthenticated && (
                               <>
-                                <SignupButton />
+                                <SignupButton/>
                                 <LoginButton />
                               </>
                             )}
