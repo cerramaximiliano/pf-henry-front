@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../redux/Cart/cartActions";
 
-export function Card({ image, title, category, price, id }) {
+export function Card({ image, title, category, price, id, stock }) {
   const dispatch = useDispatch();
 
   const handleAddClick = () => {
@@ -14,7 +14,9 @@ export function Card({ image, title, category, price, id }) {
           imageAlt: title,
           href: `/Detail/${id}`,
           title,
-        },
+          price,
+          stock
+        }
       })
     );
   };
