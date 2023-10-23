@@ -15,7 +15,7 @@ export default function Cart() {
   const { productsInCart, totalPrice } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { isLoading, user, isAuthenticated } = useAuth0();
-  let objeto = [];
+  let objeto = {};
   const handleClose = () => {
     setOpen(false);
   };
@@ -173,19 +173,20 @@ export default function Cart() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div>
-                        {Object.keys(productsInCart).map((productId) => {
-                          return isAuthenticated ? (
-                            <CheckoutButton
-                              key={productId}
-                              title={productsInCart[productId].title}
-                              image={productsInCart[productId].imageSrc}
-                              price={productsInCart[productId].price}
-                              totalPrice={totalPrice}
-                            />
-                          ) : (
-                            <LoginButton key={productId} />
-                          );
-                        })}
+                         {isAuthenticated ? (
+                          <CheckoutButton
+                            products={Object.keys(productsInCart).map(
+                              (productId) => ({
+                                title: productsInCart[productId].title,
+                                image: productsInCart[productId].imageSrc,
+                                price: productsInCart[productId].price,
+                              })
+                            )}
+                            totalPrice={totalPrice}
+                          />
+                        ) : (
+                          <LoginButton />
+                        )} 
                       </div>
                       <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>
