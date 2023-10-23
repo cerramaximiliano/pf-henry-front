@@ -3,11 +3,15 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteProductFromCart, updateProductQuantityInCart } from "../../redux/Cart/cartActions";
+import { useAuth0 } from "@auth0/auth0-react";
+import { LoginButton } from "../Buttons/Login-button";
+import { CheckoutButton } from "../Buttons/Checkout-button";
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
-  const { productsInCart } = useSelector((state) => state.cart);
+  const { productsInCart, totalPrice } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const { isLoading, user, isAuthenticated } = useAuth0();
 
   const handleClose = () => {
     setOpen(false);
@@ -18,12 +22,13 @@ export default function Cart() {
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
+    ;
     dispatch(updateProductQuantityInCart(productId, newQuantity));
   };
 
   useEffect(() => {
-    // Handle any actions when the cart is opened or closed
   }, [open]);
+
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -82,6 +87,7 @@ export default function Cart() {
                                     alt={productsInCart[productId].imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
+
                                 </div>
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
@@ -95,27 +101,33 @@ export default function Cart() {
                                         </a>
                                       </h3>
                                     </div>
+                                    <div className="flex justify-between text-base font-monse text-whiteFred-100">
+                                      <h3 className="text-whiteFred-100 hover:text-orangeFred-300">
+                                        {productsInCart[productId].price}
+                                      </h3>
+                                    </div>
                                   </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-white-300">
-                                      Quantity{" "}
-                                      <select
-                                        value={productsInCart[productId].quantity}
-                                        onChange={(e) => handleQuantityChange(productId, e.target.value)}
-                                        onKeyPress={(e) => {
-                                          if (e.key === "Enter") {
-                                            e.preventDefault();
-                                          }
-                                        }}
-                                      >
-                                        {[...Array(21).keys()].map((value) => (
-                                          <option key={value} value={value}>
-                                            {value}
-                                          </option>
-                                        ))}
-                                      </select>
-                                    </p>
 
+                                  <div className="flex flex-1 items-end justify-between text-sm">
+                                    <p className="ml-[-10x] text-white-300">
+                                      Quantity{" "}
+                                    </p>
+                                    <select
+                                      className="relative max-h-[200px] max-w-[200px] w-[100px] h-[20px]"
+                                      value={productsInCart[productId].quantity}
+                                      onChange={(e) => handleQuantityChange(productId, e.target.value)}
+                                      onKeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                          e.preventDefault();
+                                        }
+                                      }}>
+                                      {[...Array(Number(productsInCart[productId].stock) + 1).keys()].map((value) =>
+                                        value !== 0 && (
+                                          <option key={value} value={value}>{value}</option>
+                                        )
+                                      )}
+                                    </select>
+                                    <p>Stock {productsInCart[productId].stock} </p>
 
                                     <div className="flex">
                                       <button
@@ -134,22 +146,21 @@ export default function Cart() {
                         </div>
                       </div>
                     </div>
-
-                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                    <div className="border-t border-gray-100 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p className="text-whiteFred-300">Subtotal</p>
-                        <p className="text-whiteFred-300">$262.00</p>
+                        <p className="text-whiteFred-100">Subtotal</p>
+                        <p className="text-whiteFred-100">{totalPrice}</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-whiteFred-300">
+                      <p className="mt-0.5 text-sm text-whiteFred-100">
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent"
-                        >
-                          Checkout
-                        </a>
+                        {
+                          isAuthenticated
+                            ?
+                            <CheckoutButton order={productsInCart} totalPrice={totalPrice} />
+                            : <LoginButton />
+                        }
                       </div>
                       <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>

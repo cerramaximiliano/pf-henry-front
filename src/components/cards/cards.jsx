@@ -35,6 +35,7 @@ export function Cards() {
                 title={product.title}
                 category={product.category}
                 price={product.price}
+                stock={product.stock}
               />
             ))
           ) : (
