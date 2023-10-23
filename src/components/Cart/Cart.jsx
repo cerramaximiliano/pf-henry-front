@@ -19,7 +19,7 @@ export default function Cart() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  console.log(productsInCart);
   const handleDeleteClick = (productId) => {
     dispatch(deleteProductFromCart(productId));
   };
@@ -173,21 +173,19 @@ export default function Cart() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div>
-                        {Object.keys(productsInCart).map((productId) =>
-                          objeto.push(
-                            productId.title,
-                            productId.image,
-                            productId.price
-                          )
-                        )}
-                        {isAuthenticated ? (
-                          <CheckoutButton
-                            order={objeto}  
-                            totalPrice={totalPrice}
-                          />
-                        ) : (
-                          <LoginButton />
-                        )}
+                        {Object.keys(productsInCart).map((productId) => {
+                          return isAuthenticated ? (
+                            <CheckoutButton
+                              key={productId}
+                              title={productsInCart[productId].title}
+                              image={productsInCart[productId].imageSrc}
+                              price={productsInCart[productId].price}
+                              totalPrice={totalPrice}
+                            />
+                          ) : (
+                            <LoginButton key={productId} />
+                          );
+                        })}
                       </div>
                       <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>

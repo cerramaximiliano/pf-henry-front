@@ -1,13 +1,11 @@
-export const CheckoutButton = ({ title, price, image, quantity }) => {
+export const CheckoutButton = (title, image, price, totalPrice) => {
   const URLBASE = import.meta.env.VITE_URL_BASE;
-  const order = {
-    title,
-    price,
-    image,
-    quantity,
-  };
-  console.log(order);
+
   const handleCheckout = async () => {
+    console.log(title, image, price, totalPrice);
+    const order={
+      
+    }
     try {
       const { data } = await axios.post(
         `${URLBASE}/payment/create-checkout-session`,
