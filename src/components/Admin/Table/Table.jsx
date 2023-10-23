@@ -10,30 +10,30 @@ export default function NavBar({}) {
 
     return(
         <>
-            <div className="sticky z-10 top-0 bg-[#121212] m-auto">
+            <div className="sticky z-10 mt-[20px] bg-[#121212] ">
             <table>
                 <thead>
                     <tr>
-                    <th  className="bg-graym text-whiteFred-100">Title</th>
-                    <th  className="bg-graym text-whiteFred-100">Category</th>
-                    <th  className="bg-graym text-whiteFred-100">Price</th>
-                    <th  className="bg-graym text-whiteFred-100">Flavor</th>
-                    <th  className="bg-graym text-whiteFred-100">Stock</th>
-                    <th  className="bg-graym text-whiteFred-100">Status</th>
+                    <th  className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Title</th>
+                    <th  className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Category</th>
+                    <th  className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Price</th>
+                    <th  className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Flavor</th>
+                    <th  className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Stock</th>
+                    <th  className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Status</th>
                     <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         products.map(product => (
-                            <tr key={product._id}>
+                            <tr key={product._id} >
                                 <Row product={product.title}></Row>
                                 <Row product={product.category}></Row>
                                 <Row product={product.price}></Row>
                                 <Row product={product.flavor}></Row>
                                 <Row product={product.stock}></Row>
                                 <Row product={product.status}></Row>
-                            </tr>
+                            </tr> 
                         ))
                     }
                 </tbody>

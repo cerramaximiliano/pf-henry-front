@@ -20,7 +20,7 @@ export default function Products() {
   return (
     <div className="flex flex-row">
       <SideBar />
-      <span className="w-[20%]" ></span>
+      <span className="w-[10%]" ></span>
       {isLoading 
       ?  <Loader/> 
       : <Table />}
