@@ -53,7 +53,7 @@ function App() {
         <Route path="/aboutus" element={<Us />} />
         <Route path="/addproduct" element={<Profile />} />
         <Route path="/callback" element={<CallbackPage />} />
-        <Route path="/myaccount" element={<MyAccount/>} />
+        <Route path="/myaccount/:id" element={<MyAccount/>} />
         <Route path="/Detail/:id" element={<CardDetail />} />
       </Routes>
       {pathname !== "/" && <Footer />}
