@@ -2,7 +2,10 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProductFromCart, updateProductQuantityInCart } from "../../redux/Cart/cartActions";
+import {
+  deleteProductFromCart,
+  updateProductQuantityInCart,
+} from "../../redux/Cart/cartActions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Buttons/Login-button";
 import { CheckoutButton } from "../Buttons/Checkout-button";
@@ -12,7 +15,7 @@ export default function Cart() {
   const { productsInCart, totalPrice } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { isLoading, user, isAuthenticated } = useAuth0();
-
+  let objeto = [];
   const handleClose = () => {
     setOpen(false);
   };
@@ -22,13 +25,10 @@ export default function Cart() {
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
-    ;
     dispatch(updateProductQuantityInCart(productId, newQuantity));
   };
 
-  useEffect(() => {
-  }, [open]);
-
+  useEffect(() => {}, [open]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -87,7 +87,6 @@ export default function Cart() {
                                     alt={productsInCart[productId].imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
-
                                 </div>
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
@@ -115,23 +114,42 @@ export default function Cart() {
                                     <select
                                       className="relative max-h-[200px] max-w-[200px] w-[100px] h-[20px]"
                                       value={productsInCart[productId].quantity}
-                                      onChange={(e) => handleQuantityChange(productId, e.target.value)}
+                                      onChange={(e) =>
+                                        handleQuantityChange(
+                                          productId,
+                                          e.target.value
+                                        )
+                                      }
                                       onKeyPress={(e) => {
                                         if (e.key === "Enter") {
                                           e.preventDefault();
                                         }
-                                      }}>
-                                      {[...Array(Number(productsInCart[productId].stock) + 1).keys()].map((value) =>
-                                        value !== 0 && (
-                                          <option key={value} value={value}>{value}</option>
-                                        )
+                                      }}
+                                    >
+                                      {[
+                                        ...Array(
+                                          Number(
+                                            productsInCart[productId].stock
+                                          ) + 1
+                                        ).keys(),
+                                      ].map(
+                                        (value) =>
+                                          value !== 0 && (
+                                            <option key={value} value={value}>
+                                              {value}
+                                            </option>
+                                          )
                                       )}
                                     </select>
-                                    <p>Stock {productsInCart[productId].stock} </p>
+                                    <p>
+                                      Stock {productsInCart[productId].stock}{" "}
+                                    </p>
 
                                     <div className="flex">
                                       <button
-                                        onClick={() => handleDeleteClick(productId)}
+                                        onClick={() =>
+                                          handleDeleteClick(productId)
+                                        }
                                         type="button"
                                         className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
                                       >
@@ -155,12 +173,21 @@ export default function Cart() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div>
-                        {
-                          isAuthenticated
-                            ?
-                            <CheckoutButton order={productsInCart} totalPrice={totalPrice} />
-                            : <LoginButton />
-                        }
+                        {Object.keys(productsInCart).map((productId) =>
+                          objeto.push(
+                            productId.title,
+                            productId.image,
+                            productId.price
+                          )
+                        )}
+                        {isAuthenticated ? (
+                          <CheckoutButton
+                            order={objeto}  
+                            totalPrice={totalPrice}
+                          />
+                        ) : (
+                          <LoginButton />
+                        )}
                       </div>
                       <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>

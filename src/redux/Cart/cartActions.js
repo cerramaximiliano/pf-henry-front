@@ -20,4 +20,6 @@ export const processPayment = (order) => async (dispatch) => {
     console.error("Error al procesar el pago:", error);
   }
 }
-
+  //delete eliminar productos del estado global del carrito (en el carrito)
+  //Agregar productos del carrito al estado global (se usa en detalle y en producto)
+  // Funcion multiplicar mismo producto (producto en si ) 
