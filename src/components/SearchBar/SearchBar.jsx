@@ -25,18 +25,18 @@ export default function SearchBar() {
   };
 
   return (
-    <div className=" flex items-center	">
+    <div className="flex items-center ml-[750px]">
       <input
         value={filters.name}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
         type="search"
         placeholder="Enter a product"
-        className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-16 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+        className="border-2 w-[500px] bg-graym border-redFred-100 h-10 pr-16 text-redFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
       />
       <Link to="/products">
           <svg
-            className= " relative ml-[-60px] bg-transparent rounded-none py-[5px] px-[20px] outline-none hover:border-transparent text-orangeFred-100 h-4 w-4 fill-current"
+            className= " relative ml-[-60px] bg-transparent rounded-none py-[5px] px-[20px] outline-none hover:border-transparent text-redFred-100 h-4 w-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"

@@ -182,7 +182,7 @@ export default function Cart() {
                                 price: productsInCart[productId].price,
                               })
                             )}
-                            totalPrice={totalPrice}
+                            totalPrice={totalPrice.toFixed(2)}
                           />
                         ) : (
                           <LoginButton />
