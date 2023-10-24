@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import UserPh from "../../../public/UserPh.svg"
 import {
   Bars3Icon,
   ShoppingCartIcon,
@@ -85,25 +86,25 @@ export default function NavBar() {
                     </div>
                   </div>
                   <SearchBar />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+                  <div className="absolute  flex items-center   sm:static  sm:ml-6 ">
                     <button
                       onClick={desplegarCart}
                       type="button"
-                      className="relative rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent"
+                      className=" py-[8px] px-[24px] rounded-none bg-orangeFred-300  text-blackFred-300 outline-none hover:border-transparent"
                     >
                       <ShoppingCartIcon
-                        className="h-4 w-4"
+                        className="h-4 w-4 my-[0px]"
                         aria-hidden="true"
                       />
                       {toggleCart ? <Cart/> : null}
                     </button>
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
-                      <div>
+                      <div className="h-[39px]">
                         <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-orangeFred-300 text-sm">
-                          <span className="absolute -inset-1.5  h-[39]" />
+                          <span className="absolute -inset-1.5 " />
                           <span className="sr-only">Open user menu</span>
-                          <img className="h-8 w-8 rounded-full" src="" alt="" />
+                          <img className="h-4 w-4 rounded-none py-[8px] px-[1px]" src={UserPh} alt="" />
                         </Menu.Button>
                       </div>
                       <Transition
