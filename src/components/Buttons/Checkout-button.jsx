@@ -1,7 +1,27 @@
 import axios from "axios";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useState } from "react";
 
 export const CheckoutButton = ({ products, totalPrice }) => {
   const URLBASE = import.meta.env.VITE_URL_BASE;
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [email, setEmail] = useState("");
+
+  const sendConfirmationEmail = async () => {
+    try {
+      const response = await axios.post(`${URLBASE}/send-email`, {
+        to: email, // Usar el correo del usuario autenticado por Auth0
+        subject: "Compra Exitosa",
+        text: "Gracias por tu compra. El pago ha sido procesado con éxito.",
+      });
+
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error al enviar el correo electrónico:", error);
+    }
+  };
 
   const handleCheckout = async ({ products, totalPrice }) => {
     const order = { products, totalPrice };
@@ -13,6 +33,9 @@ export const CheckoutButton = ({ products, totalPrice }) => {
       );
       console.log(data);
       window.open(data, "_blank");
+
+      // Después del pago exitoso, enviar el correo de confirmación
+      sendConfirmationEmail();
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
     }
@@ -29,3 +52,4 @@ export const CheckoutButton = ({ products, totalPrice }) => {
     </button>
   );
 };
+
