@@ -22,40 +22,35 @@ export function Card({ image, title, category, price, id, stock }) {
   };
 
   return (
-    <span className="grid justify-center rounded-sm items-center bg-graym w-[380px] h-[550px] mx-[auto] mt-[2%]">
-      <span className="justify-center 	" href={`/product/${id}`}>
-        <NavLink to={`/products/detail/${id}`}>
-          <img
-            src={image}
-            className="object-contain h-[335px] w-[335px]"
-            srcSet={`${image} 352w, ${image} 832w, ${image} 1200w`}
-            alt="Product Image"
-          />
-        </NavLink>
-      </span>
-      <span className=" flex justify-between items-center">
-        <span className="grid justify-start text-left	 text-whiteFred-100">
+    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym w-[250px] h-[350px] mx-[auto] mt-[2%]">
+      <div className="flex flex-col justify-between h-full">
+        <div>
           <NavLink to={`/Detail/${id}`}>
-            <span className="justify-start text-orangeFred-100 text-[25px] font-bebas">
-              <span>{title}</span>
-            </span>
+            <img
+              src={image}
+              className="object-contain h-[250px] w-[220px]"
+              srcSet={`${image} 352w, ${image} 832w, ${image} 1200w`}
+              alt="Product Image"
+            />
           </NavLink>
-          <span>
-            <span>{category}</span>
-          </span>
-          <span className="text-[24px]">
-            <span>${price}</span>price
-          </span>
-        </span>
-        <span className="font-bebas 	">
+          <NavLink to={`/Detail/${id}`}>
+            <div className="text-blackFred-100 hover:text-orangeFred-100  text-left text-20px font-bayon-bold">
+              {title}
+            </div>
+          </NavLink>
+          <div className="text-blackFred-100 text-left text-15px  font-impact">
+            <span>${price}</span>
+          </div>
+        </div>
+        <div className="flex justify-center mt-[-10px] items-center">
           <button
             onClick={handleAddClick}
-            className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"
+            className="rounded-sm bg-redFred-100 text-whiteFred-100 w-[200px] outline-none hover:text-orangeFred-100"
           >
             Add to Cart
           </button>
-        </span>
-      </span>
+        </div>
+      </div>
     </span>
   );
-}
+}  

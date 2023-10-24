@@ -19,8 +19,8 @@ export function Paginated() {
         onClick={() => setFilters({ ...filters, page: i + 1 })}
         className={
           i + 1 === currentPage
-            ? "bg-orangeFred-100 py-[8px] px-[24px] text-blackFred-300 font-bebas rounded-none ml-[8px]"
-            : "py-[8px] px-[24px] font-bebas rounded-none ml-[8px]"
+            ? "bg-redFred-100 py-[8px] px-[24px] text-blackFred-300 font-bebas rounded-none ml-[8px]"
+            : "bg-graym text-blackFred-100 py-[8px] px-[24px] font-bayon-bold rounded-none ml-[8px]"
         }
       >
         {i + 1}
@@ -34,7 +34,7 @@ export function Paginated() {
         type="button"
         value="Prev"
         name="Prev"
-        className="bg-orangeFred-100 py-[10px] px-[24px] border-orangeFred-300 text-blackFred-300 font-impact rounded-sm ml-[8px]"
+        className="bg-redFred-100 py-[10px] px-[24px] text-blackFred-300 hover:text-orangeFred-100 cursor-pointer font-impact rounded-sm ml-[8px]"
         onClick={() => {
           setFilters({ ...filters, page: currentPage - 1 });
         }}
@@ -47,7 +47,7 @@ export function Paginated() {
         type="button"
         value="Next"
         name="Next"
-        className="bg-orangeFred-100 py-[10px] px-[24px] border-orangeFred-300 text-blackFred-300 font-impact rounded-sm ml-[8px]"
+        className="bg-redFred-100 py-[10px] px-[24px]  text-blackFred-300 hover:text-orangeFred-100 cursor-pointer  font-impact rounded-sm ml-[8px]"
         onClick={() => {
           setFilters({ ...filters, page: currentPage + 1 });
         }}

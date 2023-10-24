@@ -5,7 +5,7 @@ import spam from "../../assets/SpamCalite.png"
 export default function Header() {
 
   return (
-    <div className="relative bg-[#121212] w-full h-[960px] overflow-x-hidden text-left text-21xl text-whiteFred-100 font-impact">
+    <div className="relative bg-[#121212] ml-[-50px] mt-[-50px] w-auto h-[960px] overflow-hidden text-left text-21xl text-whiteFred-100 font-impact">
       <img
         className=" relative  top-[10px] left-[280px] w-[1700px] h-[full] object-cover"
         alt=""
