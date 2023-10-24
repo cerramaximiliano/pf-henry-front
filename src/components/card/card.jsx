@@ -22,7 +22,7 @@ export function Card({ image, title, category, price, id, stock }) {
   };
 
   return (
-    <span className="grid justify-center rounded-sm items-center pb-4 bg-graym w-[250px] h-[350px] mx-[auto] mt-[2%]">
+    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym w-[250px] h-[350px] mx-[auto] mt-[2%]">
       <div className="flex flex-col justify-between h-full">
         <div>
           <NavLink to={`/Detail/${id}`}>
@@ -34,9 +34,9 @@ export function Card({ image, title, category, price, id, stock }) {
             />
           </NavLink>
           <NavLink to={`/Detail/${id}`}>
-          <div className="text-blackFred-100 hover:text-orangeFred-100  text-left text-20px font-bayon-bold">
-            {title}
-          </div>
+            <div className="text-blackFred-100 hover:text-orangeFred-100  text-left text-20px font-bayon-bold">
+              {title}
+            </div>
           </NavLink>
           <div className="text-blackFred-100 text-left text-15px  font-impact">
             <span>${price}</span>
@@ -53,4 +53,4 @@ export function Card({ image, title, category, price, id, stock }) {
       </div>
     </span>
   );
-  }  
+}  

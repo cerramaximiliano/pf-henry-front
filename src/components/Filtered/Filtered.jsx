@@ -30,7 +30,7 @@ export default function Filtered() {
   };
 
   return (
-    <div className="absolute shadow-md px-5 text-blackFred-100 py-20 bg-graym left-[0px] font-impact w-[300px] h-[747px]">
+    <div className="absolute shadow-md px-5 text-blackFred-100 py-20 bg-graym left-[0px] font-bayon-bold w-[300px] h-[747px]">
       <span>
         <h2 className=" mb-[2px] mt-[0px] text-left" >Sort by:</h2>
         <div className=" grid justify-between	">
