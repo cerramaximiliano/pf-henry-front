@@ -1,41 +1,36 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment, useState, useEffect } from "react"
+import { Dialog, Transition } from "@headlessui/react"
+import { XMarkIcon } from "@heroicons/react/24/outline"
+import { useSelector, useDispatch } from "react-redux"
 import {
   deleteProductFromCart,
   updateProductQuantityInCart,
-} from "../../redux/Cart/cartActions";
-import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from "../Buttons/Login-button";
-import { CheckoutButton } from "../Buttons/Checkout-button";
-import ConfirmationDialog from "../Buttons/ConfirmDialog";
+} from "../../redux/Cart/cartActions"
+import { useAuth0 } from "@auth0/auth0-react"
+import { LoginButton } from "../Buttons/Login-button"
+import { CheckoutButton } from "../Buttons/Checkout-button"
 
 export default function Cart() {
-  const [open, setOpen] = useState(true);
-  const { productsInCart, totalPrice } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-  const { isLoading, user, isAuthenticated } = useAuth0();
-  let objeto = {};
+  const { user_detail} = useSelector((state) => state.users)
+  const [open, setOpen] = useState(true)
+  const { productsInCart, totalPrice } = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+  const { isLoading, user, isAuthenticated } = useAuth0()
+  let objeto = {}
   const handleClose = () => {
-    setOpen(false);
-  };
-  console.log(productsInCart);
+    setOpen(false)
+  }
+  console.log(productsInCart)
   const handleDeleteClick = (productId) => {
-    dispatch(deleteProductFromCart(productId));
-  };
+    dispatch(deleteProductFromCart(productId))
+  }
 
   const handleQuantityChange = (productId, newQuantity) => {
-    dispatch(updateProductQuantityInCart(productId, newQuantity));
-  };
+    dispatch(updateProductQuantityInCart(productId, newQuantity))
+  }
 
-  useEffect(() => {}, [open]);
+  useEffect(() => {}, [open])
 
-  const [showConfirmation, setShowConfirmation] = React.useState(false);
-  const openConfirmationDialog = () => {
-    setShowConfirmation(true);
-  };
-  
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleClose}>
@@ -50,7 +45,7 @@ export default function Cart() {
         >
           <div className="fixed inset-0 bg-blackFred-100 bg-opacity-75 transition-opacity" />
         </Transition.Child>
-        
+
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -128,7 +123,7 @@ export default function Cart() {
                                       }
                                       onKeyPress={(e) => {
                                         if (e.key === "Enter") {
-                                          e.preventDefault();
+                                          e.preventDefault()
                                         }
                                       }}
                                     >
@@ -179,7 +174,7 @@ export default function Cart() {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div>
-                         {isAuthenticated ? (
+                        {isAuthenticated ? (
                           <CheckoutButton
                             products={Object.keys(productsInCart).map(
                               (productId) => ({
@@ -189,10 +184,11 @@ export default function Cart() {
                               })
                             )}
                             totalPrice={totalPrice.toFixed(2)}
+                            userId={user_detail._id}
                           />
                         ) : (
                           <LoginButton />
-                        )} 
+                        )}
                       </div>
                       <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
                         <p>or</p>
@@ -212,23 +208,7 @@ export default function Cart() {
             </div>
           </div>
         </div>
-        <div>
-          {showConfirmation && (
-            <ConfirmationDialog
-              action="proceder con el pago"
-              onConfirm={() => {
-                // Lógica para proceder con el pago                
-                console.log('Pago confirmado');
-              }}
-              onCancel={() => {
-                setShowConfirmation(false); // Cierra el cuadro de diálogo al cancelar
-              }}
-            />
-          )}
-
-        </div>
-        
       </Dialog>
     </Transition.Root>
-  );
+  )
 }
