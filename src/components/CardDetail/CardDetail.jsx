@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductId } from "../../redux/products/productsActions";
+import FormReview from "../FormReview/FormReview";
 
 export default function CardDetail() {
   const { id } = useParams();
@@ -44,6 +45,7 @@ export default function CardDetail() {
       ) : (
         <p>No product data available.</p>
       )}
+       <FormReview/>
     </div>
   );
 }
