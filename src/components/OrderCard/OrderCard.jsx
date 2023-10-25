@@ -47,7 +47,7 @@ export default function OrderCard({ image, title, category, price, id, stock }) 
             <span>${price}</span>price
           </span>
         </span>
-        <span className="font-bebas 	">
+        <span className="font-bebas">
           <button
             onClick={handleAddClick}
             className="rounded-none bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none hover:border-transparent"

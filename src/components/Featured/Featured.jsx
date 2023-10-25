@@ -36,12 +36,14 @@ export default function Featured() {
 
   return (
     <div
-      className="absolute shadow-md px-10 text-blackFred-100 py-20 bg-graym right-0 top-0 mr-0 mt-4 font-bayon-bold w-300px h-[800px]"
+      className={`absolute shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 top-[80px] font-bayon-bold w-[250px] h-[700px] ${
+        displayedProducts.length > 0 ? 'fall-and-bounce' : ''
+      }`}
       style={{
         display: displayedProducts.length > 0 ? "block" : "none",
       }}
     >
-      <p className="font-bayon-bold text-[20px]">Featured Products</p>
+      <p className="font-bayon-bold text-[20px] -mt-10">Featured Products</p>
       {displayedProducts.length > 0 ? (
         displayedProducts.map((product) => (
           <Card
@@ -55,4 +57,4 @@ export default function Featured() {
       ) : null}
     </div>
   );
-}
+}  
