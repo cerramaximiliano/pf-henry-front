@@ -5,6 +5,8 @@ import { startLoading, stopLoading } from "../../redux/products/productSlice";
 import NotFound from "../notFound/notFound";
 import { Paginated } from "../Paginated/Paginated";
 import Loader from "../Loader/Loader";
+import Filtered from "../Filtered/Filtered";
+import Featured from "../Featured/Featured";
 
 export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
@@ -17,15 +19,15 @@ export function Cards() {
 
     setTimeout(() => {
       dispatch(stopLoading());
-    }, 1500);
+    }, 3000 );
   }, [products, currentPage]);
 
   return (
-    <div className=" overflow-hidden mx-[auto]">
+    <div className=" overflow-hidden w-auto h-auto mx-[auto]">
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
+        <div className="flex items-center flex-row flex-wrap w-[50vw] rigth-[10%] gap-[10px]">
           {products.length > 0 ? (
             products.map((product) => (
               <Card

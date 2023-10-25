@@ -17,12 +17,27 @@ export default function Cart() {
   const dispatch = useDispatch();
   const { isLoading, user, isAuthenticated } = useAuth0();
   let objeto = {};
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [productIdToDelete, setProductIdToDelete] = useState(null);
   const handleClose = () => {
     setOpen(false);
   };
   console.log(productsInCart);
   const handleDeleteClick = (productId) => {
-    dispatch(deleteProductFromCart(productId));
+    setProductIdToDelete(productId); // Almacena el ID del producto a eliminar
+    setShowConfirmation(true); // Muestra el cuadro de confirmación
+  };
+
+  const confirmDelete = () => {
+    if (productIdToDelete !== null) {
+      dispatch(deleteProductFromCart(productIdToDelete));
+      setShowConfirmation(false); // Cierra el cuadro de confirmación
+    }
+  };
+
+  const cancelDelete = () => {
+    setShowConfirmation(false); // Cierra el cuadro de confirmación
+    setProductIdToDelete(null); // Limpia el ID del producto a eliminar
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
@@ -31,7 +46,7 @@ export default function Cart() {
 
   useEffect(() => {}, [open]);
 
-  const [showConfirmation, setShowConfirmation] = React.useState(false);
+  
   const openConfirmationDialog = () => {
     setShowConfirmation(true);
   };
@@ -152,15 +167,20 @@ export default function Cart() {
                                     </p>
 
                                     <div className="flex">
-                                      <button
-                                        onClick={() =>
-                                          handleDeleteClick(productId)
-                                        }
-                                        type="button"
-                                        className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
-                                      >
-                                        Remove
-                                      </button>
+                                    <button
+                                      onClick={() => handleDeleteClick(productId)}
+                                      type="button"
+                                      className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent"
+                                    >
+                                      Remove
+                                    </button>
+                                      {showConfirmation && (
+                                        <ConfirmationDialog
+                                          action="delete this product"
+                                          onConfirm={confirmDelete}
+                                          onCancel={cancelDelete}
+                                        />
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -181,16 +201,16 @@ export default function Cart() {
                       <div>
                          {isAuthenticated ? (
                           <CheckoutButton
-                          products={Object.keys(productsInCart).map((productId) => ({
-                            title: productsInCart[productId].title,
-                            image: productsInCart[productId].imageSrc,
-                            price: productsInCart[productId].price,
-                          }))}
-                          totalPrice={totalPrice}
-                          onCheckout={openConfirmationDialog} 
-                        />
-                        
-                          
+                            products={Object.keys(productsInCart).map(
+                              (productId) => ({
+                                title: productsInCart[productId].title,
+                                image: productsInCart[productId].imageSrc,
+                                price: productsInCart[productId].price,
+                              })
+                            )}
+                            totalPrice={totalPrice.toFixed(2)}
+                            onCheckout={openConfirmationDialog} 
+                          />
                         ) : (
                           <LoginButton />
                         )} 
@@ -212,24 +232,9 @@ export default function Cart() {
               </Transition.Child>
             </div>
           </div>
-        </div>
-        <div>
-          {showConfirmation && (
-            <ConfirmationDialog
-              action="proceder con el pago"
-              onConfirm={() => {
-                // Lógica para proceder con el pago                
-                console.log('Pago confirmado');
-              }}
-              onCancel={() => {
-                setShowConfirmation(false); // Cierra el cuadro de diálogo al cancelar
-              }}
-            />
-          )}
-
-        </div>
-        
+        </div>               
       </Dialog>
     </Transition.Root>
   );
 }
+

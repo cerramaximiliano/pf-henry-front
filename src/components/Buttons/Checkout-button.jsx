@@ -12,7 +12,7 @@ export const CheckoutButton = ({ products, totalPrice }) => {
         order
       );
       console.log(data);
-      window.open(data, "_blank");
+      window.open(data, "_self");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
     }

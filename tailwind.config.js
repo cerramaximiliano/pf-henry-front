@@ -2,16 +2,16 @@
 //         whitem: "#f9fdfe",
 //         graym: "#3d3d3d",
 //         blackm: "#121212",
-//         crimson: "#e93b45",
+//         crimson: " E83B46",
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        graym: "#3d3d3d",
+        graym: "#d9d9d9",
         redFred:{
-          "100": "#EE6D76",
+          "100": "#E83B46",
           "200": "#EC5B64",
           "300": "#E83B46",
         },

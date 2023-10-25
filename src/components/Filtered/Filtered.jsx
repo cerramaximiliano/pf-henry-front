@@ -30,9 +30,9 @@ export default function Filtered() {
   };
 
   return (
-    <div className=" fixed mt-1 p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]">
+    <div className="absolute shadow-md px-5 text-blackFred-100 py-20 bg-graym left-[0px] font-bayon-bold w-[300px] h-[747px]">
       <span>
-        <h2 className=" mb-[2px] mt-[0px] text-left	" >Sort by:</h2>
+        <h2 className=" mb-[2px] mt-[0px] text-left" >Sort by:</h2>
         <div className=" grid justify-between	">
           <h3 className=" my-[1px]  text-left">Name</h3>
           <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[280px] h-[35px]">
@@ -137,7 +137,7 @@ export default function Filtered() {
             </span>
         </div>
       </span>
-      <button onClick={handleReset} className="	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
+      <button onClick={handleReset} className="	my-[25px] bg-redFred-100 text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { getProductFiltered } from "../../redux/products/productsActions";
 import { FiltersContext } from "../../context/filter";
 import Loader from "../../components/Loader/Loader";
+import Featured from "../../components/Featured/Featured";
 
 export default function Products() {
 
@@ -20,9 +21,11 @@ export default function Products() {
 
   return (
     <div className="flex flex-row">
-      <Filtered />
-      <span className="w-[20%]" ></span>
-      {isLoading ? <Loader/> : <Cards />}
+      <span className="w-[2%]"></span>
+      <Filtered/>
+      {!isLoading && <Cards />}
+      <Featured/>
+      <span className="min-h-[900px]"></span>
     </div>
   );
-}
+  }  

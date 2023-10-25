@@ -38,7 +38,7 @@ export default function SearchBar() {
         onKeyPress={handleKeyPress}
         type="search"
         placeholder="Enter a product"
-        className="border-2 w-full bg-graym border-orangeFred-100 h-10  text-orangeFred-100 hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+        className="border-2 w-full bg-graym border-redFred-100 h-10 pr-16 hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
       />
     </div>
     <Link to="/products" onClick={toggleSearchBar}>
