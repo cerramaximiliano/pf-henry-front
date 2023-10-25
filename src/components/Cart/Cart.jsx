@@ -9,6 +9,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Buttons/Login-button";
 import { CheckoutButton } from "../Buttons/Checkout-button";
+import ConfirmationDialog from "../Buttons/ConfirmDialog";
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
@@ -30,6 +31,11 @@ export default function Cart() {
 
   useEffect(() => {}, [open]);
 
+  const [showConfirmation, setShowConfirmation] = React.useState(false);
+  const openConfirmationDialog = () => {
+    setShowConfirmation(true);
+  };
+  
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleClose}>
@@ -44,7 +50,7 @@ export default function Cart() {
         >
           <div className="fixed inset-0 bg-blackFred-100 bg-opacity-75 transition-opacity" />
         </Transition.Child>
-
+        
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -175,15 +181,16 @@ export default function Cart() {
                       <div>
                          {isAuthenticated ? (
                           <CheckoutButton
-                            products={Object.keys(productsInCart).map(
-                              (productId) => ({
-                                title: productsInCart[productId].title,
-                                image: productsInCart[productId].imageSrc,
-                                price: productsInCart[productId].price,
-                              })
-                            )}
-                            totalPrice={totalPrice}
-                          />
+                          products={Object.keys(productsInCart).map((productId) => ({
+                            title: productsInCart[productId].title,
+                            image: productsInCart[productId].imageSrc,
+                            price: productsInCart[productId].price,
+                          }))}
+                          totalPrice={totalPrice}
+                          onCheckout={openConfirmationDialog} 
+                        />
+                        
+                          
                         ) : (
                           <LoginButton />
                         )} 
@@ -206,6 +213,22 @@ export default function Cart() {
             </div>
           </div>
         </div>
+        <div>
+          {showConfirmation && (
+            <ConfirmationDialog
+              action="proceder con el pago"
+              onConfirm={() => {
+                // Lógica para proceder con el pago                
+                console.log('Pago confirmado');
+              }}
+              onCancel={() => {
+                setShowConfirmation(false); // Cierra el cuadro de diálogo al cancelar
+              }}
+            />
+          )}
+
+        </div>
+        
       </Dialog>
     </Transition.Root>
   );
