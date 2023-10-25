@@ -181,16 +181,15 @@ export default function Cart() {
                       <div>
                          {isAuthenticated ? (
                           <CheckoutButton
-                          products={Object.keys(productsInCart).map((productId) => ({
-                            title: productsInCart[productId].title,
-                            image: productsInCart[productId].imageSrc,
-                            price: productsInCart[productId].price,
-                          }))}
-                          totalPrice={totalPrice}
-                          onCheckout={openConfirmationDialog} 
-                        />
-                        
-                          
+                            products={Object.keys(productsInCart).map(
+                              (productId) => ({
+                                title: productsInCart[productId].title,
+                                image: productsInCart[productId].imageSrc,
+                                price: productsInCart[productId].price,
+                              })
+                            )}
+                            totalPrice={totalPrice.toFixed(2)}
+                          />
                         ) : (
                           <LoginButton />
                         )} 

@@ -8,12 +8,13 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/Logo(1).png";
 import SearchBar from "../SearchBar/SearchBar";
 import { LoginButton } from "../Buttons/Login-button";
 import { SignupButton } from "../Buttons/Signup-button";
 import { LogoutButton } from "../Buttons/Logout-button";
 import Cart from "../Cart/Cart";
+import Profile from "../../assets/Profile.png"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -35,15 +36,15 @@ export default function NavBar() {
   return (
     <div className="sticky z-10 top-0 bg-[#121212]">
       <div>
-        <Disclosure as="nav" className="sticky top-0 w-full bg-graym">
+        <Disclosure as="nav" className="sticky top-0 w-full bg-whiteFred-100">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+              <div className=" max-w-7xl px-2  sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                   <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div className="w-8 h-auto mx-rigth-[200px]">
                       <Link to="/home">
-                        <img src={Logo} alt="" className="h-[40px] w-[60px]" />
+                        <img src={Logo} alt="" className="ml-[0px] mt-[15px] h-[80px] w-[120px]" />
                       </Link>
                     </div>
                     <div className="hidden sm:ml-[250px] sm:block">
@@ -52,7 +53,7 @@ export default function NavBar() {
                           {pathname !== "/" && (
                             <NavLink
                               to="/home"
-                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
+                              className=" text-blackFred-300 font-bayon-bold hover:text-orangeFred-300"
                             >
                               Home
                             </NavLink>
@@ -60,7 +61,7 @@ export default function NavBar() {
                           {pathname !== "/Products" && (
                             <NavLink
                               to="/products"
-                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
+                              className=" text-blackFred-300 font-bayon-bold hover:text-orangeFred-300"
                             >
                               Products
                             </NavLink>
@@ -68,17 +69,9 @@ export default function NavBar() {
                           {pathname !== "/" && (
                             <NavLink
                               to="/aboutus"
-                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
+                              className=" text-blackFred-300 font-bayon-bold hover:text-orangeFred-300"
                             >
                               About Us
-                            </NavLink>
-                          )}
-                          {pathname !== "/" && (
-                            <NavLink
-                              to="/myaccount"
-                              className=" text-whiteFred-100 font-roboto-bold hover:text-orangeFred-300"
-                            >
-                              My Account
                             </NavLink>
                           )}
                         </div>
@@ -86,51 +79,57 @@ export default function NavBar() {
                     </div>
                   </div>
                   <SearchBar />
-                  <div className="absolute  flex items-center   sm:static  sm:ml-6 ">
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <button
                       onClick={desplegarCart}
                       type="button"
-                      className=" py-[8px] px-[24px] rounded-none bg-orangeFred-300  text-blackFred-300 outline-none hover:border-transparent"
+                      className="relative rounded-none bg-redFred-100 py-[8px] px-[24px] text-blackFred-300 outline-none hover:border-transparent"
                     >
-                      <ShoppingCartIcon
-                        className="h-4 w-4 my-[0px]"
-                        aria-hidden="true"
-                      />
-                      {toggleCart ? <Cart/> : null}
+                      <ShoppingCartIcon className="h-4 w-4" aria-hidden="true" />
+                      {toggleCart ? <Cart /> : null}
                     </button>
-                    {/* Profile dropdown */}
-                    <Menu as="div" className="relative ml-3">
-                      <div className="h-[39px]">
-                        <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-orangeFred-300 text-sm">
-                          <span className="absolute -inset-1.5 " />
-                          <span className="sr-only">Open user menu</span>
-                          <img className="h-4 w-4 rounded-none py-[8px] px-[1px]" src={UserPh} alt="" />
-                        </Menu.Button>
-                      </div>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
+                    {pathname !== "/" && (
+                      <NavLink
+                        to="/myaccount"
+                        className="text-blackFred-300 ml-[20px] font-bayon-bold hover:text-orangeFred-300 flex items-center whitespace-nowrap"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-graym py-1 shadow-lg ">
-                          <div className="nav-bar__buttons">
-                            {!isAuthenticated && (
-                              <>
-                                <SignupButton/>
-                                <LoginButton />
-                              </>
-                            )}
-                            {isAuthenticated && (
-                              <>
-                                <LogoutButton />
-                              </>
-                            )}
-                          </div>
-                          {/* <Menu.Item>
+                        My Account
+                      </NavLink>
+                    )}
+                  {/* Profile dropdown */}
+                  <Menu as="div" className="relative ml-3">
+                    <div>
+                      <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-redFred-100 text-sm">
+                        <span className="absolute -inset-1.5  h-[39]" />
+                        <span className="sr-only">Open user menu</span>
+                        <img className="h-8 w-8 rounded-full" src={Profile} alt="" />
+                      </Menu.Button>
+                    </div>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-whiteFred-100 py-1 shadow-lg ">
+                        <div className="nav-bar__buttons">
+                          {!isAuthenticated && (
+                            <>
+                              <SignupButton />
+                              <LoginButton />
+                            </>
+                          )}
+                          {isAuthenticated && (
+                            <>
+                              <LogoutButton />
+                            </>
+                          )}
+                        </div>
+                        {/* <Menu.Item>
                             {({ active }) => (
                               <a
                                 href="/login"
@@ -169,16 +168,16 @@ export default function NavBar() {
                               </a>
                             )}
                           </Menu.Item> */}
-                        </Menu.Items>
-                      </Transition>
-                    </Menu>
-                  </div>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
                 </div>
               </div>
-            </>
+            </div>
+        </>
           )}
-        </Disclosure>
-      </div>
+      </Disclosure>
     </div>
+    </div >
   );
 }

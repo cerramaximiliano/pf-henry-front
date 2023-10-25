@@ -32,10 +32,7 @@ export const CheckoutButton = ({ products, totalPrice }) => {
         order
       );
       console.log(data);
-      window.open(data, "_blank");
-
-      // Después del pago exitoso, enviar el correo de confirmación
-      sendConfirmationEmail();
+      window.open(data, "_self");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
     }
