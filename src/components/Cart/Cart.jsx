@@ -167,7 +167,7 @@ export default function Cart() {
                     <div className="border-t border-gray-100 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p className="text-whiteFred-100">Subtotal</p>
-                        <p className="text-whiteFred-100">{totalPrice}</p>
+                        <p className="text-whiteFred-100">{(totalPrice).toFixed(2)}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-whiteFred-100">
                         Shipping and taxes calculated at checkout.
@@ -180,9 +180,10 @@ export default function Cart() {
                                 title: productsInCart[productId].title,
                                 image: productsInCart[productId].imageSrc,
                                 price: productsInCart[productId].price,
+                                quantity: productsInCart[productId].quantity
                               })
                             )}
-                            totalPrice={totalPrice.toFixed(2)}
+                            totalPrice={totalPrice}
                             userId={user_detail._id}
                           />
                         ) : (

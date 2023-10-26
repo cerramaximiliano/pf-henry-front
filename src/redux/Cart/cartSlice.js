@@ -14,7 +14,7 @@ const cartSlice = createSlice({
       } else {
         state.productsInCart[id] = { ...product, quantity: 1 };
       }
-      state.totalPrice += product.price;
+      state.totalPrice += (product.price);
     },
     deleteProduct: (state, action) => {
       const id = action.payload;

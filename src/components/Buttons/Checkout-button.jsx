@@ -8,8 +8,6 @@ export const CheckoutButton = ({ products, totalPrice, userId }) => {
 
   const handleCheckout = async ({ products, totalPrice, userId }) => {
     const order = { products, totalPrice, userId };
-    console.log(userId)
-    console.log(order);
     try {
       const { data } = await axios.post(
         `${URLBASE}/payment/create-checkout-session`,
