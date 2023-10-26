@@ -23,6 +23,9 @@ const productSlice = createSlice({
     addProduct: (state, action) => {
       state.products.push(action.payload);
     },
+    removeProduct: (state, action) => {
+      state.products = state.products.filter((p) => p.id !== action.payload)
+    },
     startLoading: (state) => {
       state.isLoading = true;
     },
@@ -38,6 +41,7 @@ export const {
   addProduct,
   startLoading,
   stopLoading,
+  removeProduct,
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;

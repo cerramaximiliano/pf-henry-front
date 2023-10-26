@@ -31,6 +31,7 @@ function App() {
     if (isAuthenticated) {
       dispatch(postUser(user))
     }
+    console.log(user);
   }, [user, dispatch]);
 
   return (

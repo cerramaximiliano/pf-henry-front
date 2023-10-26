@@ -17,8 +17,8 @@ export const userSlice = createSlice({
             state.users = action.payload
         },
         updateUserData: (state, action) => {
-            if (state.user) {
-                state.user = { ...state.user, ...action.payload };
+            if (state.users) {
+                state.users = { ...state.users, ...action.payload };
             }
         },
     },

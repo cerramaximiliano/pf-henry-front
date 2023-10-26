@@ -11,13 +11,13 @@ export function Cards() {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(startLoading());
+  // useEffect(() => {
+  //   dispatch(startLoading());
 
-    setTimeout(() => {
-      dispatch(stopLoading());
-    }, 3000 );
-  }, [products, currentPage]);
+  //   setTimeout(() => {
+  //     dispatch(stopLoading());
+  //   }, 3000 );
+  // }, [products, currentPage]);
 
   return (
     <div className="relative overflow-hidden w-auto h-auto mx-[auto]">
