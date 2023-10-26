@@ -46,7 +46,7 @@ export default function Cart() {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="relative inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
                 as={Fragment}
@@ -70,7 +70,7 @@ export default function Cart() {
                             className="relative py-[8px] px-[24px] font-bebas bg-orangeFred-300 rounded-none text-blackFred-300 outline-none hover:border-transparent"
                             onClick={handleClose}
                           >
-                            <span className="absolute -inset-0.5" />
+                            <span className="relative -inset-0.5" />
                             <span className="sr-only">Close panel</span>
                             <XMarkIcon className="h-4 w-4" aria-hidden="true" />
                           </button>

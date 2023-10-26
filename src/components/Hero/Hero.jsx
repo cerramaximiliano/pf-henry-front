@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 
 export default function Hero() {
     return (
-        <div className=" overflow-hidden">
+        <div className=" mx-[auto] overflow-hidden">
                 <section className="flex bg-whiteFred-100 w-screen h-[960px]  items-center">
                 <NavLink to="/products"className="transition transform hover:scale-110 ml-[80px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
                 <img src={SPAM1} alt="" className="mt-[-30px] w-[500px] h-[500px]"/>
