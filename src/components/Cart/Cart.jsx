@@ -1,25 +1,25 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment, useState, useEffect } from "react"
+import { Dialog, Transition } from "@headlessui/react"
+import { XMarkIcon } from "@heroicons/react/24/outline"
+import { useSelector, useDispatch } from "react-redux"
 import {
   deleteProductFromCart,
   updateProductQuantityInCart,
-} from "../../redux/Cart/cartActions";
-import { useAuth0 } from "@auth0/auth0-react";
-import { LoginButton } from "../Buttons/Login-button";
-import { CheckoutButton } from "../Buttons/Checkout-button";
+} from "../../redux/Cart/cartActions"
+import { useAuth0 } from "@auth0/auth0-react"
+import { LoginButton } from "../Buttons/Login-button"
+import { CheckoutButton } from "../Buttons/Checkout-button"
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
 export default function Cart() {
-  const [open, setOpen] = useState(true);
-  const { productsInCart, totalPrice } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-  const { isLoading, user, isAuthenticated } = useAuth0();
-
+  const { user_detail} = useSelector((state) => state.users)
+  const [open, setOpen] = useState(true)
+  const { productsInCart, totalPrice } = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+  const { isLoading, user, isAuthenticated } = useAuth0()
   const handleClose = () => {
     setOpen(false);
   };
@@ -46,10 +46,10 @@ export default function Cart() {
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
-    dispatch(updateProductQuantityInCart(productId, newQuantity));
-  };
+    dispatch(updateProductQuantityInCart(productId, newQuantity))
+  }
 
-  useEffect(() => { }, [open]);
+  useEffect(() => {}, [open])
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -193,6 +193,7 @@ export default function Cart() {
                               })
                             )}
                             totalPrice={totalPrice.toFixed(2)}
+                            userId={user_detail._id}
                           />
                         ) : (
                           <LoginButton />
@@ -218,5 +219,5 @@ export default function Cart() {
         </div>
       </Dialog>
     </Transition.Root>
-  );
+  )
 }
