@@ -16,7 +16,6 @@ export default function Cart() {
   const { productsInCart, totalPrice } = useSelector((state) => state.cart)
   const dispatch = useDispatch()
   const { isLoading, user, isAuthenticated } = useAuth0()
-  let objeto = {}
   const handleClose = () => {
     setOpen(false)
   }
