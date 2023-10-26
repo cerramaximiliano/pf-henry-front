@@ -21,7 +21,7 @@ export default function Products() {
 
   return (
     <div className="flex flex-row">
-      <span className="w-[2%]"></span>
+      <span className="w-[0%]"></span>
       <Filtered/>
       {!isLoading && <Cards />}
       <Featured/>

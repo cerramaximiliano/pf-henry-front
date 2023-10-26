@@ -43,7 +43,7 @@ export default function Form() {
     <div className="bg-graym w-[600px] h-[800px] mt-5 mb-5 ml-[35%] px-5 py-5">
       <form onSubmit={onSubmit}>
         <NavLink to="/products">
-          <button className="absolute ml-[-320px] mt-[-10px] rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent">⇦back</button>
+          <button className="relative ml-[-320px] mt-[-10px] rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent">⇦back</button>
         </NavLink>
         <div className="relative mt-[-30px]">
         <h1 className="font-impact text-30xl mb-[10px] ">Add new Product</h1>

@@ -1,10 +1,14 @@
 import axios from "axios";
 
-export const CheckoutButton = ({ products, totalPrice }) => {
+
+export const CheckoutButton = ({ products, totalPrice, userId }) => {
   const URLBASE = import.meta.env.VITE_URL_BASE;
 
-  const handleCheckout = async ({ products, totalPrice }) => {
-    const order = { products, totalPrice };
+
+
+  const handleCheckout = async ({ products, totalPrice, userId }) => {
+    const order = { products, totalPrice, userId };
+    console.log(userId)
     console.log(order);
     try {
       const { data } = await axios.post(
@@ -22,10 +26,11 @@ export const CheckoutButton = ({ products, totalPrice }) => {
     <button
       className="block px-4 py-2 mt-2 text-sm ml-2 w-[180px] text-white hover:text-orangeFred-100"
       onClick={() => {
-        handleCheckout({ products, totalPrice });
+        handleCheckout({ products, totalPrice, userId });
       }}
     >
       Checkout
     </button>
   );
 };
+

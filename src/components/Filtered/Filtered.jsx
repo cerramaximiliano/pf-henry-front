@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FiltersContext } from "../../context/filter";
 
 export default function Filtered() {
-  const { filters, setFilters } = useContext(FiltersContext)
-  
+  const { filters, setFilters } = useContext(FiltersContext);
+  const [transitionApplied, setTransitionApplied] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -11,7 +11,7 @@ export default function Filtered() {
       ...filters,
       page: 1,
       [name]: value,
-    }
+    };
 
     setFilters(currentSelect);
   };
@@ -29,8 +29,13 @@ export default function Filtered() {
     });
   };
 
+  useEffect(() => {
+    // Aplicar la transformación cuando el componente se monta
+    setTransitionApplied(true);
+  }, []);
+
   return (
-    <div className="absolute shadow-md px-5 text-blackFred-100 py-20 bg-graym left-[0px] font-bayon-bold w-[300px] h-[747px]">
+    <div className={`relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${transitionApplied ? 'transform translate-x-0 transition-transform duration-500 ease-in-out' : 'transform -translate-x-full'}`}>
       <span>
         <h2 className=" mb-[2px] mt-[0px] text-left" >Sort by:</h2>
         <div className=" grid justify-between	">
