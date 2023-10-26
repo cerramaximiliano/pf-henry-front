@@ -23,7 +23,16 @@ export default function Cart() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  function aumentar(evt) {
+    if (cantidad < stock) {
+      setCantidad(cantidad + 1);
+    }
+  }
+  function disminuir(evt) {
+    if (cantidad > 1) {
+      setCantidad(cantidad - 1);
+    }
+  }
   const handleDeleteClick = (productId) => {
     MySwal.fire({
       title: 'Are you sure?',
@@ -137,23 +146,24 @@ export default function Cart() {
                                   </div>
                                   <div className="-mt-6 mb-10 flex flex-1 items-end justify-between text-sm">
                                     <div className="flex mt-3">
-                                    <button
+                                    { productsInCart[productId].quantity>1? <button 
                                       onClick={() => handleQuantityChange(productId, productsInCart[productId].quantity - 1)}
                                       type="button"
                                       className="font-impact py-1 px-2 rounded-xl bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent"
                                     >
                                       -
-                                    </button>
+                                    </button>:<button className="font-impact py-1 px-2 rounded-xl bg-blackFred-300 text-redFred-300 outline-none hover:border-transparent">-</button>}
                                     <span className="mx-2 text-blackFred-300">
                                       {productsInCart[productId].quantity}
                                     </span>
-                                    <button
+                                      { productsInCart[productId].quantity<productsInCart[productId].stock? <button 
                                       onClick={() => handleQuantityChange(productId, productsInCart[productId].quantity + 1)}
                                       type="button"
                                       className="font-impact py-1 px-2 rounded-xl bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent"
                                     >
                                       +
-                                    </button>
+                                    </button>:<button className="font-impact py-1 px-2 rounded-xl bg-blackFred-300 text-redFred-300 outline-none hover:border-transparent">+</button>}
+                                    
                                     <div className="flex ml-4">
                                       <button
                                         onClick={() =>
