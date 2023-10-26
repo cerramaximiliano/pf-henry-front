@@ -5,9 +5,6 @@ import { startLoading, stopLoading } from "../../redux/products/productSlice";
 import NotFound from "../notFound/notFound";
 import { Paginated } from "../Paginated/Paginated";
 import Loader from "../Loader/Loader";
-import Filtered from "../Filtered/Filtered";
-import Featured from "../Featured/Featured";
-
 export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
     (state) => state.products
