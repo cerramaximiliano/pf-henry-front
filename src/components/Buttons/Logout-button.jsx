@@ -1,16 +1,35 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 export const LogoutButton = () => {
   const { logout } = useAuth0();
 
   const handleLogout = () => {
-    logout({
-      logoutParams: {
-        returnTo: window.location.origin,
-      },
+    MySwal.fire({
+      title: 'Are you sure you want to log out?',
+      icon:'info',
+      showCancelButton: true,
+      confirmButtonColor: '#a5dc86',
+      cancelButtonColor: '#E83B46',
+      confirmButtonText: 'Yes, log out'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout({
+          logoutParams: {
+            returnTo: window.location.origin,
+          },
+        });
+      }
     });
   };
+  
+  
+
+ 
 
   return (
     <button  className="block px-4 py-2 mt-2 text-sm ml-2 w-[180px] text-white hover:text-orangeFred-100" onClick={handleLogout}>
