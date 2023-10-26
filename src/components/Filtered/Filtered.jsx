@@ -35,7 +35,7 @@ export default function Filtered() {
   }, []);
 
   return (
-    <div className={`absolute shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${transitionApplied ? 'transform translate-x-0 transition-transform duration-500 ease-in-out' : 'transform -translate-x-full'}`}>
+    <div className={`relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${transitionApplied ? 'transform translate-x-0 transition-transform duration-500 ease-in-out' : 'transform -translate-x-full'}`}>
       <span>
         <h2 className=" mb-[2px] mt-[0px] text-left" >Sort by:</h2>
         <div className=" grid justify-between	">

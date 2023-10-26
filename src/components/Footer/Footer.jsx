@@ -2,8 +2,8 @@ import logo from "../../assets/Logo(1).png";
 
 export function Footer() {
     return (
-        <div>
-            <div className="absolute bg-whiteFred-100 w-full h-[250px] overflow-hidden text-left text-xl text-blackFred-100">
+        <div className="mx-auto">
+            <div className="relative bg-whiteFred-100 w-full h-[250px] overflow-hidden text-left text-xl text-blackFred-100">
                 {/* Botón de suscripción */}
                 <button className="absolute top-[82px] left-[1700px]  bg-redFred-300 text-blackFred-300 py-[8px] px-[28px] font-bebas rounded-sm">
                     submit

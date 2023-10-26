@@ -23,7 +23,7 @@ export function Cards() {
   }, [products, currentPage]);
 
   return (
-    <div className=" overflow-hidden w-auto h-auto mx-[auto]">
+    <div className="relative overflow-hidden w-auto h-auto mx-[auto]">
       {isLoading ? (
         <Loader />
       ) : (
