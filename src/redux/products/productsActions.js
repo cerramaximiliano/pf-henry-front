@@ -58,7 +58,7 @@ export const postProduct = (product) => {
 export const deleteProduct = (id) => {
   return (dispatch) => {
     axios
-      .put(`${URLBASE}/deactivate/${id}`)
+      .put(`${URLBASE}/products/deactivate/${id}`)
       .then((res) => {
         dispatch(removeProduct(id))
       })

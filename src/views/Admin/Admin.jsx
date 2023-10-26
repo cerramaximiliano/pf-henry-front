@@ -13,6 +13,9 @@ export default function Products() {
   const [isLoading, setIsLoading] = useState(false)
   const { filters, setFilters } = useContext(FiltersContext);
   const [selectedMenu, setSelectedMenu] = useState('');
+  const { products, currentPage, totalPages} = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
     setIsLoading(true)

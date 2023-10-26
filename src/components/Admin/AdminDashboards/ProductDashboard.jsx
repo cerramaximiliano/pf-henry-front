@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Paginated } from "../../Paginated/Paginated";
+import { deleteProduct } from "../../../redux/products/productsActions";
+import { useEffect } from "react";
 
 
 export default function ProductDashboard() {
@@ -10,8 +12,10 @@ export default function ProductDashboard() {
     console.log(products);
 
     const deleteProductById = (productId) => {
-  
+      dispatch(deleteProduct(productId))
     }
+
+   
 
 
     return (
@@ -47,7 +51,7 @@ export default function ProductDashboard() {
                               <td className="bg-graym text-whiteFred-100">{product.flavor}</td>
                               <td className="bg-graym text-whiteFred-100">{product.stock}</td>
                               <td className="bg-graym text-whiteFred-100">{product.sold}</td>
-                              <td className="bg-graym text-whiteFred-100">{product.status ? 'Active' : 'Not Active'}</td>
+                              <td className="bg-graym text-whiteFred-100">{product.isActive ? 'Active' : 'Not Active'}</td>
                               <td className="bg-graym text-whiteFred-100">
                                 <div>
                                   <button
@@ -56,7 +60,7 @@ export default function ProductDashboard() {
                                      Edit
                                   </button>
                                   <button
-                                    onClick={() => console.log('delete')}
+                                    onClick={() => deleteProductById(product._id)}
                                   >
                                     Delete
                                   </button>
