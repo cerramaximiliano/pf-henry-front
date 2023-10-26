@@ -9,26 +9,47 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Buttons/Login-button";
 import { CheckoutButton } from "../Buttons/Checkout-button";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
   const { productsInCart, totalPrice } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { isLoading, user, isAuthenticated } = useAuth0();
-  let objeto = {};
+
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(productsInCart);
+
   const handleDeleteClick = (productId) => {
-    dispatch(deleteProductFromCart(productId));
+    MySwal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#E83B46',
+      cancelButtonColor: '#a5dc86',
+      confirmButtonText: 'Yes, remove it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProductFromCart(productId));
+        MySwal.fire(
+          'Removed!',
+          'Your file has been Removed.',
+          'success'
+        );
+      }
+    });
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
     dispatch(updateProductQuantityInCart(productId, newQuantity));
   };
 
-  useEffect(() => {}, [open]);
+  useEffect(() => { }, [open]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -58,16 +79,16 @@ export default function Cart() {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-[100vh] flex-col overflow-y-scroll bg-blackFred-300 shadow-xl">
+                  <div className="flex h-[100vh] flex-col overflow-y-scroll bg-whiteFred-100 shadow-xl">
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-bebas text-whiteFred-100">
+                        <Dialog.Title className="text-lg font-roboto-bold text-blackFred-300">
                           Shopping cart
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
-                            className="relative py-[8px] px-[24px] font-bebas bg-orangeFred-300 rounded-none text-blackFred-300 outline-none hover:border-transparent"
+                            className="relative py-[8px] px-[24px] font-bebas bg-redFred-100 rounded-sm text-blackFred-300 outline-none hover:border-transparent"
                             onClick={handleClose}
                           >
                             <span className="relative -inset-0.5" />
@@ -77,84 +98,73 @@ export default function Cart() {
                         </div>
                       </div>
                       <div className="mt-8">
-                        <div className="flow-root bg-blackFred-100 p-[20px]">
-                          <ul role="list" className=" m-0 p-0">
+                        <div className="flow-root rounded-sm bg-graym p-[20px]">
+                          <ul role="list" className="m-0 p-0">
                             {Object.keys(productsInCart).map((productId) => (
-                              <li key={productId} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                              <li key={productId} className="flex">
+                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-redFred-200">
                                   <img
                                     src={productsInCart[productId].imageSrc}
                                     alt={productsInCart[productId].imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-monse text-whiteFred-100">
+                                <div className="ml-4 mt-[-20px] flex flex-col">
+                                  <div className="w-[200px] h-[80px]">
+                                    <div className="flex justify-between text-base font-roboto-bold text-blackFred-100">
                                       <h3>
                                         <a
                                           href={productsInCart[productId].href}
-                                          className="text-whiteFred-100 hover:text-orangeFred-300"
+                                          className="text-blackFred-100  hover:text-orangeFred-300"
                                         >
                                           {productsInCart[productId].title}
                                         </a>
                                       </h3>
                                     </div>
-                                    <div className="flex justify-between text-base font-monse text-whiteFred-100">
-                                      <h3 className="text-whiteFred-100 hover:text-orangeFred-300">
+                                    <div className="flex mt-[-40px] justify-between text-base font-roboto-bold text-blackFred-100">
+                                      <h3 className="text-blackFred-100 hover:text-orangeFred-300">
                                         {productsInCart[productId].price}
                                       </h3>
                                     </div>
                                   </div>
-
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="ml-[-10x] text-white-300">
-                                      Quantity{" "}
-                                    </p>
-                                    <select
-                                      className="relative ml-[-50px] max-h-[200px] max-w-[200px] w-[100px] h-[20px]"
-                                      value={productsInCart[productId].quantity}
-                                      onChange={(e) =>
-                                        handleQuantityChange(
-                                          productId,
-                                          e.target.value
-                                        )
-                                      }
-                                      onKeyPress={(e) => {
-                                        if (e.key === "Enter") {
-                                          e.preventDefault();
-                                        }
-                                      }}
-                                    >
-                                      {[
-                                        ...Array(
-                                          Number(
-                                            productsInCart[productId].stock
-                                          ) + 1
-                                        ).keys(),
-                                      ].map(
-                                        (value) =>
-                                          value !== 0 && (
-                                            <option key={value} value={value}>
-                                              {value}
-                                            </option>
-                                          )
-                                      )}
-                                    </select>
-                                    <p>
+                                  <div>
+                                    <p className="-mt-2 first-letter:font-roboto-bold text-[15px] text-blackFred-100">
                                       Stock {productsInCart[productId].stock}{" "}
                                     </p>
-
-                                    <div className="flex">
+                                    <p className="-mt-4 font-roboto-bold text-[15px] text-blackFred-100 text-white-300">
+                                      Quantity:{" "}
+                                    </p>
+                                  </div>
+                                  <div className="-mt-6 mb-10 flex flex-1 items-end justify-between text-sm">
+                                    <div className="flex mt-3">
+                                    <button
+                                      onClick={() => handleQuantityChange(productId, productsInCart[productId].quantity - 1)}
+                                      type="button"
+                                      className="font-impact py-1 px-2 rounded-xl bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent"
+                                    >
+                                      -
+                                    </button>
+                                    <span className="mx-2 text-blackFred-300">
+                                      {productsInCart[productId].quantity}
+                                    </span>
+                                    <button
+                                      onClick={() => handleQuantityChange(productId, productsInCart[productId].quantity + 1)}
+                                      type="button"
+                                      className="font-impact py-1 px-2 rounded-xl bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent"
+                                    >
+                                      +
+                                    </button>
+                                    <div className="flex ml-4">
                                       <button
                                         onClick={() =>
                                           handleDeleteClick(productId)
                                         }
                                         type="button"
-                                        className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent "
+                                        className="font-bebas py-[8px] px-[24px] rounded-sm bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent"
                                       >
                                         Remove
                                       </button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -166,14 +176,14 @@ export default function Cart() {
                     </div>
                     <div className="border-t border-gray-100 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p className="text-whiteFred-100">Subtotal</p>
-                        <p className="text-whiteFred-100">{totalPrice}</p>
+                        <p className="text-blackFred-300">Subtotal</p>
+                        <p className="text-blackFred-300">{totalPrice}</p>
                       </div>
-                      <p className="mt-0.5 text-sm text-whiteFred-100">
+                      <p className="mt-0.5 text-sm text-blackFred-300">
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div>
-                         {isAuthenticated ? (
+                        {isAuthenticated ? (
                           <CheckoutButton
                             products={Object.keys(productsInCart).map(
                               (productId) => ({
@@ -186,13 +196,13 @@ export default function Cart() {
                           />
                         ) : (
                           <LoginButton />
-                        )} 
+                        )}
                       </div>
-                      <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-300">
+                      <div className="mt-6 flex place-content-evenly text-center text-sm text-whiteFred-100">
                         <p>or</p>
                         <button
                           type="button"
-                          className="font-bebas py-[8px] px-[24px] rounded-none bg-orangeFred-300 text-blackFred-300 outline-none hover:border-transparent"
+                          className="font-roboto-bold rounded-lm py-[8px] px-[24px] bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent"
                           onClick={handleClose}
                         >
                           Continue Shopping
