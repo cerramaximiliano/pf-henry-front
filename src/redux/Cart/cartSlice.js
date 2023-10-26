@@ -28,6 +28,7 @@ const cartSlice = createSlice({
     updateProductQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       if (state.productsInCart[id]) {
+        
         state.productsInCart[id].quantity = quantity;
         state.totalPrice = Object.values(state.productsInCart).reduce(
           (total, product) => total + product.price * product.quantity,

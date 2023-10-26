@@ -1,13 +1,21 @@
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import bg from "../../assets/background-pf.png"
-import spam from "../../assets/SpamCalite.png"
+import bg from "../../assets/background-pf.png";
+import spam from "../../assets/SpamCalite.png";
 
 export default function Header() {
+  const [fallAnimation, setFallAnimation] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFallAnimation(false);
+    }, 1000);
+  }, []);
 
   return (
-    <div className="relative bg-[#121212] ml-[-50px] mt-[-50px] w-auto h-[960px] overflow-hidden text-left text-21xl text-whiteFred-100 font-impact">
+    <div className={`relative bg-[#121212] ml-[-50px] mt-[-50px] w-auto h-[960px] overflow-hidden text-left text-21xl text-whiteFred-100 font-impact ${fallAnimation ? "animate-fall" : ""}`}>
       <img
-        className=" relative  top-[10px] left-[280px] w-[1700px] h-[full] object-cover"
+        className="relative top-[10px] left-[280px] w-[1700px] h-[full] object-cover"
         alt=""
         src={bg}
       />
@@ -30,7 +38,7 @@ export default function Header() {
       <p className="absolute top-[463px] left-[137px] text-5xl leading-[32px] font-impact text-orangeFred-300">
         SELLERS
       </p>
-      <NavLink to="/home" className="absolute rounded-xl top-[589px] left-[206px] leading-[32px] font-impact text-whiteFred-100 hover:text-orangeFred-300">
+      <NavLink to="/products" className="absolute rounded-xl top-[589px] left-[206px] leading-[32px] font-impact text-whiteFred-100 hover:text-orangeFred-300">
         shop now
       </NavLink>
       <p className="absolute top-[31px] left-[1297px] text-3xl leading-[32px] flex items-center w-44 h-[39px] text-grey">
@@ -42,24 +50,6 @@ export default function Header() {
       <p className="absolute top-[81px] left-[1226px] text-3xl leading-[32px] text-orangeFred-300 flex items-center w-[356px] h-[39px]">
         SUPPLEMENTS
       </p>
-      <br />
-      <div className="relative">
-  <img src={spam} alt="" className="z-0 w-full h-auto" />
-  <div className="absolute inset-0 flex flex-col items-center justify-center text-whiteFred-100 z-10">
-    <p className="text-10xl mb-4">Procesos de calidad</p>
-    <p className="text-10xl mb-4">Estandarizados</p>
-    <div className="w-96 rounded-sm p-2.5 mb-4">
-      <p className="text-lg text-whiteFred-100 text-10xl text-center">
-        Confianza y calidad a través de procesos refinados que cumplen con las normas de seguridad
-      </p>
     </div>
-    <div className="w-96 rounded-xl bg-redFred-300 h-24 flex items-center justify-center">
-      <NavLink to="/home" className="text-30-xl text-whiteFred-100 hover:text-orangeFred-300 font-impact tracking-wide">
-        Get started
-      </NavLink>
-    </div>
-  </div>
-</div>
-</div>
-  )
+  );
 }
