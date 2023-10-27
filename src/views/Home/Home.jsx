@@ -6,7 +6,7 @@ import Separator from "../../components/Separator/Separator";
 export default function Home () {
     
     return(
-        <div >
+        <div>
             <Header/>
             <Separator/>
             <Hero />

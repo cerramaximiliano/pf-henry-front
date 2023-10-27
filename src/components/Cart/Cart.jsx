@@ -33,6 +33,7 @@ export default function Cart() {
       setCantidad(cantidad - 1);
     }
   }
+  
   const handleDeleteClick = (productId) => {
     MySwal.fire({
       title: 'Are you sure?',

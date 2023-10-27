@@ -19,7 +19,9 @@ import { EffectCoverflow,Autoplay, Navigation, Pagination} from 'swiper/modules'
 
 export default function Carousel() {
   return (
-    <div className='mx-auto relative bg-blackFred-300 w-[auto] py-[200px] h-[700px] bg-red'>
+    <div className='
+    sm:h-[300px]
+    mx-auto relative bg-blackFred-300 w-[auto] py-[200px] h-[700px] bg-red'>
       <Swiper
         // className='w-[600px] h-[600px]'
         effect={'coverflow'}
@@ -45,34 +47,34 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={slide_image_1} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_1} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_2} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_2} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_3} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_3} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_4} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_4} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_5} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_5} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_6} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_6} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_7} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_7} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_8} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_8} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_9} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_9} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_10} alt="slide_image" className='w-[600px] h-[600px]'/>
+          <img src={slide_image_10} alt="slide_image" className='sm:w-[300px] sm:h-[300px] w-[600px] h-[600px]'/>
         </SwiperSlide>
       </Swiper>
     </div>

@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo(1).png";
+import Lmenu from "../../assets/Logo(2).png";
 import SearchBar from "../SearchBar/SearchBar";
 import { SignupButton } from "../Buttons/Signup-button";
 import { LogoutButton } from "../Buttons/Logout-button";
@@ -27,15 +28,71 @@ export default function NavBar() {
 
   return (
     <div className="sticky z-10 top-0 bg-whiteFred-100">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
+        <div className="hidden sm:flex">
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button className=" bg-redFred-100 relative inline-block p-2 text-blackFred-300 hover:text-orangeFred-300">
+                  <img src={Lmenu} alt="" className="h-6 w-8 rounded-full" />
+                </Menu.Button>
+              </div>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute left-0 sm:right-auto z-10 mt-2 w-48 origin-top-left bg-whiteFred-100 py-1 rounded-md shadow-lg">
+                  <div>
+                    {pathname !== "/" && (
+                      <NavLink
+                        to="/home"
+                        className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
+                      >
+                        Home
+                      </NavLink>
+                    )}
+                    {pathname !== "/" && (
+                      <NavLink
+                        to="/products"
+                        className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
+                      >
+                        Products
+                      </NavLink>
+                    )}
+                    {pathname !== "/" && (
+                      <NavLink
+                        to="/aboutus"
+                        className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
+                      >
+                        About Us
+                      </NavLink>
+                    )}
+                    {pathname !== "/" && (
+                      <NavLink
+                        to="/myaccount"
+                        className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
+                      >
+                        My Account
+                      </NavLink>
+                    )}
+                    {/* Agregar más elementos al menú aquí */}
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </div>
+          <div className="sm:hidden xl:flex xl:items-center">
+            <div className="sm:hidden xl:flex">
               <NavLink to="/home">
-                <img src={Logo} alt="" className="ml-[0px] mt-[15px] h-[80px] w-[120px]" />
+                <img src={Logo} alt="" className="sm:hidden ml-[0px] mt-[15px] h-[80px] w-[120px]" />
               </NavLink>
             </div>
-            <div className="hidden font-bayon-bold sm:ml-6 sm:flex space-x-[80px]">
+            <div className="sm:hidden font-bayon-bold sm:ml-6 space-x-[80px]">
               {pathname !== "/" && (
                 <NavLink
                   to="/home"
@@ -72,6 +129,7 @@ export default function NavBar() {
               <ShoppingCartIcon className="h-4 w-4" aria-hidden="true" />
               {toggleCart ? <Cart /> : null}
             </button>
+            <div className="sm:hidden">
             {pathname !== "/" && (
               <NavLink
                 to="/myaccount"
@@ -80,6 +138,7 @@ export default function NavBar() {
                 My Account
               </NavLink>
             )}
+            </div>
             <Menu as="div" className="ml-3 relative">
               <div>
                 <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-redFred-100 text-sm">
