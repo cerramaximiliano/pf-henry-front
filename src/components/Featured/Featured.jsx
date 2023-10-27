@@ -36,7 +36,7 @@ export default function Featured() {
 
   return (
     <div
-      className={`relative mt-[-50px] shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 top-[80px] font-bayon-bold w-[250px] h-[700px] ${
+      className={`relative  shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold w-[250px] h-[700px] ${
         displayedProducts.length > 0 ? 'fall-and-bounce' : ''
       }`}
       style={{

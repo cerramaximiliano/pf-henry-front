@@ -1,6 +1,6 @@
 export default function Row ({product})  {
 
-<div className=" fixed p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]"></div>
+<div className=" fixed p-4 pl-10 -mt-4 shadow-md bg-graym ml-12 font-impact w-[300px] h-[635px]"></div>
 
     return(
         <>

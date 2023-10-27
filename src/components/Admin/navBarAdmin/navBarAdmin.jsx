@@ -28,9 +28,9 @@ export default function NavBar() {
   };
 
   return (
-    <div className="sticky z-10 top-0 bg-[#121212]">
+    <div className="sticky z-10 bg-[#121212]">
       <div>
-        <Disclosure as="nav" className="sticky top-0 w-full bg-graym">
+        <Disclosure as="nav" className="sticky w-full bg-graym">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -43,7 +43,7 @@ export default function NavBar() {
                     </div>
                     <div className="hidden sm:ml-[250px] sm:block">
                       <div className="flex space-x-4">
-                        <div className="relative top-5 space-x-10">
+                        <div className="relative mt-5 space-x-10">
                           {pathname !== "/" && (
                             <NavLink
                               to="/home"

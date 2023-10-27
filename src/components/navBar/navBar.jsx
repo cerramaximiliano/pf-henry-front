@@ -27,7 +27,7 @@ export default function NavBar() {
   }, [pathname]); // Ejecutar cuando cambie la ruta
 
   return (
-    <div className="sticky z-10 top-0 bg-whiteFred-100">
+    <div className="sticky z-10 bg-whiteFred-100">
       <div className="max-w-8xl mx-auto px-6 lg:px-8 ">
         <div className="flex items-center justify-between h-12">
         <div className="hidden sm:flex">
@@ -46,7 +46,7 @@ export default function NavBar() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute left-0 sm:right-auto z-10 mt-2 w-48 origin-top-left bg-whiteFred-100 py-1 rounded-md shadow-lg">
+                <Menu.Items className="absolute sm:right-auto z-10 mt-2 w-48 origin-top-left bg-whiteFred-100 py-1 rounded-md shadow-lg">
                   <div>
                     {pathname !== "/" && (
                       <NavLink
