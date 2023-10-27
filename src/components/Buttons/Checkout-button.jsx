@@ -3,9 +3,6 @@ import axios from "axios";
 
 export const CheckoutButton = ({ products, totalPrice, userId }) => {
   const URLBASE = import.meta.env.VITE_URL_BASE;
-
-
-
   const handleCheckout = async ({ products, totalPrice, userId }) => {
     const order = { products, totalPrice, userId };
     try {
@@ -13,7 +10,6 @@ export const CheckoutButton = ({ products, totalPrice, userId }) => {
         `${URLBASE}/payment/create-checkout-session`,
         order
       );
-      console.log(data);
       window.open(data, "_self");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
@@ -26,7 +22,7 @@ export const CheckoutButton = ({ products, totalPrice, userId }) => {
       onClick={() => {
         handleCheckout({ products, totalPrice, userId });
       }}
-    >
+      >
       Checkout
     </button>
   );
