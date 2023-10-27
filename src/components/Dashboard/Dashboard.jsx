@@ -7,8 +7,8 @@ export default function Dashboard({orders, orderId, date, status}) {
     return (
             <div>
                 <h2>My Account</h2>
-                <div class="flex justify-end m-auto w-1/2">
-                    <a class="text-blackFred-300 hover:text-orangeFred-300">View All</a>
+                <div className="flex justify-end m-auto w-1/2">
+                    <a className="text-blackFred-300 hover:text-orangeFred-300">View All</a>
                 </div>
             <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px]">
                 <div className="flex flex-col justify-center">
