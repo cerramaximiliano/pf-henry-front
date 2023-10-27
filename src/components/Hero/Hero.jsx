@@ -5,12 +5,10 @@ import { NavLink } from "react-router-dom"
 
 export default function Hero() {
     return (
-        <div className=" 
-        sm:max-w-1 sm:max-h-auto
-        mx-[auto] overflow-hidden">
+        <div className="mx-[auto]">
                 <section className="
                 sm:flex sm:flex-col sm:-ml-[40px] sm:mt-[20px] sm:mb-[50px]
-                flex bg-whiteFred-100 w-screen h-[960px]  items-center">
+                flex bg-whiteFred-100 w-auto h-[960px]  items-center">
                 <NavLink to="/products"className="
                 sm:w-[200px] sm:h-[450px] sm:pt-[20px]
                 transition transform hover:scale-110 ml-[80px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">

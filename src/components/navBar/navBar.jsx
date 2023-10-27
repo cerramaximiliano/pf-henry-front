@@ -28,7 +28,7 @@ export default function NavBar() {
 
   return (
     <div className="sticky z-10 top-0 bg-whiteFred-100">
-      <div className="max-w-8xl mx-auto px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-6 lg:px-8 ">
         <div className="flex items-center justify-between h-12">
         <div className="hidden sm:flex">
             <Menu as="div" className="relative inline-block text-left">

@@ -5,7 +5,7 @@ export function Footer() {
         <div className="mx-auto">
             <div className="
             sm:h-[650px] sm:w-[620px]
-            relative bg-whiteFred-100 w-full h-[250px] overflow-hidden text-left text-xl text-blackFred-100">
+            relative bg-whiteFred-100 w-full h-[250px] text-left text-xl text-blackFred-100">
                 {/* Botón de suscripción */}
                 <button className="
                 sm:-ml-[1235px] sm:mt-[300px]

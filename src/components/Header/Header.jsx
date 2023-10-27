@@ -14,11 +14,11 @@ export default function Header() {
 
   return (
     <div className={`
-    relative bg-[#121212] ml-[-50px] mt-[-50px] w-auto h-[960px] overflow-hidden text-left text-21xl text-whiteFred-100 font-impact ${fallAnimation ? "animate-fall" : ""}`}>
+    relative bg-[#121212] ml-[-50px] mt-[-50px] w-auto h-[960px] text-left text-21xl text-whiteFred-100 font-impact ${fallAnimation ? "animate-fall" : ""}`}>
       <img
         className="
-        sm:max-w-[600px] sm:mt-[300px] sm:-ml-[200px]
-        relative top-[10px] left-[280px] w-[1700px] h-[full] object-cover"
+        sm:max-w-[600px] sm:mt-[300px] sm:-ml-[220px]
+        relative top-[10px] left-[280px] w-[1650px] h-[full] object-cover"
         alt=""
         src={bg}
       />
