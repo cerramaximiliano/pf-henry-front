@@ -4,7 +4,7 @@ export default function Separator() {
   return (
     <div className="
     sm:max-w-[640px]
-    relative bg-redFred-100 w-[auto] h-[100px] overflow-hidden text-left text-[24px] text-black font-bayon">
+    relative bg-redFred-100 w-[auto] h-[100px] text-left text-[24px] text-black font-bayon">
       <img
         className="
         sm:static sm:-mt-2 sm:ml-[280px]
