@@ -55,7 +55,7 @@ export function Footer() {
                         <p className="font-impact  leading-[32px] text-orangeFred-300">NEWSLETTER</p>
                     </div>
                     <div className="flex justify-around">
-                        <input className="relative  bg-whiteFred-100 py-[8.5px] px-[24px] font-bebas rounded-sm w-[200px] mt-6" placeholder="E-MAIL"/>
+                        <input className="relative  bg-whiteFred-100 py-[8.5px] px-[24px] font-bebas rounded-sm max-w-[200px] mt-6" placeholder="E-MAIL"/>
                         <button className="relative bg-redFred-300 text-blackFred-300 py-[8px] px-[28px] font-bebas rounded-sm mt-6">submit</button>
                     </div>
                 </div>
