@@ -20,60 +20,6 @@ export default function OrdersDashboard() {
     console.log(orders);
   }, [filters])
 
-  const banUser = (userId) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "This user won't be able to log in!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      iconColor: '#d33',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteUser(userId))
-        .then(() => {
-          setIsLoading(true)
-          dispatch(getAllUsers({ ...filters })).then(() => { setIsLoading(false) })
-        })
-          .catch((error) => {
-            console.error("Error al eliminar el usuario: ", error);
-          });
-      }
-    });
-  };
-
-  const unbanUser = (userId) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "This user will allow the user to log in!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, activate it!',
-      iconColor: '#d33',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(activateUser(userId))
-          .then(() => {
-            setIsLoading(true)
-            dispatch(getAllUsers('')).then(() => { setIsLoading(false) })
-          })
-          .catch((error) => {
-            console.error("Error al activar usuario: ", error);
-          });
-      }
-    });
-  };
-
-
-
-
-
 
   return (
     <>
@@ -98,20 +44,6 @@ export default function OrdersDashboard() {
                   <td className="bg-graym text-whiteFred-100">{order.status}</td>
                   <td className="bg-graym text-whiteFred-100">{order.total}</td>
                   <td className="bg-graym text-whiteFred-100">{order.userId}</td>
-                  {/* <td className="bg-graym text-whiteFred-100">
-                    <div>
-                      <button
-                        onClick={() => banUser(user._id)}
-                      >
-                        Ban User
-                      </button>
-                      <button
-                        onClick={() => unbanUser(user._id)}
-                      >
-                        Unban User
-                      </button>
-                    </div>
-                  </td> */}
                 </tr>
               ))
             }
