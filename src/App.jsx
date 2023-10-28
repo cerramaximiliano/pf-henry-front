@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
 import MyAccount from "./views/MyAccount/MyAccount";
+import Form from "./components/FormProduct/FormProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
       dispatch(postUser(user))
     }
     console.log(user);
+    console.log(user_detail);
   }, [user, dispatch]);
 
   return (
@@ -50,7 +52,8 @@ function App() {
               user_detail.role === 'ADMIN' ? <Admin /> : <Product />
             } />
             <Route path="/aboutus" element={<Us />} />
-            <Route path="/addproduct" element={<Profile />} />
+            <Route path="/addproduct" element={<Form />} />
+            <Route path="/edit/:id" element={<Form />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/myaccount/:id" element={<MyAccount />} />
             <Route path="/Detail/:id" element={<CardDetail />} />

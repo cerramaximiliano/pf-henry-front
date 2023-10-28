@@ -9,15 +9,7 @@ export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
     (state) => state.products
   );
-  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(startLoading());
-
-  //   setTimeout(() => {
-  //     dispatch(stopLoading());
-  //   }, 3000 );
-  // }, [products, currentPage]);
 
   return (
     <div className="relative overflow-hidden w-auto h-auto mx-[auto]">
@@ -42,7 +34,7 @@ export function Cards() {
           )}
         </div>
       )}
-      <Paginated />
+      <Paginated currentPage={currentPage} totalPages={totalPages}/>
     </div>
   );
 }

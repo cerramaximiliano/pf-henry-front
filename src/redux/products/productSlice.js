@@ -4,7 +4,7 @@ const productSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    detail: [],
+    detail: {},
     currentPage: "",
     totalPages: "",
     totalResults: "",
@@ -12,7 +12,7 @@ const productSlice = createSlice({
   },
   reducers: {
     getProductById: (state, action) => {
-      state.detail = [...action.payload];
+      state.detail = action.payload;
     },
     getProductsByFilter: (state, action) => {
       state.totalPages = action.payload.totalPages;
@@ -22,9 +22,6 @@ const productSlice = createSlice({
     },
     addProduct: (state, action) => {
       state.products.push(action.payload);
-    },
-    removeProduct: (state, action) => {
-      state.products = state.products.filter((p) => p.id !== action.payload)
     },
     startLoading: (state) => {
       state.isLoading = true;
@@ -41,7 +38,6 @@ export const {
   addProduct,
   startLoading,
   stopLoading,
-  removeProduct,
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;

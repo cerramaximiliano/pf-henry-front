@@ -17,13 +17,39 @@ export const postUser = (data) => {
     };
   };
 
-export const getAllUsers = () => {
-  return (dispatch) => {
-    axios
-      .get(`${URLBASE}/users/`)
+export const getAllUsers = (filters) => {
+  const query = Object.entries(filters)
+    .map(([key, value]) => {
+      if (value) {
+        return `${key}=${value}`;
+      }
+      return "";
+    })
+    .filter(Boolean)
+    .join("&");
+  return async (dispatch) => {
+    console.log("la actoin: " + query);
+    await axios
+      .get(`${URLBASE}/users?${query}`)
       .then((res) => {
         dispatch(setAllUsers(res.data))
       })
+      .catch((e) => console.log(e))
+  }
+}
+
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    axios
+      .put(`${URLBASE}/users/desactivate/${id}`)
+      .catch((e) => console.log(e))
+  }
+}
+
+export const activateUser = (id) => {
+  return async (dispatch) => {
+    axios
+      .put(`${URLBASE}/users/activate/${id}`)
       .catch((e) => console.log(e))
   }
 }

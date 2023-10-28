@@ -1,27 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from '../../components/Admin/SideBar/SideBar';
-import { useContext, useEffect, useState } from "react";
-import { getProductFiltered } from "../../redux/products/productsActions";
-import { FiltersContext } from "../../context/filter";
+import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import ProductDashboard from "../../components/Admin/AdminDashboards/ProductDashboard";
 import UsersDashboard from "../../components/Admin/AdminDashboards/UsersDashboard";
+import OrdersDashboard from "../../components/Admin/AdminDashboards/OrdersDashboard";
 
 export default function Products() {
-
-  const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(false)
-  const { filters, setFilters } = useContext(FiltersContext);
   const [selectedMenu, setSelectedMenu] = useState('');
-  const { products, currentPage, totalPages} = useSelector(
-    (state) => state.products
-  );
 
   useEffect(() => {
-    setIsLoading(true)
-    dispatch(getProductFiltered({...filters, limit: 20})).then(() => {setIsLoading(false)})
-    console.log(selectedMenu)
-  }, [filters, selectedMenu])
+  }, [selectedMenu])
 
   const renderComponentBasedOnMenu = () => {
     switch (selectedMenu) {
@@ -29,6 +19,8 @@ export default function Products() {
         return <ProductDashboard />;
       case "Users":
         return <UsersDashboard />;
+      case "Orders":
+        return <OrdersDashboard />;
       default:
         return <ProductDashboard />;
     }
