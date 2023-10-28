@@ -74,7 +74,7 @@ export default function NavBar() {
                     )}
                     {pathname !== "/" && (
                       <NavLink
-                        to="/myaccount"
+                        to="/myaccount/users"
                         className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
                       >
                         My Account
@@ -132,7 +132,7 @@ export default function NavBar() {
             <div className="sm:hidden">
             {pathname !== "/" && (
               <NavLink
-                to="/myaccount"
+                to="/myaccount/users"
                 className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
               >
                 My Account

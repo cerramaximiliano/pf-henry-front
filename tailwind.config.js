@@ -46,11 +46,8 @@ module.exports = {
       },
     },
     screens: {
-      'sm': {'max': '640px'},
-      'md': {'max': '1280px'},
-      'lg': {'max': '1440px'},
-      'xl': {'max': '1920px'},
-      'sxl':{'max': '2560px'},
+      'sm': { 'max': '390px', 'min': '0px' },
+      'xl': { 'max': '1920px', 'min': '391px' },
     },
   },
   corePlugins: {

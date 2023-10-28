@@ -52,7 +52,8 @@ function App() {
             <Route path="/addproduct" element={<Profile />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/myaccount/orders/:id" element={<MyAccount />} />
-            {/* <Route path="/myaccount/" ></Route> */}
+            <Route path="/myaccount/orders" element={<MyAccount />} />
+            <Route path="/myaccount/users" element={<MyAccount/>} />
             <Route path="/Detail/:id" element={<CardDetail />} />
             <Route path="/error" element={<Error />} />
           </Routes>
