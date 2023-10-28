@@ -46,11 +46,11 @@ module.exports = {
       },
     },
     screens: {
-      'sm': {'max': '640px'},
-      'md': {'max': '1280px'},
-      'lg': {'max': '1440px'},
-      'xl': {'max': '1920px'},
-      'sxl':{'max': '2560px'},
+      'sm': { 'max': '640px', 'min': '0px' },
+      'md': { 'max': '1280px', 'min': '641px' },
+      'lg': { 'max': '1440px', 'min': '1281px' },
+      'xl': { 'max': '1920px', 'min': '1441px' },
+      'sxl': { 'max': '2560px', 'min': '1921px' }
     },
   },
   corePlugins: {
