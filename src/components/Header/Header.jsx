@@ -14,8 +14,6 @@ export default function Header() {
 
   return (
     <div className={`relative
-    sm:max-w-[640px] sm:max-h-[auto]
-    
     bg-[#121212] ml-[-50px] mt-[-50px] w-[auto] h-[960px] text-left text-21xl text-whiteFred-100 font-impact ${fallAnimation ? "animate-fall" : ""}`}>
       <img
         className="absolute
