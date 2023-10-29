@@ -21,16 +21,15 @@ export default function NavBar() {
     setToggleCart(!toggleCart);
   };
 
-  // Agregar este efecto para desplazar hacia arriba al cambiar de página
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll al principio de la página
-  }, [pathname]); // Ejecutar cuando cambie la ruta
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="sticky z-10 bg-whiteFred-100">
       <div className="max-w-8xl mx-auto px-6 lg:px-8 ">
         <div className="flex items-center justify-between h-12">
-        <div className="hidden sm:flex">
+        <div className="xl:hidden lg:hidden flex">
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className=" bg-redFred-100 relative inline-block p-2 text-blackFred-300 hover:text-orangeFred-300">
@@ -80,19 +79,18 @@ export default function NavBar() {
                         My Account
                       </NavLink>
                     )}
-                    {/* Agregar más elementos al menú aquí */}
                   </div>
                 </Menu.Items>
               </Transition>
             </Menu>
           </div>
-          <div className="sm:hidden xl:flex xl:items-center">
-            <div className="sm:hidden xl:flex">
+          <div className="sm:hidden md:hidden lg:flex lg:items-center xl:flex xl:items-center">
+          <div className="sm:hidden md:hidden relative xl:flex">
               <NavLink to="/home">
-                <img src={Logo} alt="" className="sm:hidden ml-[0px] mt-[15px] h-[80px] w-[120px]" />
+                <img src={Logo} alt="" className="sm:hidden   ml-[0px] mt-[15px] h-[80px] w-[120px]" />
               </NavLink>
             </div>
-            <div className="sm:hidden font-bayon-bold sm:ml-6 space-x-[80px]">
+            <div className="sm:hidden md:hidden font-bayon-bold sm:ml-6 space-x-[80px]">
               {pathname !== "/" && (
                 <NavLink
                   to="/home"
@@ -130,14 +128,6 @@ export default function NavBar() {
               {toggleCart ? <Cart /> : null}
             </button>
             <div className="sm:hidden">
-            {pathname !== "/" && (
-              <NavLink
-                to="/myaccount/users"
-                className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
-              >
-                My Account
-              </NavLink>
-            )}
             </div>
             <Menu as="div" className="ml-3 relative">
               <div>
