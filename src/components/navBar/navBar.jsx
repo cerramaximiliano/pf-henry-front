@@ -130,14 +130,6 @@ export default function NavBar() {
               {toggleCart ? <Cart /> : null}
             </button>
             <div className="sm:hidden">
-            {pathname !== "/" && (
-              <NavLink
-                to="/myaccount/users"
-                className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
-              >
-                My Account
-              </NavLink>
-            )}
             </div>
             <Menu as="div" className="ml-3 relative">
               <div>
