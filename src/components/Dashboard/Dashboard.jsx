@@ -1,20 +1,60 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import OrderCard from "../OrderCard/OrderCard";
+import AllOrdersCards from "../AllOrdersCards/AllOrdersCards";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
-export default function Dashboard({orders, orderId, date, status}) {
+export default function Dashboard() {
+    const { pathname } = useLocation();
+    const {id} = useParams();
+    const {user_detail} = useSelector((state) => state.users);
+
+    const URLBASE = import.meta.env.VITE_URL_BASE;
+    const [orders, setOrders] = useState([]);
+    const [date, setDate] = useState("");
+    const [status, setStatus] = useState("");
+    const [totalOrders, setTotalOrders] = useState("");
+    const [allOrders, setAllOrders] = useState([]);
+
+    useEffect( () => {
+        if( id  ){
+            const data = axios(`${URLBASE}/orders/update/${id}`)
+            .then(({data}) => {
+                setDate(data.order.createdAt)
+                setStatus(data.order.status)
+                setOrders(data.order.products)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }else {
+            const data = axios(`${URLBASE}/orders/userId/${user_detail._id}`)
+            .then(({data}) => {
+                setTotalOrders(data.total);
+                setAllOrders(data.orders);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+      }, [user_detail._id])
+
 
     return (
             <div>
-                <h2>My Account</h2>
                 <div className="flex justify-end m-auto w-1/2">
-                    <a className="text-blackFred-300 hover:text-orangeFred-300">View All</a>
+                    <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">View All</a>
                 </div>
-            <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px]">
-                <div className="flex flex-col justify-center">
+            <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap">
+
+            <div className="flex flex-col justify-center">
+                {orders.length > 0 ? (
+                    <>
                     <div>
                         <h4>Order Id</h4>
-                        <p>{orderId}</p>
+                        <p>{id}</p>
                     </div>
                     <div>
                         <h4>Date</h4>
@@ -24,11 +64,26 @@ export default function Dashboard({orders, orderId, date, status}) {
                         <h4>Status</h4>
                         <p>{status.toUpperCase(0)}</p>
                     </div>
+                    </>
+                ) : (
+                    <>
+                        <div>
+                            <h4>User Id</h4>
+                            <p>{user_detail._id}</p>
+                        </div>
+                        <div>
+                            <h4>Total Orders</h4>
+                            <p>{totalOrders}</p>
+                        </div>
+                    </>
+
+                )
+                }
                 </div>
-                <div>
-                    {orders.map((order) => 
-                    (
-                        <OrderCard
+                {orders.length > 0 ? (
+                    <div className="flex flex-col flex-wrap justify-center">
+                    {orders.map((order) => (
+                    <OrderCard
                         key={order._id}
                         id={order._id}
                         image={order.image ?? null}
@@ -36,9 +91,30 @@ export default function Dashboard({orders, orderId, date, status}) {
                         price={order.price}
                         productId={order.productId}
                     />
-                    )
-                    )}
-                </div>
+                    ))}
+                    </div>
+                ) : (
+                    <div className="flex flex-row flex-wrap justify-center">
+
+                        {allOrders && allOrders.length > 0 ?(
+                                                allOrders.map(order => (
+                                                    <AllOrdersCards
+                                                        key={order._id}
+                                                        id={order._id}
+                                                        total={order.total}
+                                                        date={order.createdAt.slice(0,10)}
+                                                        status={order.status.toUpperCase(0)}
+                                                    />
+                                                )))
+                                                : (
+                                                    <p>Orders Not Found</p>
+                                                )
+                        }
+                    </div>
+                )
+
+
+                }
             </div>
         </div>
     )
