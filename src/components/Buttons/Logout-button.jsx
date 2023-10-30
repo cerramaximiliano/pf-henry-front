@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
-import { useLocation } from "react-router-dom";
+
 
 export const LogoutButton = () => {
   const { logout } = useAuth0();
