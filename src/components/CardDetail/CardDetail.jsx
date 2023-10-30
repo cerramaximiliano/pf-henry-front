@@ -24,15 +24,14 @@ export default function CardDetail() {
     if (detail && detail.length === 1) {
       const product = detail[0];
       console.log(detail)
-      const imageSrc = product.image; // Accede a la imagen del producto
-      // Resto del código para agregar el producto al carrito
+      const imageSrc = product.image;
       dispatch(
         addProductToCart({
-          id: product.id,
+          id: product._id,
           product: {
-            imageSrc, // Utiliza la imagen del producto
+            imageSrc,
             imageAlt: product.title,
-            href: `/Detail/${id}`,
+            href: `/Detail/${_id}`,
             title: product.title,
             price: product.price,
             stock: product.stock,
