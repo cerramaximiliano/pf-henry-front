@@ -1,11 +1,7 @@
 import React, { useContext } from "react";
-import { useSelector } from "react-redux";
 import { FiltersContext } from "../../context/filter";
 
-export function Paginated() {
-  const { currentPage, totalPages } = useSelector(
-    (state) => state.products
-  );
+export function Paginated({ currentPage, totalPages }) {
 
   const { filters, setFilters } = useContext(FiltersContext);
   let elements = [];
@@ -16,7 +12,7 @@ export function Paginated() {
     elements.push(
       <button
         key={i}
-        onClick={() => setFilters({ ...filters, page: i + 1 })}
+        onClick={() => {setFilters({ ...filters, page: i + 1 }); console.log('llegue al click');}}
         className={
           i + 1 === currentPage
             ? "bg-redFred-100 py-[8px] px-[24px] text-blackFred-300 font-bebas rounded-none ml-[8px]"
