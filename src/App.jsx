@@ -76,7 +76,7 @@ function App() {
             <Route path="/products" element={
               user_detail.role === 'ADMIN' ? <Admin /> : <Product />
             } />
-            <Route path="/createReview/:id" element={<CreateReview/>}/>
+            <Route path="/createReview" element={<CreateReview/>}/>
             <Route path="/aboutus" element={<Us />} />
             <Route path="/addproduct" element={<Form />} />
             <Route path="/edit/:id" element={<Form />} />
