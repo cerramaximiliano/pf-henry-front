@@ -5,27 +5,18 @@ import { startLoading, stopLoading } from "../../redux/products/productSlice";
 import NotFound from "../notFound/notFound";
 import { Paginated } from "../Paginated/Paginated";
 import Loader from "../Loader/Loader";
-
 export function Cards() {
   const { products, currentPage, totalPages, isLoading } = useSelector(
     (state) => state.products
   );
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(startLoading());
-
-    setTimeout(() => {
-      dispatch(stopLoading());
-    }, 1500);
-  }, [products, currentPage]);
 
   return (
-    <div className=" overflow-hidden mx-[auto]">
+    <div className="relative overflow-hidden w-auto h-auto mx-[auto]">
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="flex items-center flex-row flex-wrap w-[70vw]  gap-[20px]">
+        <div className="flex items-center flex-row flex-wrap w-[50vw] rigth-[10%] gap-[10px]">
           {products.length > 0 ? (
             products.map((product) => (
               <Card
@@ -43,7 +34,7 @@ export function Cards() {
           )}
         </div>
       )}
-      <Paginated />
+      <Paginated currentPage={currentPage} totalPages={totalPages}/>
     </div>
   );
 }

@@ -1,46 +1,51 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProductId } from "../../redux/products/productsActions";
 
 export default function CardDetail() {
-  const { id } = useParams();
+  const params = useParams();
   const dispatch = useDispatch();
+  const { detail, loading } = useSelector((state) => state.products);
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
-    dispatch(getProductId(id));
-  }, [id]);
+    dispatch(getProductId(params.id));
+    console.log(detail);
+  }, [params.id]);
 
-  const { detail, loading } = useSelector((state) => state.products);
 
   return (
     <div className="flex items-center justify-center h-screen">
-      {loading ? (
-        <p>Loading...</p>
-      ) : detail && detail.length === 1 ? (
-        detail.map((product) => (
-          <div className="flex gap-8 border border-gray-900" key={product.id}>
-            {product.image ? (
-              <div className="flex items-center justify-center w-[218px] h-[253px] p-[50px] relative bg-cyan-800 rounded">
+      <button className="relative ml-[-320px] mt-[-10px] rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent"
+      onClick={handleGoBack}>⇦back</button>
+      {detail 
+      ? ( <div className="flex gap-8 border border-gray-900" key={detail.id}>
+            {detail.image 
+            ? (<div className="flex items-center justify-center w-[218px] h-[253px] p-[50px] relative bg-cyan-800 rounded">
                 <img
                   className="w-[245px] h-[307px] rounded-tl-lg rounded-tr-xl rounded-bl-xl rounded-br-xl border border-cyan-800"
-                  src={product.image}
-                  srcSet={`${product.image} 352w, ${product.image} 832w, ${product.image} 1200w`}
+                  src={detail.image}
+                  srcSet={`${detail.image} 352w, ${detail.image} 832w, ${detail.image} 1200w`}
                   alt="Product Image"
                 />
-          </div>
+              </div>
             ) : null}
             <div className="flex flex-col items-center justify-center">
-              <p>Name: {product.title}</p>
-              <p>Category: {product.category}</p>
-              <p>Diet: {product.diet}</p>
+              <p>Name: {detail.title}</p>
+              <p>Category: {detail.category}</p>
+              <p>Diet: {detail.diet}</p>
               <p>
-                Weight: {product.weight?.value} {product.weight?.type}
+                Weight: {detail.weight?.value} {detail.weight?.type}
               </p>
-              <p>Price: {product.price}</p>
+              <p>Price: {detail.price}</p>
             </div>
           </div>
-        ))
+        
       ) : (
         <p>No product data available.</p>
       )}

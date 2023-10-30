@@ -24,6 +24,7 @@ export default function NavBar() {
   const [toggleCart, setToggleCart] = useState(false);
 
   const desplegarCart = () => {
+    console.log('estamos aca');
     toggleCart === false ? setToggleCart(true) : setToggleCart(false);
   };
 
@@ -43,7 +44,7 @@ export default function NavBar() {
                     </div>
                     <div className="hidden sm:ml-[250px] sm:block">
                       <div className="flex space-x-4">
-                        <div className="absolute top-5 space-x-10">
+                        <div className="relative top-5 space-x-10">
                           {pathname !== "/" && (
                             <NavLink
                               to="/home"
@@ -65,7 +66,7 @@ export default function NavBar() {
                     </div>
                   </div>
                   <SearchBar />
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+                  <div className="relative inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                     <button
                       onClick={desplegarCart}
                       type="button"
@@ -75,13 +76,13 @@ export default function NavBar() {
                         className="h-4 w-4"
                         aria-hidden="true"
                       />
-                      {toggleCart ? <Cart/> : null}
+                      {toggleCart ? <Cart /> : null}
                     </button>
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-orangeFred-300 text-sm">
-                          <span className="absolute -inset-1.5  h-[39]" />
+                          <span className="relative -inset-1.5  h-[39]" />
                           <span className="sr-only">Open user menu</span>
                           <img className="h-8 w-8 rounded-full" src="" alt="" />
                         </Menu.Button>
@@ -95,12 +96,13 @@ export default function NavBar() {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-graym py-1 shadow-lg ">
+                        <Menu.Items className="relative right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-graym py-1 shadow-lg ">
                           <div className="nav-bar__buttons">
                             {!isAuthenticated && (
                               <>
                                 <SignupButton />
                                 <LoginButton />
+                                
                               </>
                             )}
                             {isAuthenticated && (

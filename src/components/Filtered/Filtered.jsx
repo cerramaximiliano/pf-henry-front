@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FiltersContext } from "../../context/filter";
 
 export default function Filtered() {
-  const { filters, setFilters } = useContext(FiltersContext)
-  
+  const { filters, setFilters } = useContext(FiltersContext);
+  const [transitionApplied, setTransitionApplied] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -11,7 +11,7 @@ export default function Filtered() {
       ...filters,
       page: 1,
       [name]: value,
-    }
+    };
 
     setFilters(currentSelect);
   };
@@ -29,10 +29,15 @@ export default function Filtered() {
     });
   };
 
+  useEffect(() => {
+    // Aplicar la transformación cuando el componente se monta
+    setTransitionApplied(true);
+  }, []);
+
   return (
-    <div className=" fixed mt-1 p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]">
+    <div className={`relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${transitionApplied ? 'transform translate-x-0 transition-transform duration-500 ease-in-out' : 'transform -translate-x-full'}`}>
       <span>
-        <h2 className=" mb-[2px] mt-[0px] text-left	" >Sort by:</h2>
+        <h2 className=" mb-[2px] mt-[0px] text-left" >Sort by:</h2>
         <div className=" grid justify-between	">
           <h3 className=" my-[1px]  text-left">Name</h3>
           <select name="orderBy" onChange={handleChange} value={filters.orderBy} className=" w-[280px] h-[35px]">
@@ -137,7 +142,7 @@ export default function Filtered() {
             </span>
         </div>
       </span>
-      <button onClick={handleReset} className="	my-[25px] bg-[#ff9505] text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
+      <button onClick={handleReset} className="	my-[25px] bg-redFred-100 text-[#121212] py-[8px] px-[24px] outline-none rounded-sm hover:border-transparent	">Reset</button>
     </div>
   );
 }

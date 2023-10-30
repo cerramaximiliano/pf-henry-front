@@ -4,7 +4,6 @@ import {
   getProductsByFilter,
   addProduct,
 } from "./productSlice.js";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const URLBASE = import.meta.env.VITE_URL_BASE;
 
@@ -13,7 +12,6 @@ export const getProductId = (id) => {
     axios
       .get(`${URLBASE}/products/${id}`)
       .then((res) => {
-        console.log(res.data);
         dispatch(getProductById(res.data));
       })
       .catch((e) => console.log(e));
@@ -54,3 +52,11 @@ export const postProduct = (product) => {
       .catch((e) => console.log(e));
   };
 };
+
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    axios
+      .put(`${URLBASE}/products/desactivate/${id}`)
+      .catch((e) => console.log(e))
+  }
+}
