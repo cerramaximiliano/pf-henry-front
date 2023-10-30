@@ -15,6 +15,7 @@ export default function Filtered() {
     };
 
     setFilters(currentSelect);
+    setAppear(!appear);
   };
 
   const handleReset = () => {
@@ -40,12 +41,15 @@ export default function Filtered() {
 
   return (
     <>
-      <div onClick={handleTransition} className="sm:flex xl:hidden ">
+      <div
+        onClick={handleTransition}
+        className="sm:flex md:flex  lg:hidden xl:hidden sm:mb-100  "
+      >
         boton
       </div>
       {appear ? (
         <div
-          className={` md relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${
+          className={` md relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[100%] h-[650px] ${
             transitionApplied
               ? "transform translate-x-0 transition-transform duration-500 ease-in-out"
               : "transform -translate-x-full"
@@ -182,7 +186,7 @@ export default function Filtered() {
       ) : null}
 
       <div
-        className={`sm:hidden md relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${
+        className={`sm:hidden md:hidden relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[650px] ${
           transitionApplied
             ? "transform translate-x-0 transition-transform duration-500 ease-in-out"
             : "transform -translate-x-full"

@@ -15,20 +15,20 @@ export function Card({ image, title, category, price, id, stock }) {
           href: `/Detail/${id}`,
           title,
           price,
-          stock
-        }
+          stock,
+        },
       })
     );
   };
 
   return (
-    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym w-[250px] h-[350px] mx-[auto] mt-[2%]">
+    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym sm:w-[160px] md:w-[250px] lg:w-[350px] xl:w-[350px] sm:h-[300px] md:h-[400px]  lg:h-[500px] xl:h-[500px]  mx-[auto] mt-[2%]">
       <div className="flex flex-col justify-between h-full">
         <div>
           <NavLink to={`/Detail/${id}`}>
             <img
               src={image}
-              className="object-contain h-[250px] w-[220px]"
+              className="object-contain sm:w-[160px] md:w-[250px] lg:w-[350px] xl:w-[350px] "
               srcSet={`${image} 352w, ${image} 832w, ${image} 1200w`}
               alt="Product Image"
             />
@@ -45,7 +45,7 @@ export function Card({ image, title, category, price, id, stock }) {
         <div className="flex justify-center mt-[-10px] items-center">
           <button
             onClick={handleAddClick}
-            className="rounded-sm bg-redFred-100 text-whiteFred-100 w-[200px] outline-none hover:text-orangeFred-100"
+            className="rounded-sm bg-redFred-100 text-whiteFred-100  sm:w-[120px] sm:h-[60px] lg:w-[250px] xl:w-[250px] outline-none hover:text-orangeFred-100"
           >
             Add to Cart
           </button>
@@ -53,4 +53,4 @@ export function Card({ image, title, category, price, id, stock }) {
       </div>
     </span>
   );
-}  
+}

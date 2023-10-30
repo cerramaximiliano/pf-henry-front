@@ -37,54 +37,56 @@ export default function Featured() {
 
   return (
     <>
-      <div className={`xl:hidden`}>
-        <div
-          className={` relative  shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold w-[250px] h-[700px] ${
-            displayedProducts1.length > 0 ? "fall-and-bounce" : ""
-          }`}
-          style={{
-            display: displayedProducts1.length > 0 ? "block" : "none",
-          }}
-        >
-          <p className="font-bayon-bold text-[20px] -mt-10">
-            Featured Products
-          </p>
-          {displayedProducts1.length > 0
-            ? displayedProducts1.map((product) => (
-                <Card
-                  key={product._id}
-                  id={product._id}
-                  image={product.image ?? null}
-                  title={product.title}
-                  price={product.price}
-                />
-              ))
-            : null}
+      <div className={"ml-30"}>
+        <div className={"xl:hidden lg:hidden "}>
+          <div
+            className={` relative  shadow-md sm:px-0  ml-30  text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold h-[300px] ${
+              displayedProducts1.length > 0 ? "fall-and-bounce" : ""
+            }`}
+            style={{
+              display: displayedProducts1.length > 0 ? "block" : "none",
+            }}
+          >
+            <p className="font-bayon-bold text-[20px] sm:text-[10px]  -mt-10">
+              Featured Products
+            </p>
+            {displayedProducts1.length > 0
+              ? displayedProducts1.map((product) => (
+                  <Card
+                    key={product._id}
+                    id={product._id}
+                    image={product.image ?? null}
+                    title={product.title}
+                    price={product.price}
+                  />
+                ))
+              : null}
+          </div>
         </div>
-      </div>
-      <div className={` sm:hidden xl:flex xl:col`}>
-        <div
-          className={` relative  shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold w-[250px] h-[700px] ${
-            displayedProducts2.length > 0 ? "fall-and-bounce" : ""
-          }`}
-          style={{
-            display: displayedProducts2.length > 0 ? "block" : "none",
-          }}
-        >
-          <p className="font-bayon-bold text-[20px] -mt-10">
-            Featured Products
-          </p>
-          {displayedProducts2.length > 0
-            ? displayedProducts2.map((product) => (
-                <Card
-                  key={product._id}
-                  id={product._id}
-                  image={product.image ?? null}
-                  title={product.title}
-                  price={product.price}
-                />
-              ))
-            : null}
+        <div className={` sm:hidden md:hidden lg:flex lg:col xl:flex xl:col`}>
+          <div
+            className={` relative  shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold  h-[1000px] ${
+              displayedProducts2.length > 0 ? "fall-and-bounce" : ""
+            }`}
+            style={{
+              display: displayedProducts2.length > 0 ? "block" : "none",
+            }}
+          >
+            <p className="font-bayon-bold text-[20px] -mt-10">
+              Featured Products
+            </p>
+            {displayedProducts2.length > 0
+              ? displayedProducts2.map((product) => (
+                  <Card
+                    key={product._id}
+                    id={product._id}
+                    image={product.image ?? null}
+                    title={product.title}
+                    price={product.price}
+                  />
+                ))
+              : null}
+          </div>
         </div>
       </div>
     </>

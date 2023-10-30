@@ -16,7 +16,7 @@ export function Cards() {
 
     setTimeout(() => {
       dispatch(stopLoading());
-    }, 3000 );
+    }, 3000);
   }, [products, currentPage]);
 
   return (
@@ -24,7 +24,7 @@ export function Cards() {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="flex items-center flex-row flex-wrap w-[50vw] rigth-[10%] gap-[10px]">
+        <div className="flex items-center  flex-row flex-wrap w-[50vw] rigth-[10%] gap-[10px]">
           {products.length > 0 ? (
             products.map((product) => (
               <Card
