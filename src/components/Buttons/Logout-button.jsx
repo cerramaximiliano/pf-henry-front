@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import Swal from "sweetalert2";
@@ -9,10 +10,13 @@ const MySwal = withReactContent(Swal);
 
 
 export const LogoutButton = () => {
-  const { logout } = useAuth0();
+  const { user, logout } = useAuth0();
   const { pathname } = useLocation();
+  const { productsInCart } = useSelector((state) => state.cart)
 
   const handleLogout = () => {
+    // localStorage.clear()
+    localStorage.setItem("cart", "{}");
     MySwal.fire({
       title: 'Are you sure you want to log out?',
       icon:'info',
