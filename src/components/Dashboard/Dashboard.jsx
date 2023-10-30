@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OrderCard from "../OrderCard/OrderCard";
-import AllOrdersCards from "../AllOrdersCards/AllOrdersCards";
+import AllOrdersCards from "../AllOrderCards/AllOrderCards";
 import axios from "axios";
 import { useSelector } from "react-redux";
 

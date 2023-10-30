@@ -56,7 +56,6 @@ function App() {
             <Route path="/edit/:id" element={<Form />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/myaccount/orders/:id" element={<MyAccount />} />
-            <Route path="/myaccount/orders/:id" element={<MyAccount />} />
             <Route path="/myaccount/orders" element={<MyAccount />} />
             <Route path="/myaccount/users" element={<MyAccount/>} />
             <Route path="/Detail/:id" element={<CardDetail />} />
