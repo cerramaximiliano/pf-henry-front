@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addProductToCart } from "../../redux/Cart/cartActions";
+import { NavLink } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { addProductToCart } from "../../redux/Cart/cartActions"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export function Card({ image, title, category, price, id, stock }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleAddClick = () => {
     dispatch(
@@ -15,14 +17,25 @@ export function Card({ image, title, category, price, id, stock }) {
           href: `/Detail/${id}`,
           title,
           price,
-          stock
-        }
+          stock,
+        },
       })
-    );
-  };
+    )
+    toast("product has been add to cart", {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    })
+  }
 
   return (
     <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym w-[250px] h-[350px] mx-[auto] mt-[2%]">
+      <ToastContainer />
       <div className="flex flex-col justify-between h-full">
         <div>
           <NavLink to={`/Detail/${id}`}>
@@ -52,5 +65,5 @@ export function Card({ image, title, category, price, id, stock }) {
         </div>
       </div>
     </span>
-  );
-}  
+  )
+}
