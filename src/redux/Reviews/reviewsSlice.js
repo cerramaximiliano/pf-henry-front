@@ -16,10 +16,13 @@ const reviewsSlice = createSlice({
     stopLoading: (state) => {
       state.isLoading = false;
     },
+    resetReviews: (state) => {
+      state.reviews = [];
+    },
   },
 });
 
-export const { setReviews, startLoading, stopLoading } = reviewsSlice.actions;
+export const { setReviews, startLoading, stopLoading, resetReviews } = reviewsSlice.actions;
 
 const reviewsReducer = reviewsSlice.reducer;
 export default reviewsReducer;

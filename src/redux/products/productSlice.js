@@ -29,6 +29,9 @@ const productSlice = createSlice({
     stopLoading: (state) => {
       state.isLoading = false;
     },
+    resetDetail: (state) => {
+      state.detail = null; 
+    },
   },
 });
 
@@ -38,6 +41,7 @@ export const {
   addProduct,
   startLoading,
   stopLoading,
+  resetDetail,
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;
