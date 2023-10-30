@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
 import MyAccount from "./views/MyAccount/MyAccount";
+import CreateReview from "./views/CreateReview/CreateReview";
 import Form from "./components/FormProduct/FormProduct";
 import { loadCart } from "./redux/Cart/cartActions";
 
@@ -75,6 +76,7 @@ function App() {
             <Route path="/products" element={
               user_detail.role === 'ADMIN' ? <Admin /> : <Product />
             } />
+            <Route path="/createReview/:id" element={<CreateReview/>}/>
             <Route path="/aboutus" element={<Us />} />
             <Route path="/addproduct" element={<Form />} />
             <Route path="/edit/:id" element={<Form />} />
@@ -83,7 +85,7 @@ function App() {
             <Route path="/myaccount/orders" element={<MyAccount />} />
             <Route path="/myaccount/users" element={<MyAccount/>} />
             <Route path="/Detail/:id" element={<CardDetail />} />
-            <Route path="/error" element={<Error />} />
+            <Route path="/*" element={<Error />} />
           </Routes>
           {pathname !== "/" && <Footer />}
         </>
