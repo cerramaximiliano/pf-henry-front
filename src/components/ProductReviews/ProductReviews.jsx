@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchReviewsByProductId } from '../../redux/Reviews/reviewsActions';
-import UserPh from "../../../public/Userph.svg"
 import Rating from '@mui/material/Rating';
 
 const ProductReview = () => {
