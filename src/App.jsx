@@ -18,11 +18,17 @@ import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
 import MyAccount from "./views/MyAccount/MyAccount";
 import Form from "./components/FormProduct/FormProduct";
+import { loadCart } from "./redux/Cart/cartActions";
+
+const cartFromLocalStorageRaw = localStorage.getItem("cart");
+const cartFromLocalStorage = JSON.parse(cartFromLocalStorageRaw || '{}');
 
 function App() {
+
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
+  const { productsInCart } = useSelector((state) => state.cart)
 
   const { user_detail } = useSelector(
     (state) => state.users
@@ -30,11 +36,28 @@ function App() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(postUser(user))
+      dispatch(postUser(user)).then(() => console.log(user_detail))
     }
-    console.log(user);
-    console.log(user_detail);
   }, [user, dispatch]);
+
+  useEffect(() => {
+    console.log(cartFromLocalStorageRaw);
+  dispatch(loadCart(cartFromLocalStorage))
+  }, [])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const user_cart = localStorage.getItem("user-cart")
+      if (!user_cart) {
+        localStorage.setItem("user-cart", JSON.stringify({ user: user.sub, cart: productsInCart }))
+      } else {
+        const user_cart_obj = JSON.parse(user_cart)
+        if (user_cart_obj.user == user.sub) localStorage.setItem("user-cart", JSON.stringify({ user: user.sub, cart: productsInCart }))
+    }}
+    localStorage.setItem("cart", JSON.stringify(productsInCart))
+  }, [productsInCart])
+
+
 
   return (
     <>
@@ -61,7 +84,7 @@ function App() {
             <Route path="/Detail/:id" element={<CardDetail />} />
             <Route path="/error" element={<Error />} />
           </Routes>
-          {pathname !== "/" && <Footer />}  
+          {pathname !== "/" && <Footer />}
         </>
       )}
     </>
