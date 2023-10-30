@@ -7,7 +7,7 @@ import {
 const URLBASE = import.meta.env.VITE_URL_BASE
 
 export const postUser = (data) => {
-    return (dispatch) => {
+    return async (dispatch) => {
       axios
         .post(`${URLBASE}/users/create`, data)
         .then((res) => {
