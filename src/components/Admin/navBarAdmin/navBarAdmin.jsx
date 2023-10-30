@@ -24,6 +24,7 @@ export default function NavBar() {
   const [toggleCart, setToggleCart] = useState(false);
 
   const desplegarCart = () => {
+    console.log('estamos aca');
     toggleCart === false ? setToggleCart(true) : setToggleCart(false);
   };
 
@@ -75,7 +76,7 @@ export default function NavBar() {
                         className="h-4 w-4"
                         aria-hidden="true"
                       />
-                      {toggleCart ? <Cart/> : null}
+                      {toggleCart ? <Cart /> : null}
                     </button>
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
@@ -101,6 +102,7 @@ export default function NavBar() {
                               <>
                                 <SignupButton />
                                 <LoginButton />
+                                
                               </>
                             )}
                             {isAuthenticated && (
