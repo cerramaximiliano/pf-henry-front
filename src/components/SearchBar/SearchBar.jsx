@@ -31,7 +31,7 @@ export default function SearchBar() {
   
   return (
     <div className="relative flex items-center">
-    <div className="sm:hidden">
+    <div className="sm:hidden md:hidden">
     <div className={`transition-all duration-300 ${isSearchOpen ? 'w-[330px]' : 'w-10'}`}>
       <input
         value={filters.name}

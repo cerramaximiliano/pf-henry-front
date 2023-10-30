@@ -10,7 +10,7 @@ export default function Error() {
     </div>
     <NavLink to='/home'>
     <button className="mt-5">
-        <a
+        <span
           className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring"
           
         >
@@ -23,7 +23,7 @@ export default function Error() {
          
             <router-link to="/">Go Home</router-link>
           </span>
-        </a>
+        </span>
       </button>
       </NavLink>
   </main>

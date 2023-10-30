@@ -17,6 +17,7 @@ export default function NavBar() {
   const { isAuthenticated } = useAuth0();
   const [toggleCart, setToggleCart] = useState(false);
 
+
   const desplegarCart = () => {
     setToggleCart(!toggleCart);
   };
@@ -154,6 +155,12 @@ export default function NavBar() {
                     ) : (
                       <>
                         <LogoutButton />
+                        <NavLink
+                            to={`/myaccount/${user_detail._id}`}
+                            className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
+                          >
+                            My Account
+                          </NavLink>
                       </>
                     )}
                   </div>

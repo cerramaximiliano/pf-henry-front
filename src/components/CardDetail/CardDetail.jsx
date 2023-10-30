@@ -2,10 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductId } from "../../redux/products/productsActions";
+import ProductReviews from "../ProductReviews/ProductReviews"
+import { NavLink } from "react-router-dom"
 
 export default function CardDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  console.log(id)
 
   useEffect(() => {
     dispatch(getProductId(id));
@@ -14,7 +17,7 @@ export default function CardDetail() {
   const { detail, loading } = useSelector((state) => state.products);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="grid items-center justify-center h-screen">
       {loading ? (
         <p>Loading...</p>
       ) : detail && detail.length === 1 ? (
@@ -44,6 +47,10 @@ export default function CardDetail() {
       ) : (
         <p>No product data available.</p>
       )}
+        <NavLink to={`/createReview/${id}`}>
+          <button>Add review</button>
+        </NavLink>
+       <ProductReviews/>
     </div>
   );
 }

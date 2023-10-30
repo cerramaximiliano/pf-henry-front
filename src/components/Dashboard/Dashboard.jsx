@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OrderCard from "../OrderCard/OrderCard";
-import AllOrdersCards from "../AllOrdersCards/AllOrdersCards";
+import AllOrdersCards from "../AllOrderCards/AllOrderCards";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -45,13 +45,13 @@ export default function Dashboard() {
     return (
             <div>
                 <div className="flex justify-end m-auto w-1/2">
-                    <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">View Orders</a>
+                    <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">View All</a>
                 </div>
             <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap">
 
-
+            <div className="flex flex-col justify-center">
                 {orders.length > 0 ? (
-                <div className="flex flex-col justify-center">
+                    <>
                     <div>
                         <h4>Order Id</h4>
                         <p>{id}</p>
@@ -64,9 +64,9 @@ export default function Dashboard() {
                         <h4>Status</h4>
                         <p>{status.toUpperCase(0)}</p>
                     </div>
-                </div>
+                    </>
                 ) : (
-                    <div className="flex flex-col justify-center w-full">
+                    <>
                         <div>
                             <h4>User Id</h4>
                             <p>{user_detail._id}</p>
@@ -75,10 +75,11 @@ export default function Dashboard() {
                             <h4>Total Orders</h4>
                             <p>{totalOrders}</p>
                         </div>
-                    </div>
+                    </>
+
                 )
                 }
-
+                </div>
                 {orders.length > 0 ? (
                     <div className="flex flex-col flex-wrap justify-center">
                     {orders.map((order) => (
