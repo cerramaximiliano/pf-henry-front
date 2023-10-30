@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
 import MyAccount from "./views/MyAccount/MyAccount";
-
+import CreateReview from "./views/CreateReview/CreateReview";
 function App() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -48,6 +48,7 @@ function App() {
             <Route path="/products" element={
               user_detail.role === 'ADMIN' ? <Admin /> : <Product />
             } />
+            <Route path="/createReview/:id" element={<CreateReview/>}/>
             <Route path="/aboutus" element={<Us />} />
             <Route path="/addproduct" element={<Profile />} />
             <Route path="/callback" element={<CallbackPage />} />

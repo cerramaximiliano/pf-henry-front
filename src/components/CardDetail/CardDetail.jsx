@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProductId } from "../../redux/products/productsActions";
-import FormReview from "../FormReview/FormReview";
+import ProductReviews from "../ProductReviews/ProductReviews"
+import { NavLink } from "react-router-dom"
 
 export default function CardDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  console.log(id)
 
   useEffect(() => {
     dispatch(getProductId(id));
@@ -45,7 +47,10 @@ export default function CardDetail() {
       ) : (
         <p>No product data available.</p>
       )}
-       <FormReview/>
+        <NavLink to={`/createReview/${id}`}>
+          <button>Add review</button>
+        </NavLink>
+       <ProductReviews/>
     </div>
   );
 }

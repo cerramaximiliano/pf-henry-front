@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setReviews } from './reviewsSlice';
 
 const URLBASE = import.meta.env.VITE_URL_BASE;
 
@@ -19,13 +20,17 @@ export const createReview = (reviewData) => {
   };
 };
 
+
+
 export const fetchReviewsByProductId = (productId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${URLBASE}/reviews/${productId}`);
-      // Procesar y guardar las revisiones en el estado de Redux si es necesario.
+      const response = await axios.get(`${URLBASE}/reviews/${productId}`); // Ajusta la URL según tu estructura de rutas
+      const reviews = response.data;
+      dispatch(setReviews(reviews)); // Esta acción almacenará las reseñas en el estado de Redux
     } catch (error) {
-      console.error('Error al obtener las revisiones', error);
+      console.error('Error al obtener las reseñas', error);
+      throw error;
     }
   };
 };
