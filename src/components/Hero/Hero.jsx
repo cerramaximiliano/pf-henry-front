@@ -10,17 +10,17 @@ export default function Hero() {
         <NavLink to="/products" className="sm:py-5 sm:my-2 md:ml-[20px] sm:mx-auto md:mx-auto md:my-[20px] lg:my-[20px] mx-[30px] transition transform hoverscale-110 rounded-lg bg-graym sm:w-[270px] sm:h-[350px] xl:w-[540px] xl:h-[630px] xl:max-w-[400px]">
           <img src={SPAM1} alt="" className="sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[300px] lg:h-[300px] w-[400px] h-[480px]" />
           <p className="font-roboto-bold text-30xl text-blackFred-100 mb-0">SNAKS</p>
-          <NavLink to="/products" className="font-bayon-bold leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
+          <p to="/products" className="font-bayon-bold leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</p>
         </NavLink>
         <NavLink to="/products" className="sm:py-5 sm:my-2 md:ml-[20px] sm:mx-auto md:mx-auto md:my-[20px] lg:my-[20px] mx-[30px] transition transform hoverscale-110 rounded-lg bg-graym sm:w-[270px] sm:h-[355px] xl:w-[540px] xl:h-[630px] xl:max-w-[400px]">
           <img src={SPAM2} alt="" className="sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[300px] lg:h-[300px] w-[400px] h-[480px]" />
           <p className="font-roboto-bold text-30xl text-blackFred-100 mb-0">SUPPLEMENTS</p>
-          <NavLink to="/products" className="font-bayon-bold leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
+          <p to="/products" className="font-bayon-bold leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</p>
         </NavLink>
         <NavLink to="/products" className="sm:py-5 sm:my-2 md:ml-[20px] sm:mx-auto md:mx-auto md:my-[20px] lg:my-[20px] mx-[30px] transition transform hoverscale-110 rounded-lg bg-graym sm:w-[270px] sm:h-[355px] xl:w-[540px] xl:h-[630px] xl:max-w-[400px]">
           <img src={SPAM3} alt="" className="sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[300px] lg:h-[300px] w-[400px] h-[480px]" /><br />
           <p className="font-roboto-bold text-30xl text-blackFred-100 mb-0 ">VITAMINS</p>
-          <NavLink to="/products" className="font-bayon-bold leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
+          <p to="/products" className="font-bayon-bold leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</p>
         </NavLink>
       </section>
     </div>

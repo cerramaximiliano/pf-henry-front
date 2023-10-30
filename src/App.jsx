@@ -48,6 +48,7 @@ function App() {
   useEffect(() => {
     if (isAuthenticated) {
       const user_cart = localStorage.getItem("user-cart")
+      console.log(user_cart)
       if (!user_cart) {
         localStorage.setItem("user-cart", JSON.stringify({ user: user.sub, cart: productsInCart }))
       } else {
