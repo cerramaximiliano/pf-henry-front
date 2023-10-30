@@ -18,6 +18,8 @@ import { postUser } from "./redux/users/usersActions";
 import Error from "./views/error/error";
 import MyAccount from "./views/MyAccount/MyAccount";
 import CreateReview from "./views/CreateReview/CreateReview";
+import Form from "./components/FormProduct/FormProduct";
+
 function App() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -31,6 +33,8 @@ function App() {
     if (isAuthenticated) {
       dispatch(postUser(user))
     }
+    console.log(user);
+    console.log(user_detail);
   }, [user, dispatch]);
 
   return (
@@ -50,9 +54,11 @@ function App() {
             } />
             <Route path="/createReview/:id" element={<CreateReview/>}/>
             <Route path="/aboutus" element={<Us />} />
-            <Route path="/addproduct" element={<Profile />} />
+            <Route path="/addproduct" element={<Form />} />
+            <Route path="/edit/:id" element={<Form />} />
             <Route path="/callback" element={<CallbackPage />} />
-            <Route path="/myaccount/:id" element={<MyAccount />} />
+            <Route path="/myaccount/orders/:id" element={<MyAccount />} />
+            {/* <Route path="/myaccount/" ></Route> */}
             <Route path="/Detail/:id" element={<CardDetail />} />
             <Route path="/*" element={<Error />} />
           </Routes>

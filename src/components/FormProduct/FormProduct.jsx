@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form"
-import { NavLink } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { postProduct } from "../../redux/products/productsActions"
-import React from "react";
+import { NavLink, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { getProductId, postProduct } from "../../redux/products/productsActions"
+import React, { useEffect } from "react";
 //import fs from "fs"
 
 
@@ -10,10 +10,37 @@ export default function Form() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm()
 
   const dispatch = useDispatch()
+  const params = useParams()
+  const { detail } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    if (params.id) {
+      dispatch(getProductId(params.id));
+    }
+  }, [params.id, dispatch]);
+
+  useEffect(() => {
+    // Set default values for the form fields when product_detail changes
+    if (detail && params.id) {
+      setValue('title', detail.title);
+      setValue('file', detail.image); // You may need to handle file inputs differently
+      setValue('price', detail.price);
+      setValue('category', detail.category);
+      setValue('stock', detail.stock);
+      setValue('diet', detail.diet);
+      setValue('flavor', detail.flavor);
+      setValue('value', detail.weight?.value);
+      setValue('type', detail.weight?.type);
+    }
+  }, [detail, setValue]);
+
+  console.log(detail);
+  console.log(detail.category);
  
 
   const onSubmit = handleSubmit((data) => {
@@ -125,10 +152,10 @@ export default function Form() {
             })}
             defaultValue="food"
           >
-           <option value="food">Food</option>
-            <option value="suplement">Suplement</option>
-            <option value="beverages">Beverages</option>
-            <option value="vitaminAndMinerals">vitamins and minerals</option>
+           <option value="Food">Food</option>
+            <option value="Suplement">Suplement</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Vitamin and minerals">vitamins and minerals</option>
           </select>
           {errors.category && <span>{errors.category.message}</span>}
         </div>
@@ -167,10 +194,10 @@ export default function Form() {
             })}
             defaultValue="Unspecified"
           >
-            <option value="vegan">Vegan</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="keto">Keto</option>
-            <option value="gluten Free">Gluten Free</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Keto">Keto</option>
+            <option value="Gluten Free">Gluten Free</option>
             <option value="Unspecified">Unspecified</option>
           </select>
           {errors.diet && <span>{errors.diet.message}</span>}
@@ -189,11 +216,11 @@ export default function Form() {
             })}
             defaultValue="Unspecified"
           >
-            <option value="vainilla">Vainilla</option>
-            <option value="chocolate">Chocolate</option>
-            <option value="strawberry">Strawberry</option>
-            <option value="fruity">Fruity</option>
-            <option value="without Flavor">Without flavor</option>
+            <option value="Vainilla">Vainilla</option>
+            <option value="Chocolate">Chocolate</option>
+            <option value="Strawberry">Strawberry</option>
+            <option value="Fruity">Fruity</option>
+            <option value="Without Flavor">Without flavor</option>
             <option value="Unspecified">Unspecified</option>
           </select>
           {errors.flavor && <span>{errors.flavor.message}</span>}
@@ -232,15 +259,18 @@ export default function Form() {
             })}
             defaultValue="gr"
           >
-            <option value="gr">gr</option>
+            <option value="g">gr</option>
             <option value="ml">ml</option>
+            <option value="mg">mg</option>
             <option value="kg">kg</option>
           </select>
           {errors.type && <span>{errors.type.message}</span>}
         </div>
 
-        <button className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium" type="submit">Add Product</button>
-        </div>
+        {params.id 
+        ? <button className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium" type="submit">Edit Product</button> 
+        : <button className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium" type="submit">Add Product</button>
+        }</div>
       </form>
     </div>
   )

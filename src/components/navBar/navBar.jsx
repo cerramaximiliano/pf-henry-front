@@ -10,11 +10,15 @@ import { LogoutButton } from "../Buttons/Logout-button";
 import Cart from "../Cart/Cart";
 import Profile from "../../assets/Profile.png";
 import { LoginButton } from "../Buttons/Login-button";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
   const { pathname } = useLocation();
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const [toggleCart, setToggleCart] = useState(false);
+  const { user_detail } = useSelector(
+    (state) => state.users
+  );
 
   const desplegarCart = () => {
     setToggleCart(!toggleCart);
@@ -22,6 +26,7 @@ export default function NavBar() {
 
   // Agregar este efecto para desplazar hacia arriba al cambiar de página
   useEffect(() => {
+    console.log(user_detail);
     window.scrollTo(0, 0); // Scroll al principio de la página
   }, [pathname]); // Ejecutar cuando cambie la ruta
 
@@ -72,14 +77,6 @@ export default function NavBar() {
               <ShoppingCartIcon className="h-4 w-4" aria-hidden="true" />
               {toggleCart ? <Cart /> : null}
             </button>
-            {pathname !== "/" && (
-              <NavLink
-                to="/myaccount"
-                className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
-              >
-                My Account
-              </NavLink>
-            )}
             <Menu as="div" className="ml-3 relative">
               <div>
                 <Menu.Button className="relative flex rounded-none py-[2.5px] px-[24px] h-[39] bg-redFred-100 text-sm">
@@ -100,11 +97,19 @@ export default function NavBar() {
                     {!isAuthenticated ? (
                       <>
                         <SignupButton />
-                        <LoginButton/>
+                        <LoginButton />
                       </>
                     ) : (
                       <>
                         <LogoutButton />
+                        
+                          <NavLink
+                            to={`/myaccount/${user_detail._id}`}
+                            className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
+                          >
+                            My Account
+                          </NavLink>
+                        
                       </>
                     )}
                   </div>

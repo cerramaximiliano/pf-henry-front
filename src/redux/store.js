@@ -4,6 +4,7 @@ import productsReducer from "./products/productSlice";
 import usersReducer from './users/userSlice';
 import cartReducer from "./Cart/cartSlice";
 import reviewsReducer from "./reviews/reviewsSlice";
+import ordersReducer from "./Orders/orderSlice"
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
     cart: cartReducer,
     users: usersReducer,
     reviews: reviewsReducer,
+    orders: ordersReducer,
   },
 });
 //:)

@@ -17,7 +17,7 @@ export default function CardDetail() {
   const { detail, loading } = useSelector((state) => state.products);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="grid items-center justify-center h-screen">
       {loading ? (
         <p>Loading...</p>
       ) : detail && detail.length === 1 ? (
