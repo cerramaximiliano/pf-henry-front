@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductId } from '../../redux/products/productsActions';
-import { createReview } from '../../redux/reviews/reviewsActions';
+import { createReview } from '../../redux/Reviews/reviewsActions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';

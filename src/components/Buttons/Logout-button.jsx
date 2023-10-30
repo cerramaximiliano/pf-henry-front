@@ -1,12 +1,16 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 export const LogoutButton = () => {
-  const { logout } = useAuth0();
+  const { user, logout } = useAuth0();
   const { pathname } = useLocation();
+  const { productsInCart } = useSelector((state) => state.cart)
 
   const handleLogout = () => {
+    // localStorage.clear()
+    localStorage.setItem("cart", "{}");
     logout({
       logoutParams: {
         returnTo: window.location.origin,
