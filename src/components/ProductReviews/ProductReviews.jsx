@@ -23,7 +23,7 @@ const ProductReview = () => {
           {reviews.map((review, index) => (
             <span key={index} className='flex-row overflow-auto w-[400px]	 m-[10px] bg-graym rounded-none	'>
               <span className='flex items-center ml-[25px] mt-[25px]  '>
-                <img src={UserPh} alt='' className=' h-[25px] bg-redFred-300 rounded-full p-[5px] mr-[20px]'/>
+                
                 <span className='grid justify-items-start	'>
                   <p className=' font-bebas my-0 text-blackFred-300 '>{review.userId}</p>                  
                   <Rating
