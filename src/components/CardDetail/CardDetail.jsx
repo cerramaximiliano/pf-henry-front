@@ -11,19 +11,19 @@ import { addProductToCart } from "../../redux/Cart/cartActions";
 export default function CardDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(resetDetail());
     dispatch(resetReviews());
     dispatch(getProductId(id));
   }, [id]);
-
+  
   const { detail, loading } = useSelector((state) => state.products);
+  console.log(detail)
  
   const handleAddClick = () => {
     if (detail && detail.length === 1) {
       const product = detail[0];
-      console.log(detail)
+      
       const imageSrc = product.image;
       dispatch(
         addProductToCart({
