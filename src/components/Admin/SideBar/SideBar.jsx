@@ -104,3 +104,4 @@ export default function NavBar({ selectedMenu, setSelectedMenu }) {
     </div>
   );
 }
+//:3
