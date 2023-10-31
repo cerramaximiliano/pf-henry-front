@@ -63,7 +63,7 @@ export default function NavBar() {
                         to="/products"
                         className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
                       >
-                        Products
+                        Dashboard
                       </NavLink>
                     )}
                   </div>
@@ -91,7 +91,7 @@ export default function NavBar() {
                   to="/products"
                   className="text-blackFred-300 hover:text-orangeFred-300"
                 >
-                  Products
+                  Dashboard
                 </NavLink>
               )}
             </div>

@@ -3,6 +3,7 @@ import {
   getProductById,
   getProductsByFilter,
   addProduct,
+  setProperty,
 } from "./productSlice.js";
 
 const URLBASE = import.meta.env.VITE_URL_BASE;
@@ -58,5 +59,24 @@ export const deleteProduct = (id) => {
     axios
       .put(`${URLBASE}/products/desactivate/${id}`)
       .catch((e) => console.log(e))
+  }
+}
+
+export const activateProduct = (id) => {
+  return async (dispatch) => {
+    axios
+      .put(`${URLBASE}/products/activate/${id}`)
+      .catch((e) => console.log(e))
+  }
+}
+
+export const getProperty = (property) => {
+  return async (dispatch) => {
+    axios
+    .get(`${URLBASE}/products/props/${property}`)
+    .then((res) => {
+      dispatch(setProperty({property: property, data: res.data}))
+    })
+    .catch((e) => console.log(e))
   }
 }

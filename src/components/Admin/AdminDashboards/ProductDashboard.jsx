@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Paginated } from "../../Paginated/Paginated";
-import { deleteProduct, getProductFiltered } from "../../../redux/products/productsActions";
+import { activateProduct, deleteProduct, getProductFiltered } from "../../../redux/products/productsActions";
 import { useEffect, useContext, useState } from "react";
 import { FiltersContext } from "../../../context/filter";
 import Loader from "../../Loader/Loader";
@@ -14,23 +14,32 @@ export default function ProductDashboard() {
   const { filters, setFilters } = useContext(FiltersContext);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  console.log(products);
+  
+  // console.log(products);
+  // const arrowIcon = isSorted ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '';
+  const arrowIcon = '↑'
+
 
 
   useEffect(() => {
     setIsLoading(true)
-    dispatch(getProductFiltered({ ...filters, limit: 20 })).then(() => { setIsLoading(false) })
+    dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) })
   }, [filters])
+
+  const sortColumn = (target) => {
+    if(filters.orderBy === target) setFilters({...filters, orderBy: '-' + target})   
+    else setFilters({...filters, orderBy: target})
+  }
 
 
   const deleteProductById = (productId) => {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "This way the product will not be visible for clients anymore !",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: 'red ',
+      cancelButtonColor: 'green',
       confirmButtonText: 'Yes, delete it!',
       iconColor: '#d33',
       cancelButtonText: 'Cancel'
@@ -39,10 +48,35 @@ export default function ProductDashboard() {
         dispatch(deleteProduct(productId))
           .then(() => {
             setIsLoading(true)
-            dispatch(getProductFiltered({ ...filters, limit: 20 })).then(() => { setIsLoading(false) })
+            dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) })
           })
           .catch((error) => {
             console.error("Error al eliminar el producto: ", error);
+          });
+      }
+    });
+  };
+
+  const activateProductById = (productId) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "This way your product will be visible for clients !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'green',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, activate it!',
+      iconColor: '#d33',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(activateProduct(productId))
+          .then(() => {
+            setIsLoading(true)
+            dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) })
+          })
+          .catch((error) => {
+            console.error("Error al activar el producto: ", error);
           });
       }
     });
@@ -52,19 +86,19 @@ export default function ProductDashboard() {
 
 
   return (
-    <>
-      {isLoading ? <Loader /> : <div className="sticky z-10 mt-[20px] bg-[#121212] ">
+    <div>
+      {isLoading ? <Loader /> : <div className="relative mt-[22px] w-auto h-[778px] rounded-lg bg-blackFred-100 ">
         <table>
           <thead>
             <tr>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Title</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Category</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Price</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Flavor</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Stock</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Sold</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Status</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Actions</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('title')}> Title {filters.orderBy === 'title' ? '↑' : (filters.orderBy === '-title' ? '↓' : '')}</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('category')}> Category {filters.orderBy === 'category' ? '↑' : (filters.orderBy === '-category' ? '↓' : '')}</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('price')}> Price {filters.orderBy === 'price' ? '↑' : (filters.orderBy === '-price' ? '↓' : '')}</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('flavor')}> Flavor {filters.orderBy === 'flavor' ? '↑' : (filters.orderBy === '-flavor' ? '↓' : '')}</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('stock')}>Stock {filters.orderBy === 'stock' ? '↑' : (filters.orderBy === '-stock' ? '↓' : '')}</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('sold')}>Sold {filters.orderBy === 'sold' ? '↑' : (filters.orderBy === '-sold' ? '↓' : '')}</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer">Status</th>
+              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer">Actions</th>
               <th></th>
             </tr>
           </thead>
@@ -78,15 +112,15 @@ export default function ProductDashboard() {
                                   alt={product.title}
                                 />
                               </td> */}
-                  <td className="bg-graym text-whiteFred-100"><NavLink to={`/Detail/${product._id}`}>{product.title}</NavLink></td>
-                  <td className="bg-graym text-whiteFred-100">{product.category}</td>
-                  <td className="bg-graym text-whiteFred-100">${product.price}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.flavor}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.stock}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.sold}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.isActive ? 'Active' : 'Not Active'}</td>
-                  <td className="bg-graym text-whiteFred-100">
-                    <div>
+                  <td className="bg-graym rounded-sm text-blackFred-100"><NavLink className="text-black hover:text-orangeFred-300" to={`/Detail/${product._id}`}>{product.title}</NavLink></td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.category}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">${product.price}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.flavor}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.stock}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.sold}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.isActive ? 'Active' : 'Not Active'}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">
+                    <div className="flex">
                       <button
                         onClick={() => navigate(`/edit/${product._id}`)}
                       >
@@ -97,6 +131,11 @@ export default function ProductDashboard() {
                       >
                         Delete
                       </button>
+                      <button
+                        onClick={() => activateProductById(product._id)}
+                      >
+                        Activate
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -106,6 +145,18 @@ export default function ProductDashboard() {
         </table>
         <Paginated currentPage={currentPage} totalPages={totalPages} />
       </div>}
-    </>
+    </div>
   )
 }
+
+const SortableHeader = ({ title, columnKey, onSort, sortConfig }) => {
+  const isSorted = sortConfig.key === columnKey;
+
+  const arrowIcon = isSorted ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '';
+
+  return (
+    <th className="bg-graym text-whiteFred-100" onClick={() => onSort(columnKey)}>
+      {title} {arrowIcon}
+    </th>
+  );
+};

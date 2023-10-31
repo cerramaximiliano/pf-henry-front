@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { NavLink, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getProductId, postProduct } from "../../redux/products/productsActions"
+import { getProductId, getProperty, postProduct } from "../../redux/products/productsActions"
 import React, { useEffect } from "react";
 //import fs from "fs"
 
@@ -16,7 +16,7 @@ export default function Form() {
 
   const dispatch = useDispatch()
   const params = useParams()
-  const { detail } = useSelector((state) => state.products);
+  const { detail, category, diet, flavor, weightType } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (params.id) {
@@ -38,6 +38,13 @@ export default function Form() {
       setValue('type', detail.weight?.type);
     }
   }, [detail, setValue]);
+
+  useEffect(() => {
+    dispatch(getProperty('category'))
+    dispatch(getProperty('diet'))
+    dispatch(getProperty('flavor'))
+    dispatch(getProperty('weight.type'))
+  }, []);
 
   console.log(detail);
   console.log(detail.category);
@@ -152,10 +159,11 @@ export default function Form() {
             })}
             defaultValue="food"
           >
-           <option value="Food">Food</option>
-            <option value="Suplement">Suplement</option>
-            <option value="Beverages">Beverages</option>
-            <option value="Vitamin and minerals">vitamins and minerals</option>
+           {category.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
           </select>
           {errors.category && <span>{errors.category.message}</span>}
         </div>
@@ -194,11 +202,11 @@ export default function Form() {
             })}
             defaultValue="Unspecified"
           >
-            <option value="Vegan">Vegan</option>
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Keto">Keto</option>
-            <option value="Gluten Free">Gluten Free</option>
-            <option value="Unspecified">Unspecified</option>
+            {diet.map((diet, index) => (
+                            <option key={index} value={diet}>
+                                {diet}
+                            </option>
+                        ))}
           </select>
           {errors.diet && <span>{errors.diet.message}</span>}
         </div>
@@ -216,12 +224,11 @@ export default function Form() {
             })}
             defaultValue="Unspecified"
           >
-            <option value="Vainilla">Vainilla</option>
-            <option value="Chocolate">Chocolate</option>
-            <option value="Strawberry">Strawberry</option>
-            <option value="Fruity">Fruity</option>
-            <option value="Without Flavor">Without flavor</option>
-            <option value="Unspecified">Unspecified</option>
+            {flavor.map((flavor, index) => (
+                            <option key={index} value={flavor}>
+                                {flavor}
+                            </option>
+                        ))}
           </select>
           {errors.flavor && <span>{errors.flavor.message}</span>}
         </div>
@@ -259,10 +266,11 @@ export default function Form() {
             })}
             defaultValue="gr"
           >
-            <option value="g">gr</option>
-            <option value="ml">ml</option>
-            <option value="mg">mg</option>
-            <option value="kg">kg</option>
+            {weightType.map((weight, index) => (
+                            <option key={index} value={weight}>
+                                {weight}
+                            </option>
+                        ))}
           </select>
           {errors.type && <span>{errors.type.message}</span>}
         </div>

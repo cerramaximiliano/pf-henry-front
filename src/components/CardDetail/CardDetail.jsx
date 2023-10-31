@@ -5,7 +5,7 @@ import { getProductId } from "../../redux/products/productsActions";
 import ProductReviews from "../ProductReviews/ProductReviews"
 import { NavLink } from "react-router-dom"
 import { resetReviews } from "../../redux/Reviews/reviewsSlice";
-import {resetDetail } from "../../redux/products/productSlice"
+import { resetDetail } from "../../redux/products/productSlice"
 import { addProductToCart } from "../../redux/Cart/cartActions";
 
 export default function CardDetail() {
