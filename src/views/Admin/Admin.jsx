@@ -31,7 +31,6 @@ export default function Products() {
       <SideBar 
       selectedMenu={selectedMenu}
       setSelectedMenu={setSelectedMenu}/>
-      <span className="w-[10%]" ></span>
       {isLoading 
       ?  <Loader/> 
       : renderComponentBasedOnMenu()}

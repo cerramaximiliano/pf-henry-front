@@ -29,7 +29,7 @@ export default function NavBar() {
   }, [pathname]);
 
   return (
-    <div className="sticky z-10 bg-whiteFred-100">
+    <div className="sticky z-20 bg-whiteFred-100">
       <div className="max-w-8xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-12">
           <div className="xl:hidden lg:hidden flex">
