@@ -74,18 +74,32 @@ export default function Form() {
   })
 
   return (
-    <div className="bg-graym w-[600px] h-[800px] mt-5 mb-5 ml-[35%] px-5 py-5">
-      <form onSubmit={onSubmit}>
+    <div className="bg-graym rounded-md flex flex-col m-auto sm:pr-[60px] sm:w-[250px] md:w-[350px] my-[20px] p-[50px] w-[600px]">
+      <form className="text-blackFred-100 font-roboto text-left" onSubmit={onSubmit}>
         <NavLink to="/products">
-          <button className="relative ml-[-320px] mt-[-10px] rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent">⇦back</button>
+          <button className="bg-redFred-100 text-blackFred-100 text-[15px] hover:text-orangeFred-100">⇦back</button>
         </NavLink>
-        <div className="relative mt-[-30px]">
-        <h1 className="font-impact text-30xl mb-[10px] ">Add new Product</h1>
-        <div>
-          <label className="font-impact text-9xl mt-0">Title: </label>
+        <div className="flex flex-col">
+        <h1 className="-mt-12 ml-[100px]">Add new Product</h1>
+        <div className="bg-white rounded-md p-2 ">
+          <label className=" text-9xl">Product Image</label>
           <br/>
           <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+            className=""
+            type="file"
+            {...register("file", {
+              required: {
+                value: true,
+                message: "required",
+              },
+            })}
+          />
+          {errors.file && <span>{errors.file.message}</span>}
+        </div>
+        <div className="sm:m-0 md:mt-0 md:ml-0 -mt-[70px] ml-[300px]">
+          <label className="text-9xl">Title: </label>
+          <input
+          className="w-[280px] h-[30px]"
             type="text"
             onInput={(e) =>
               (e.target.value = e.target.value.replace(/\s/g, ""))
@@ -109,27 +123,10 @@ export default function Form() {
           ></input>
           {errors.title && <span>{errors.title.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl ">Product Image</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Price : </label>
           <input
-            className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
-            type="file"
-            {...register("file", {
-              required: {
-                value: true,
-                message: "required",
-              },
-            })}
-          />
-          {errors.file && <span>{errors.file.message}</span>}
-        </div>
-
-        <div>
-          <label className="font-impact text-9xl mt-0 ">Price</label>
-          <br/>
-          <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[30px]"
             type="number"
             min="1"
             {...register("price", {
@@ -146,11 +143,10 @@ export default function Form() {
           {errors.price && <span>{errors.price.message}</span>}
         </div>
 
-        <div>
-          <label className="font-impact text-9xl ">Category</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Category : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             {...register("category", {
               required: {
                 value: true,
@@ -168,11 +164,10 @@ export default function Form() {
           {errors.category && <span>{errors.category.message}</span>}
         </div>
 
-        <div>
-          <label className="font-impact text-9xl ">Stock</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Stock : </label>
           <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[30px]"
             type="number"
             min="1"
             {...register("stock", {
@@ -188,11 +183,10 @@ export default function Form() {
           ></input>
           {errors.stock && <span>{errors.stock.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl ">Diet</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Diet : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             placeholder="Unspecified"
             {...register("diet", {
               required: {
@@ -210,11 +204,10 @@ export default function Form() {
           </select>
           {errors.diet && <span>{errors.diet.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl ">Flavor</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Flavor : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             placeholder="Unspecified"
             {...register("flavor", {
               required: {
@@ -233,11 +226,10 @@ export default function Form() {
           {errors.flavor && <span>{errors.flavor.message}</span>}
         </div>
 
-        <div>
-          <label className="font-impact text-9xl ">Weight Value</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Weight Value : </label>
           <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[30px]"
             type="number"
             min="1"
             {...register("value", {
@@ -253,11 +245,10 @@ export default function Form() {
           ></input>
           {errors.value && <span>{errors.value.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl " >Type</label>
-          <br/>
+        <div className="my-[20px]">
+          <label className="text-9xl" >Type : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             {...register("type", {
               required: {
                 value: true,
@@ -276,8 +267,8 @@ export default function Form() {
         </div>
 
         {params.id 
-        ? <button className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium" type="submit">Edit Product</button> 
-        : <button className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium" type="submit">Add Product</button>
+        ? <button className="bg-redFred-100 text-blackFred-300 text-[20px] font-roboto" type="submit">Edit Product</button> 
+        : <button className="bg-redFred-100 text-blackFred-300 text-[20px] font-roboto" type="submit">Add Product</button>
         }</div>
       </form>
     </div>
