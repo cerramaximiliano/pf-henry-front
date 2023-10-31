@@ -8,7 +8,7 @@ import { resetReviews } from "../../redux/Reviews/reviewsSlice";
 import { resetDetail } from "../../redux/products/productSlice"
 import { addProductToCart } from "../../redux/Cart/cartActions";
 import Rating from '@mui/material/Rating';
-import logo from "../../assets/logo(2).png"
+import logo from "../../assets/Logo(2).png"
 export default function CardDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
