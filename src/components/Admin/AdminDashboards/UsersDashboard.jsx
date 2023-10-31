@@ -70,6 +70,10 @@ export default function UsersDashboard() {
   };
 
 
+  const sortColumn = (target) => {
+    if(filters.orderBy === target) setFilters({...filters, orderBy: '-' + target})   
+    else setFilters({...filters, orderBy: target})
+  }
 
 
 
@@ -82,9 +86,9 @@ export default function UsersDashboard() {
             <tr>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Given Name</th>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Family Name</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Email</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('email')}> Email {filters.orderBy === 'email' ? '↑' : (filters.orderBy === '-email' ? '↓' : '')}</th>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Address</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Role</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('role')}> Role {filters.orderBy === 'role' ? '↑' : (filters.orderBy === '-role' ? '↓' : '')}</th>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Status</th>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Actions</th>
               <th></th>

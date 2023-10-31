@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FiltersContext } from "../../context/filter";
+import { useDispatch, useSelector } from "react-redux";
+import { getProperty } from "../../redux/products/productsActions";
 
 export default function Filtered() {
   const { filters, setFilters } = useContext(FiltersContext);
+  const { category, diet, flavor, weightType } = useSelector((state) => state.products);
   const [transitionApplied, setTransitionApplied] = useState(false);
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -21,6 +25,7 @@ export default function Filtered() {
       orderBy: "",
       category: "",
       diet: "",
+      flavor: "",
       weightType: "",
       weightMin: "",
       weightMax: "",
@@ -30,7 +35,10 @@ export default function Filtered() {
   };
 
   useEffect(() => {
-    // Aplicar la transformación cuando el componente se monta
+    dispatch(getProperty('category'))
+    dispatch(getProperty('diet'))
+    dispatch(getProperty('flavor'))
+    dispatch(getProperty('weight.type'))
     setTransitionApplied(true);
   }, []);
 
@@ -66,10 +74,11 @@ export default function Filtered() {
             className=" w-[280px] h-[35px]"
           >
             <option value="">All</option>
-            <option value="food">Food</option>
-            <option value="suplements">Suplements</option>
-            <option value="beverages">Beverages</option>
-            <option value="vitamins and minerals">Nutrients</option>
+            {category.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
           </select>
         </div>
 
@@ -77,9 +86,23 @@ export default function Filtered() {
           <h3 className=" my-[3px] text-left">Diet</h3>
           <select name="diet" onChange={handleChange} value={filters.diet} className="  w-[280px] h-[35px]">
             <option value="">All</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="unespecified">unespecified</option>
+            {diet.map((diet, index) => (
+                            <option key={index} value={diet}>
+                                {diet}
+                            </option>
+                        ))}
+          </select>
+        </div>
+        
+        <div className=" grid justify-between	">
+          <h3 className=" my-[3px] text-left">Flavor</h3>
+          <select name="flavor" onChange={handleChange} value={filters.flavor} className="  w-[280px] h-[35px]">
+            <option value="">All</option>
+            {flavor.map((flavor, index) => (
+                            <option key={index} value={flavor}>
+                                {flavor}
+                            </option>
+                        ))}
           </select>
         </div>
 
@@ -92,10 +115,11 @@ export default function Filtered() {
             className=" w-[280px] h-[35px]"
           >
             <option value="">All</option>
-            <option value="l">l</option>
-            <option value="ml">ml</option>
-            <option value="g">g</option>
-            <option value="kg">kg</option>
+            {weightType.map((weight, index) => (
+                            <option key={index} value={weight}>
+                                {weight}
+                            </option>
+                        ))}
           </select>
         </div>
 

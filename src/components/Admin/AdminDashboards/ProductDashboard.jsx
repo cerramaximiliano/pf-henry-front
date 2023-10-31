@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Paginated } from "../../Paginated/Paginated";
-import { deleteProduct, getProductFiltered } from "../../../redux/products/productsActions";
+import { activateProduct, deleteProduct, getProductFiltered } from "../../../redux/products/productsActions";
 import { useEffect, useContext, useState } from "react";
 import { FiltersContext } from "../../../context/filter";
 import Loader from "../../Loader/Loader";
@@ -14,7 +14,11 @@ export default function ProductDashboard() {
   const { filters, setFilters } = useContext(FiltersContext);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  console.log(products);
+  
+  // console.log(products);
+  // const arrowIcon = isSorted ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '';
+  const arrowIcon = '↑'
+
 
 
   useEffect(() => {
@@ -22,11 +26,16 @@ export default function ProductDashboard() {
     dispatch(getProductFiltered({ ...filters, limit: 20 })).then(() => { setIsLoading(false) })
   }, [filters])
 
+  const sortColumn = (target) => {
+    if(filters.orderBy === target) setFilters({...filters, orderBy: '-' + target})   
+    else setFilters({...filters, orderBy: target})
+  }
+
 
   const deleteProductById = (productId) => {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "This way the product will not be visible for clients anymore !",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -48,6 +57,31 @@ export default function ProductDashboard() {
     });
   };
 
+  const activateProductById = (productId) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "This way your product will be visible for clients !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, activate it!',
+      iconColor: '#d33',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(activateProduct(productId))
+          .then(() => {
+            setIsLoading(true)
+            dispatch(getProductFiltered({ ...filters, limit: 20 })).then(() => { setIsLoading(false) })
+          })
+          .catch((error) => {
+            console.error("Error al activar el producto: ", error);
+          });
+      }
+    });
+  };
+
 
 
 
@@ -57,12 +91,12 @@ export default function ProductDashboard() {
         <table>
           <thead>
             <tr>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Title</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Category</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Price</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Flavor</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Stock</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Sold</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('title')}> Title {filters.orderBy === 'title' ? '↑' : (filters.orderBy === '-title' ? '↓' : '')}</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('category')}> Category {filters.orderBy === 'category' ? '↑' : (filters.orderBy === '-category' ? '↓' : '')}</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('price')}> Price {filters.orderBy === 'price' ? '↑' : (filters.orderBy === '-price' ? '↓' : '')}</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('flavor')}> Flavor {filters.orderBy === 'flavor' ? '↑' : (filters.orderBy === '-flavor' ? '↓' : '')}</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('stock')}>Stock {filters.orderBy === 'stock' ? '↑' : (filters.orderBy === '-stock' ? '↓' : '')}</th>
+              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]" onClick={()=> sortColumn('sold')}>Sold {filters.orderBy === 'sold' ? '↑' : (filters.orderBy === '-sold' ? '↓' : '')}</th>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Status</th>
               <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Actions</th>
               <th></th>
@@ -97,6 +131,11 @@ export default function ProductDashboard() {
                       >
                         Delete
                       </button>
+                      <button
+                        onClick={() => activateProductById(product._id)}
+                      >
+                        Activate
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -109,3 +148,15 @@ export default function ProductDashboard() {
     </>
   )
 }
+
+const SortableHeader = ({ title, columnKey, onSort, sortConfig }) => {
+  const isSorted = sortConfig.key === columnKey;
+
+  const arrowIcon = isSorted ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '';
+
+  return (
+    <th className="bg-graym text-whiteFred-100" onClick={() => onSort(columnKey)}>
+      {title} {arrowIcon}
+    </th>
+  );
+};
