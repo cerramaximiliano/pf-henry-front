@@ -49,7 +49,8 @@ export const {
   addProduct,
   startLoading,
   stopLoading,
-  setProperty
+  setProperty,
+  resetDetail
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;
