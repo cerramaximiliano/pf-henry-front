@@ -2,11 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 export default function OrderCard({ orderId, image, title, price, productId, review }) {
-  // const handleClick = (orderId, productId) => {
-  //   console.log(orderId, productId)
-  //   return <Navigate to={`/createReview/?id=${productId}&orderId=${orderId}`} />
-  // };
-  
+
   return (
     <span className="flex justify-evenly">
       <span className="w-full flex justify-between items-center">
