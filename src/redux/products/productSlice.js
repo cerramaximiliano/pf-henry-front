@@ -9,6 +9,10 @@ const productSlice = createSlice({
     totalPages: "",
     totalResults: "",
     isLoading: false,
+    category: [],
+    diet: [],
+    flavor: [],
+    weightType: []
   },
   reducers: {
     getProductById: (state, action) => {
@@ -22,6 +26,10 @@ const productSlice = createSlice({
     },
     addProduct: (state, action) => {
       state.products.push(action.payload);
+    },
+    setProperty: (state, action) => {
+      if (action.payload.property === 'weight.type') state.weightType = action.payload.data.foundValues
+      else state[action.payload.property] = action.payload.data.foundValues
     },
     startLoading: (state) => {
       state.isLoading = true;
@@ -41,7 +49,7 @@ export const {
   addProduct,
   startLoading,
   stopLoading,
-  resetDetail,
+  setProperty
 } = productSlice.actions;
 
 const productsReducer = productSlice.reducer;

@@ -30,10 +30,7 @@ function App() {
   const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
   const { productsInCart } = useSelector((state) => state.cart)
-
-  const { user_detail } = useSelector(
-    (state) => state.users
-  );
+  const { user_detail } = useSelector((state) => state.users);
 
   useEffect(() => {
     if (isAuthenticated) {
