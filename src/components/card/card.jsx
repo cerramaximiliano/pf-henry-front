@@ -21,7 +21,7 @@ export function Card({ image, title, category, price, id, stock }) {
         },
       })
     )
-    toast("product has been add to cart", {
+    toast.success('🦄 Wow so easy!', {
       position: "top-left",
       autoClose: 5000,
       hideProgressBar: false,
@@ -30,7 +30,7 @@ export function Card({ image, title, category, price, id, stock }) {
       draggable: true,
       progress: undefined,
       theme: "light",
-    })
+      });
   }
 
   return (
