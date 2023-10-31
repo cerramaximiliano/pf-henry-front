@@ -13,6 +13,7 @@ export const getProductId = (id) => {
     axios
       .get(`${URLBASE}/products/${id}`)
       .then((res) => {
+        console.log("esto esaction" +res.data)
         dispatch(getProductById(res.data));
       })
       .catch((e) => console.log(e));
