@@ -44,8 +44,9 @@ export default function Dashboard() {
 
     return (
             <div>
-                <div className="flex justify-end m-auto w-1/2">
-                    <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">View All</a>
+                <div className="flex justify-between m-auto w-1/2">
+                    <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/users">Your Profile</a>
+                    <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">Orders</a>
                 </div>
             <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap">
 
@@ -96,7 +97,7 @@ export default function Dashboard() {
                     ))}
                     </div>
                 ) : (
-                    <div className="flex flex-row flex-wrap justify-center">
+                    <div className="flex flex-row flex-wrap justify-between w-full">
 
                         {allOrders && allOrders.length > 0 ?(
                                                 allOrders.map(order => (

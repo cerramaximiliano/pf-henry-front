@@ -6,6 +6,9 @@ import { createReview } from '../../redux/Reviews/reviewsActions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 
 const FormReview = () => {
   
@@ -18,6 +21,8 @@ const FormReview = () => {
   const [value, setValue] = useState(0);
 
   const { isLoading, user, isAuthenticated } = useAuth0();
+
+  const MySwal = withReactContent(Swal);
 
   const { user_detail } = useSelector(
     (state) => state.users
@@ -47,16 +52,13 @@ const FormReview = () => {
       orderId: orderId,
       rating,
       comments: comment,
-    };
-    
-    
+    };   
     dispatch(createReview(reviewData));
-
-    setSuccessMessage('Review creada exitosamente');
-   /*  setTimeout(() => {
-      setSuccessMessage('');
-      navigate('/products');
-    }, 3000); */
+    MySwal.fire(
+      'Successful save!',
+      'The review was saved successfully',
+      'success'
+    );
 
     setRating(0);
     setComment('');
