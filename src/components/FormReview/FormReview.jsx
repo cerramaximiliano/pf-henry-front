@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useSearchParams  } from 'react-router-dom';
+import { useNavigate, useSearchParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductId } from '../../redux/products/productsActions';
 import { createReview } from '../../redux/Reviews/reviewsActions';
@@ -15,7 +15,7 @@ const FormReview = () => {
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
   const orderId = searchParams.get('orderId')
-
+  
   const dispatch = useDispatch();
   const navigate = useNavigate ();
   const [value, setValue] = useState(0);
@@ -62,8 +62,9 @@ const FormReview = () => {
 
     setRating(0);
     setComment('');
+    navigate('/myaccount/orders')
+
   };
-  console.log(id)
 
   const isFormValid = () => {
     return rating !== '' && rating >= 1 && rating <= 5 && comment.length <= 300 && comment.length != 0;

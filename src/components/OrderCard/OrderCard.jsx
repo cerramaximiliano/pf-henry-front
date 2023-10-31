@@ -31,7 +31,7 @@ export default function OrderCard({ orderId, image, title, price, productId, rev
         </NavLink>
       </span>
       </span>
-      <span className="flex justify-center flex-col">
+      <span className="flex justify-center flex-col ml-2">
         {
           !review ?
           <NavLink to={`/createReview/?id=${productId}&orderId=${orderId}`}>
