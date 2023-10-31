@@ -22,13 +22,13 @@ export function Card({ image, title, category, price, id, stock }) {
   };
 
   return (
-    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym sm:w-[160px] md:w-[250px] lg:w-[350px] xl:w-[350px] sm:h-[300px] md:h-[400px]  lg:h-[500px] xl:h-[500px]  mx-[auto] mt-[2%]">
+    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym sm:p-2 sm:w-[160px]   md:w-[160px] lg:w-[250px] xl:w-[250px] sm:h-[300px] md:h-[300px]  lg:h-[350px] xl:h-[400px]  mx-[auto] mt-[2%]">
       <div className="flex flex-col justify-between h-full">
         <div>
           <NavLink to={`/Detail/${id}`}>
             <img
               src={image}
-              className="object-contain sm:w-[160px] md:w-[250px] lg:w-[350px] xl:w-[350px] "
+              className="object-contain sm:w-[160px] md:w-[160px] lg:w-[250px] xl:w-[250px] "
               srcSet={`${image} 352w, ${image} 832w, ${image} 1200w`}
               alt="Product Image"
             />

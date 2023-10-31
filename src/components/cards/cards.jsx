@@ -20,11 +20,11 @@ export function Cards() {
   }, [products, currentPage]);
 
   return (
-    <div className="relative w-auto h-auto mx-[auto]">
+    <div className="relative  m-auto">
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="flex items-center  flex-row flex-wrap w-[50vw] rigth-[10%] gap-[10px]">
+        <div className="sm:grid sm:grid-cols-2 sm:gap-2 md:grid md:grid-cols-3 md:gap-2 lg:grid lg:grid-cols-2 lg:gap-20 xl:grid xl:grid-cols-3 xl:gap-20  ">
           {products.length > 0 ? (
             products.map((product) => (
               <Card

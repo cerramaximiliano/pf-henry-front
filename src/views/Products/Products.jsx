@@ -10,41 +10,39 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { loadCart } from "../../redux/Cart/cartActions";
 
 export default function Products() {
-
-  const dispatch = useDispatch()
-  const { filters } = useContext(FiltersContext)
-  const [isLoading, setIsLoading] = useState(false)
-  const { user, isAuthenticated } = useAuth0()
-  
+  const dispatch = useDispatch();
+  const { filters } = useContext(FiltersContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    setIsLoading(true)
-    dispatch(getProductFiltered(filters)).then(() => {setIsLoading(false)})
-  }, [filters])
+    setIsLoading(true);
+    dispatch(getProductFiltered(filters)).then(() => {
+      setIsLoading(false);
+    });
+  }, [filters]);
 
   useEffect(() => {
-   if (isAuthenticated) { 
-    const user_cart = localStorage.getItem("user-cart")
-    console.log(typeof user_cart);
-    if (user_cart) {
-      const userCart = JSON.parse(user_cart)
-      if (userCart.user === user.sub) dispatch(loadCart(userCart.cart))      
-    }}
-  }, [])
+    if (isAuthenticated) {
+      const user_cart = localStorage.getItem("user-cart");
+      console.log(typeof user_cart);
+      if (user_cart) {
+        const userCart = JSON.parse(user_cart);
+        if (userCart.user === user.sub) dispatch(loadCart(userCart.cart));
+      }
+    }
+  }, []);
 
   return (
     <>
-      <div className="flex flex-row">
+      <div>
         <span className="w-[0%]"></span>
-        <div className="sm:flex sm:flex-col md:flex md:flex-col lg:hidden xl:hidden">
+        <div className="lg:flex lg:flex-row lg:ml-10 xl:flex xl:flex-row ">
           <Filtered />
           {!isLoading && <Cards />}
+          <Featured />
         </div>
-        <div className="sm:hidden md:hidden lg:flex lg:flex-row xl:flex xl:flex-row">
-          <Filtered />
-          {!isLoading && <Cards />}
-        </div>
-        <Featured />
+
         <span className="min-h-[900px]"></span>
       </div>
     </>

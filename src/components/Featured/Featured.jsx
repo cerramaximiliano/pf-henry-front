@@ -37,10 +37,10 @@ export default function Featured() {
 
   return (
     <>
-      <div className={"ml-30"}>
+      <div className={" lg:ml-10 xl:ml-10 "}>
         <div className={"xl:hidden lg:hidden "}>
           <div
-            className={` relative  shadow-md sm:px-0  ml-30  text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold h-[300px] ${
+            className={` relative  shadow-md sm:px-0  ml-30  text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold w-screen h-[300px] ${
               displayedProducts1.length > 0 ? "fall-and-bounce" : ""
             }`}
             style={{
