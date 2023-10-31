@@ -78,9 +78,6 @@ export default function CardDetail() {
           <p>No product data available.</p>
         )}
       </div>
-        <NavLink to={`/createReview/${id}`}>
-          <button>Add review</button>
-        </NavLink>
        <ProductReviews/>
     </div>
   );
