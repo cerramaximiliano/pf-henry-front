@@ -1,10 +1,27 @@
-export default function Row ({product})  {
+// import React from 'react';
 
-<div className=" fixed p-4 pl-10 -mt-4 shadow-md bg-graym left-12 font-impact w-[300px] h-[635px]"></div>
-
-    return(
-        <>
-            <td className="bg-graym text-whiteFred-100">{product}</td>
-        </>
-    )
-}
+// export default function Row({ product }) {
+//   return (
+//     <tr>
+//       <td>
+//         <Row product={product.title} />
+//       </td>
+//       <td>
+//         <Row product={product.category} />
+//       </td>
+//       <td>
+//         <Row product={product.price} />
+//       </td>
+//       <td>
+//         <Row product={product.flavor} />
+//       </td>
+//       <td>
+//         <Row product={product.stock} />
+//       </td>
+//       <td>
+//         <Row product={product.status} />
+//       </td>
+//       <td></td>
+//     </tr>
+//   );
+// }

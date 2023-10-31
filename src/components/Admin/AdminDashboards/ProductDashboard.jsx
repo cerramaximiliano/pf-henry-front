@@ -19,7 +19,7 @@ export default function ProductDashboard() {
 
   useEffect(() => {
     setIsLoading(true)
-    dispatch(getProductFiltered({ ...filters, limit: 20 })).then(() => { setIsLoading(false) })
+    dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) })
   }, [filters])
 
 
@@ -53,18 +53,18 @@ export default function ProductDashboard() {
 
   return (
     <>
-      {isLoading ? <Loader /> : <div className="sticky z-10 mt-[20px] bg-[#121212] ">
+      {isLoading ? <Loader /> : <div className="relative mt-[22px] w-auto h-[778px] rounded-lg bg-blackFred-100 ">
         <table>
           <thead>
             <tr>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Title</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Category</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Price</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Flavor</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Stock</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Sold</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Status</th>
-              <th className="bg-graym text-whiteFred-100 py-[20px] px-[80px]">Actions</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Title</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Category</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Price</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Flavor</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Stock</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Sold</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Status</th>
+              <th className="bg-graym rounded-md text-blackFred-100 py-[20px] px-[80px]">Actions</th>
               <th></th>
             </tr>
           </thead>
@@ -78,15 +78,15 @@ export default function ProductDashboard() {
                                   alt={product.title}
                                 />
                               </td> */}
-                  <td className="bg-graym text-whiteFred-100"><NavLink to={`/Detail/${product._id}`}>{product.title}</NavLink></td>
-                  <td className="bg-graym text-whiteFred-100">{product.category}</td>
-                  <td className="bg-graym text-whiteFred-100">${product.price}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.flavor}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.stock}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.sold}</td>
-                  <td className="bg-graym text-whiteFred-100">{product.isActive ? 'Active' : 'Not Active'}</td>
-                  <td className="bg-graym text-whiteFred-100">
-                    <div>
+                  <td className="bg-graym rounded-sm text-blackFred-100"><NavLink className="text-black hover:text-orangeFred-300" to={`/Detail/${product._id}`}>{product.title}</NavLink></td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.category}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">${product.price}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.flavor}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.stock}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.sold}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">{product.isActive ? 'Active' : 'Not Active'}</td>
+                  <td className="bg-graym rounded-sm text-blackFred-100">
+                    <div className="flex">
                       <button
                         onClick={() => navigate(`/edit/${product._id}`)}
                       >
@@ -95,7 +95,7 @@ export default function ProductDashboard() {
                       <button
                         onClick={() => deleteProductById(product._id)}
                       >
-                        Delete
+                        Disable
                       </button>
                     </div>
                   </td>
