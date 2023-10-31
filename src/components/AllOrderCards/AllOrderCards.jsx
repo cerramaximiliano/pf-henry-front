@@ -11,6 +11,7 @@ export default function AllOrdersCards({id,total,date,status}) {
                 <p className="text-black m-0">{date}</p>
             <h4 className="text-black m-0">Status</h4>
               <p className="text-black m-0">{status}</p>
+              <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href={`/myaccount/orders/${id}`} >View</a>
           </span>
           </span>
       </div>
