@@ -48,7 +48,7 @@ export default function Form() {
 
   console.log(detail);
   console.log(detail.category);
-
+ 
 
   const onSubmit = handleSubmit((data) => {
     // const file = new Blob([fs.readFileSync('ruta-de-la-imagen.jpg')], {
@@ -59,14 +59,14 @@ export default function Form() {
 
     let formData = new FormData();
     formData.append("file", data.file[0]);
-    formData.append("title", data.title)
-    formData.append("price", data.price)
-    formData.append("category", data.category)
-    formData.append("stock", data.stock)
-    formData.append("diet", data.diet)
-    formData.append("flavor", data.flavor)
-    formData.append("value", data.value)
-    formData.append("type", data.type)
+    formData.append("title",data.title)
+    formData.append("price",data.price)
+    formData.append("category",data.category)
+    formData.append("stock",data.stock)
+    formData.append("diet",data.diet)
+    formData.append("flavor",data.flavor)
+    formData.append("value",data.value)
+    formData.append("type",data.type)
 
     dispatch(postProduct(formData))
     console.log(formData)
@@ -74,11 +74,13 @@ export default function Form() {
   })
 
   return (
-    <div className="flex flex-col rounded-lg bg-graym my-[50px] w-[1000px] h-[800px] m-auto ">
+    <div className="bg-graym w-[600px] h-[800px] mt-5 mb-5 ml-[35%] px-5 py-5">
       <form onSubmit={onSubmit}>
         <NavLink to="/products">
-          <button className="rounded-lg -ml-[905px]">⇦ back</button>
+          <button className="relative ml-[-320px] mt-[-10px] rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent">⇦back</button>
         </NavLink>
+        <div className="relative mt-[-30px]">
+        <h1 className="font-impact text-30xl mb-[10px] ">Add new Product</h1>
         <div>
           <label className="font-impact text-9xl mt-0">Title: </label>
           <br/>
@@ -279,5 +281,5 @@ export default function Form() {
         }</div>
       </form>
     </div>
-  );
-}  
+  )
+}
