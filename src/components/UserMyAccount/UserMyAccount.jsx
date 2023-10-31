@@ -5,9 +5,6 @@ export default function UserMyAccount () {
     const { user_detail} = useSelector((state) => state.users);
     const { user } = useAuth0();
 
-    // console.log(user_detail)
-    console.log(user);
-
     return (
         <div>
                 <div className="flex justify-end m-auto w-1/2">
