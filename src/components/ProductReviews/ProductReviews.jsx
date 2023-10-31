@@ -15,11 +15,11 @@ const ProductReview = () => {
   const { reviews, isLoading } = useSelector((state) => state.reviews);
 
   return (
-    <div className=' max-w-[90vw] bg-white'>
+    <div className='max-w-[90vw] bg-white'>
       {isLoading ? (
         <p>Loading...</p>
       ) : reviews.length > 0 ? (
-        <div className='grid grid-cols-3 place-content-evenly mx-[20px]  '>
+        <div className='flex justify-center'>
           {reviews.map((review, index) => (
             <span key={index} className='flex-row overflow-auto w-[400px]	 m-[10px] bg-graym rounded-none	'>
               <span className='flex items-center ml-[25px] mt-[25px]  '>
