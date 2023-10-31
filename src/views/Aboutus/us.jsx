@@ -11,8 +11,8 @@ import sofi from "../../assets/Perfiles/sofi.png"
 export default function Aboutus() {
   return (
     <section class="text-gray-600 body-font">
-      <div class="flex flex-col mt-8 mx-0 items-center md:flex-col mx-0 items-center">
-        <div class="flex flex-col text-center w-full h-64 mx-0 mb-16 relative sm:h-80">
+      <div class="flex flex-col mt-8 mx-0 items-center ">
+        <div class="flex flex-col text-center w-full h-64 mx-0 mb-16 relative">
           <div class="absolute inset-0 bg-[url('https://messagemedia.com/us/wp-content/uploads/sites/4/2020/04/Fitness-header-1.jpg')] blur-sm"></div>
           <div class="xl:flex-col z-10 justify-center lg:mt-10 md:mb-4">
             <h1 class="xl:text-25xl  lg:text-21xl font-bebas mb-4 text-orangeFred-100 md:mt-4">
@@ -24,7 +24,7 @@ export default function Aboutus() {
           </div>
         </div>
 
-        <div class="xl:grid grid-cols-4 gap-6 mb-16 lg: grid grid-cols-4 gap-6 mb-16 md: grid grid-cols-1 gap-1 mb-2 w-65 ml-20 sm: flex-col mx-0 items-center ">
+        <div class="xl:grid grid-cols-4 gap-6 mb-16 lg: grid grid-cols-4 gap-6 mb-16 ">
           {/* lucas card */}
           <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
             <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
