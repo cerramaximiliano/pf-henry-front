@@ -14,7 +14,7 @@ export default function ProductDashboard() {
   const { filters, setFilters } = useContext(FiltersContext);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+
   // console.log(products);
   // const arrowIcon = isSorted ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '';
   const arrowIcon = '↑'
@@ -27,8 +27,8 @@ export default function ProductDashboard() {
   }, [filters])
 
   const sortColumn = (target) => {
-    if(filters.orderBy === target) setFilters({...filters, orderBy: '-' + target})   
-    else setFilters({...filters, orderBy: target})
+    if (filters.orderBy === target) setFilters({ ...filters, orderBy: '-' + target })
+    else setFilters({ ...filters, orderBy: target })
   }
 
 
@@ -86,68 +86,55 @@ export default function ProductDashboard() {
 
 
   return (
-    <div>
-      {isLoading ? <Loader /> : <div className="relative mt-[22px] w-auto h-[778px] rounded-lg bg-blackFred-100 ">
-        <table>
-          <thead>
-            <tr>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('title')}> Title {filters.orderBy === 'title' ? '↑' : (filters.orderBy === '-title' ? '↓' : '')}</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('category')}> Category {filters.orderBy === 'category' ? '↑' : (filters.orderBy === '-category' ? '↓' : '')}</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('price')}> Price {filters.orderBy === 'price' ? '↑' : (filters.orderBy === '-price' ? '↓' : '')}</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('flavor')}> Flavor {filters.orderBy === 'flavor' ? '↑' : (filters.orderBy === '-flavor' ? '↓' : '')}</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('stock')}>Stock {filters.orderBy === 'stock' ? '↑' : (filters.orderBy === '-stock' ? '↓' : '')}</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer" onClick={()=> sortColumn('sold')}>Sold {filters.orderBy === 'sold' ? '↑' : (filters.orderBy === '-sold' ? '↓' : '')}</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer">Status</th>
-              <th className="bg-graym rounded-md text-whiteFred-100 py-[20px] px-[80px] cursor-pointer">Actions</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              products.map((product) => (
-                <tr key={product._id}>
-                  {/* <td className="bg-graym text-whiteFred-100">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                />
-                              </td> */}
-                  <td className="bg-graym rounded-sm text-blackFred-100"><NavLink className="text-black hover:text-orangeFred-300" to={`/Detail/${product._id}`}>{product.title}</NavLink></td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">{product.category}</td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">${product.price}</td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">{product.flavor}</td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">{product.stock}</td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">{product.sold}</td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">{product.isActive ? 'Active' : 'Not Active'}</td>
-                  <td className="bg-graym rounded-sm text-blackFred-100">
-                    <div className="flex">
-                      <button
-                        onClick={() => navigate(`/edit/${product._id}`)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => deleteProductById(product._id)}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        onClick={() => activateProductById(product._id)}
-                      >
-                        Activate
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-        <Paginated currentPage={currentPage} totalPages={totalPages} />
-      </div>}
+    <div className="overflow-x-auto m-auto z-1 sm:mt-20 md:mt-20 lg:mt-20">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="relative m-auto p-5 my-10 rounded-md bg-blackFred-100 w-1200">
+          <div className="min-w-full">
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('title')}> Title {filters.orderBy === 'title' ? '↑' : (filters.orderBy === '-title' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('category')}> Category {filters.orderBy === 'category' ? '↑' : (filters.orderBy === '-category' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('price')}> Price {filters.orderBy === 'price' ? '↑' : (filters.orderBy === '-price' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('flavor')}> Flavor {filters.orderBy === 'flavor' ? '↑' : (filters.orderBy === '-flavor' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('stock')}>Stock {filters.orderBy === 'stock' ? '↑' : (filters.orderBy === '-stock' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('sold')}>Sold {filters.orderBy === 'sold' ? '↑' : (filters.orderBy === '-sold' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4">Status</th>
+                    <th className="py-3 text-blackFred-300 bg-graym px-4">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product._id}>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4"><NavLink className="text-black hover:text-orangeFred-300" to={`/Detail/${product._id}`}>{product.title}</NavLink></td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">{product.category}</td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">${product.price}</td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">{product.flavor}</td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">{product.stock}</td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">{product.sold}</td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">{product.isActive ? 'Active' : 'Not Active'}</td>
+                      <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">
+                        <div className="flex">
+                          <button className="mx-1" onClick={() => navigate(`/edit/${product._id}`)}>Edit</button>
+                          <button className="mx-1" onClick={() => deleteProductById(product._id)}>Delete</button>
+                          <button className="mx-1" onClick={() => activateProductById(product._id)}>Activate</button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <Paginated currentPage={currentPage} totalPages={totalPages} />
+        </div>
+      )}
     </div>
-  )
-}
+  );
+}  
 
 const SortableHeader = ({ title, columnKey, onSort, sortConfig }) => {
   const isSorted = sortConfig.key === columnKey;

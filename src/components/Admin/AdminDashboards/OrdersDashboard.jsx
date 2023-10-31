@@ -22,35 +22,38 @@ export default function OrdersDashboard() {
 
 
   return (
-    <>
-      {isLoading ? <Loader /> : <div className="sticky z-10 mt-[20px] bg-whiteFred ">
-        <table>
-          <thead>
-            <tr>
-              <th className="bg-graym text-blackFred-100 py-[20px] px-[80px]">Order Id</th>
-              <th className="bg-graym text-blackFred-100 py-[20px] px-[80px]">Products</th>
-              <th className="bg-graym text-blackFred-100 py-[20px] px-[80px]">Status</th>
-              <th className="bg-graym text-blackFred-100 py-[20px] px-[80px]">Total</th>
-              <th className="bg-graym text-blackFred-100 py-[20px] px-[80px]">UserId</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              orders.map((order) => (
-                <tr key={order._id}>
-                  <td className="bg-graym text-blackFred-100">{order._id}</td>
-                  <td className="bg-graym text-blackFred-100">{order.products.map((p, i) => <span key={i}>{p.title}</span>)}</td>
-                  <td className="bg-graym text-blackFred-100">{order.status}</td>
-                  <td className="bg-graym text-blackFred-100">{order.total}</td>
-                  <td className="bg-graym text-blackFred-100">{order.userId}</td>
+    <div className="overflow-x-auto m-auto z-1 sm:mt-20 md:mt-20 lg:mt-20">
+      {isLoading ? <Loader /> : <div className="relative m-auto p-5 my-10 rounded-md bg-blackFred-100 w-1200">
+        <div className="min-w-full">
+          <div className="overflow-x-auto">
+            <table className=" min-w-full xl:mb-[500px] ">
+              <thead>
+                <tr>
+                  <th className="bg-graym rounded-lg text-blackFred-100 py-[20px] px-[80px]">Order Id</th>
+                  <th className="bg-graym rounded-lg text-blackFred-100 py-[20px] px-[80px]">Products</th>
+                  <th className="bg-graym rounded-lg text-blackFred-100 py-[20px] px-[80px]">Status</th>
+                  <th className="bg-graym rounded-lg text-blackFred-100 py-[20px] px-[80px]">Total</th>
+                  <th className="bg-graym rounded-lg text-blackFred-100 py-[20px] px-[80px]">UserId</th>
                 </tr>
-              ))
-            }
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {
+                  orders.map((order) => (
+                    <tr key={order._id}>
+                      <td className="bg-graym rounded-sm text-blackFred-100">{order._id}</td>
+                      <td className="bg-graym rounded-sm text-blackFred-100">{order.products.map((p, i) => <span key={i}>{p.title}</span>)}</td>
+                      <td className="bg-graym rounded-sm text-blackFred-100">{order.status}</td>
+                      <td className="bg-graym rounded-sm text-blackFred-100">{order.total}</td>
+                      <td className="bg-graym rounded-sm text-blackFred-100">{order.userId}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
         <Paginated currentPage={currentPage} totalPages={totalPages} />
       </div>}
-    </>
+    </div>
   )
 }
