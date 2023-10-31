@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductId } from '../../redux/products/productsActions';
 import { createReview } from '../../redux/Reviews/reviewsActions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const FormReview = () => {
-  const { id } = useParams();
+  
+  const [searchParams] = useSearchParams()
+  const id = searchParams.get('id')
+  const orderId = searchParams.get('orderId')
+
   const dispatch = useDispatch();
   const navigate = useNavigate ();
   const [value, setValue] = useState(0);
@@ -39,15 +41,15 @@ const FormReview = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Crea un objeto con los datos del formulario
     const reviewData = {
-      userId: userId, // Asegúrate de tener el userId
+      userId: userId,
       productId: id,
+      orderId: orderId,
       rating,
       comments: comment,
     };
     
-    // Despacha la acción para crear la revisión
+    
     dispatch(createReview(reviewData));
 
     setSuccessMessage('Review creada exitosamente');
@@ -92,7 +94,7 @@ const FormReview = () => {
               inputProps={{ maxLength: 300 }}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className=' w-[500px]  '
+              className='flex  max-w-[500px]'
             />          
             </div >
             <button
@@ -100,7 +102,7 @@ const FormReview = () => {
               disabled={!isFormValid()}    
               className=' rounded-none bg-redFred-300 text-blackFred-100 disabled:bg-transparent disabled:text-transparent  '          
             >
-              Submit
+              Add Review
             </button>
         </form>
       </div>

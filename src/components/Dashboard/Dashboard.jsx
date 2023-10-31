@@ -90,6 +90,8 @@ export default function Dashboard() {
                         title={order.title}
                         price={order.price}
                         productId={order.productId}
+                        review={order.review}
+                        orderId={id}
                     />
                     ))}
                     </div>

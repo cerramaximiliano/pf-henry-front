@@ -25,7 +25,7 @@ const ProductReview = () => {
               <span className='flex items-center ml-[25px] mt-[25px]  '>
                 
                 <span className='grid justify-items-start	'>
-                  <p className=' font-bebas my-0 text-blackFred-300 '>{review.userId}</p>                  
+                              
                   <Rating
                     name="read-only"
                     value={review.rating}

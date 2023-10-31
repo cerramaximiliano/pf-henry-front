@@ -7,6 +7,7 @@ export default function FiltersProvider ({ children }) {
         orderBy: "",
         category: "",
         diet: "",
+        flavor: "",
         weightType: "",
         weightMin: "",
         weightMax: "",
@@ -14,6 +15,7 @@ export default function FiltersProvider ({ children }) {
         name: "",
         priceMin: "",
         priceMax: "",
+        active: ""
       });
 
       

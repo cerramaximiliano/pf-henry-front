@@ -1,7 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-export default function OrderCard({ image, title, price, productId }) {
+export default function OrderCard({ orderId, image, title, price, productId, review }) {
+  // const handleClick = (orderId, productId) => {
+  //   console.log(orderId, productId)
+  //   return <Navigate to={`/createReview/?id=${productId}&orderId=${orderId}`} />
+  // };
   
   return (
     <span className="flex justify-evenly">
@@ -26,6 +30,17 @@ export default function OrderCard({ image, title, price, productId }) {
           />
         </NavLink>
       </span>
+      </span>
+      <span className="flex justify-center flex-col">
+        {
+          !review ?
+          <NavLink to={`/createReview/?id=${productId}&orderId=${orderId}`}>
+            <button type="button" className="font-bebas py-[8px] px-[24px] rounded-sm bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent" >Review</button>
+          </NavLink>
+        :
+          <button type="button" disabled={true} className="cursor-not-allowed font-bebas py-[8px] px-[24px] rounded-sm bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent" >Review</button>
+        }
+        
       </span>
     </span>
   );

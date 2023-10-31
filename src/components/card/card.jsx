@@ -55,7 +55,7 @@ export function Card({ image, title, category, price, id, stock }) {
             <span>${price}</span>
           </div>
         </div>
-        <div className="flex justify-center mt-[-10px] items-center">
+        <div className="flex justify-center mt-[10px] items-center">
           <button
             onClick={handleAddClick}
             className="rounded-sm bg-redFred-100 text-whiteFred-100 w-[200px] outline-none hover:text-orangeFred-100"
