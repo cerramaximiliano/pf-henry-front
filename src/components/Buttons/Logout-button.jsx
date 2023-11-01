@@ -3,6 +3,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
+
 export const LogoutButton = () => {
   const { user, logout } = useAuth0();
   const { pathname } = useLocation();
@@ -11,12 +17,27 @@ export const LogoutButton = () => {
   const handleLogout = () => {
     // localStorage.clear()
     localStorage.setItem("cart", "{}");
-    logout({
-      logoutParams: {
-        returnTo: window.location.origin,
-      },
+    MySwal.fire({
+      title: 'Are you sure you want to log out?',
+      icon:'info',
+      showCancelButton: true,
+      confirmButtonColor: '#a5dc86',
+      cancelButtonColor: '#E83B46',
+      confirmButtonText: 'Yes, log out'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout({
+          logoutParams: {
+            returnTo: window.location.origin,
+          },
+        });
+      }
     });
   };
+  
+  
+
+ 
 
   return (
     <button  className="block px-4 py-2 mt-2 text-sm ml-2 w-[180px] text-white hover:text-orangeFred-100" onClick={handleLogout}>

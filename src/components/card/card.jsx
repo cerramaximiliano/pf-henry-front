@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addProductToCart } from "../../redux/Cart/cartActions";
+import { NavLink } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { addProductToCart } from "../../redux/Cart/cartActions"
+import { toast } from "react-toastify"
+
 
 export function Card({ image, title, category, price, id, stock }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleAddClick = () => {
     dispatch(
@@ -18,8 +20,18 @@ export function Card({ image, title, category, price, id, stock }) {
           stock,
         },
       })
-    );
-  };
+    )
+    toast.success('Product added to cart', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
 
   return (
     <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym sm:p-2 sm:w-[160px]   md:w-[160px] lg:w-[250px] xl:w-[250px] sm:h-[300px] md:h-[300px]  lg:h-[350px] xl:h-[400px]  mx-[auto] mt-[2%]">
@@ -42,7 +54,7 @@ export function Card({ image, title, category, price, id, stock }) {
             <span>${price}</span>
           </div>
         </div>
-        <div className="flex justify-center mt-[-10px] items-center">
+        <div className="flex justify-center mt-[10px] items-center">
           <button
             onClick={handleAddClick}
             className="rounded-sm bg-redFred-100 text-whiteFred-100  sm:w-[120px] sm:h-[60px] lg:w-[250px] xl:w-[250px] outline-none hover:text-orangeFred-100"
@@ -52,5 +64,5 @@ export function Card({ image, title, category, price, id, stock }) {
         </div>
       </div>
     </span>
-  );
+  )
 }

@@ -1,21 +1,28 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useNavigate, useSearchParams  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductId } from '../../redux/products/productsActions';
 import { createReview } from '../../redux/Reviews/reviewsActions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Rating from '@mui/material/Rating';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 
 const FormReview = () => {
-  const { id } = useParams();
+  
+  const [searchParams] = useSearchParams()
+  const id = searchParams.get('id')
+  const orderId = searchParams.get('orderId')
+  
   const dispatch = useDispatch();
   const navigate = useNavigate ();
   const [value, setValue] = useState(0);
 
   const { isLoading, user, isAuthenticated } = useAuth0();
+
+  const MySwal = withReactContent(Swal);
 
   const { user_detail } = useSelector(
     (state) => state.users
@@ -39,27 +46,25 @@ const FormReview = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Crea un objeto con los datos del formulario
     const reviewData = {
-      userId: userId, // Asegúrate de tener el userId
+      userId: userId,
       productId: id,
+      orderId: orderId,
       rating,
       comments: comment,
-    };
-    
-    // Despacha la acción para crear la revisión
+    };   
     dispatch(createReview(reviewData));
-
-    setSuccessMessage('Review creada exitosamente');
-   /*  setTimeout(() => {
-      setSuccessMessage('');
-      navigate('/products');
-    }, 3000); */
+    MySwal.fire(
+      'Successful save!',
+      'The review was saved successfully',
+      'success'
+    );
 
     setRating(0);
     setComment('');
+    navigate('/myaccount/orders')
+
   };
-  console.log(id)
 
   const isFormValid = () => {
     return rating !== '' && rating >= 1 && rating <= 5 && comment.length <= 300 && comment.length != 0;
@@ -92,7 +97,7 @@ const FormReview = () => {
               inputProps={{ maxLength: 300 }}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className=' w-[500px]  '
+              className='flex  max-w-[500px]'
             />          
             </div >
             <button
@@ -100,7 +105,7 @@ const FormReview = () => {
               disabled={!isFormValid()}    
               className=' rounded-none bg-redFred-300 text-blackFred-100 disabled:bg-transparent disabled:text-transparent  '          
             >
-              Submit
+              Add Review
             </button>
         </form>
       </div>

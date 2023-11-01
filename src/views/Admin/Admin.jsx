@@ -19,8 +19,9 @@ export default function Products() {
 
   return (
     <div className="flex flex-row">
-      <SideBar />
-      <span className="w-[10%]" ></span>
+      <SideBar 
+      selectedMenu={selectedMenu}
+      setSelectedMenu={setSelectedMenu}/>
       {isLoading 
       ?  <Loader/> 
       : <Table />}

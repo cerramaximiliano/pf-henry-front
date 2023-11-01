@@ -10,17 +10,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { loadCart } from "../../redux/Cart/cartActions";
 
 export default function Products() {
-  const dispatch = useDispatch();
-  const { filters } = useContext(FiltersContext);
-  const [isLoading, setIsLoading] = useState(false);
-  const { user, isAuthenticated } = useAuth0();
+
+  const dispatch = useDispatch()
+  const { filters, setFilters } = useContext(FiltersContext)
+  const [isLoading, setIsLoading] = useState(false)
+  const { user, isAuthenticated } = useAuth0()
+  const { user_detail } = useSelector((state) => state.users);
+  
 
   useEffect(() => {
-    setIsLoading(true);
-    dispatch(getProductFiltered(filters)).then(() => {
-      setIsLoading(false);
-    });
-  }, [filters]);
+    setIsLoading(true)
+    dispatch(getProductFiltered({...filters, active: true})).then(() => {setIsLoading(false)})
+  }, [filters])
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -32,6 +33,20 @@ export default function Products() {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (user_detail.role === "ADMIN") setFilters({
+      orderBy: "",
+      category: "",
+      diet: "",
+      flavor: "",
+      weightType: "",
+      weightMin: "",
+      weightMax: "",
+      page: 1,
+      name: "",
+    });
+  }, [])
 
   return (
     <>

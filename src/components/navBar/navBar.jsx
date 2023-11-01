@@ -156,8 +156,8 @@ export default function NavBar() {
                       <>
                         <LogoutButton />
                         <NavLink
-                            to={`/myaccount/${user_detail._id}`}
-                            className="ml-4 text-blackFred-300 hover:text-orangeFred-300"
+                            to={`/myaccount/users`}
+                            className="block px-4 py-2 mt-2 rounded-md text-sm ml-2 w-[148px] bg-blackFred-300 text-whiteFred-100 hover:text-orangeFred-100"
                           >
                             My Account
                           </NavLink>

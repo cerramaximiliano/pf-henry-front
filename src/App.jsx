@@ -30,10 +30,7 @@ function App() {
   const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
   const { productsInCart } = useSelector((state) => state.cart)
-
-  const { user_detail } = useSelector(
-    (state) => state.users
-  );
+  const { user_detail } = useSelector((state) => state.users);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -76,7 +73,7 @@ function App() {
             <Route path="/products" element={
               user_detail.role === 'ADMIN' ? <Admin /> : <Product />
             } />
-            <Route path="/createReview/:id" element={<CreateReview/>}/>
+            <Route path="/createReview" element={<CreateReview/>}/>
             <Route path="/aboutus" element={<Us />} />
             <Route path="/addproduct" element={<Profile />} />
             <Route path="/callback" element={<CallbackPage />} />

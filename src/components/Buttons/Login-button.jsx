@@ -5,9 +5,6 @@ export const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   const handleLogin = async () => {
-    const user_cart = localStorage.getItem("user-cart")
-    const cartFromLocalStorage = user_cart !== 'undefined' ? JSON.parse(user_cart) : {};
-
     await loginWithRedirect({
       appState: {
         returnTo: "/products",
