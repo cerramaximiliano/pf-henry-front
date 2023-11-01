@@ -2,9 +2,9 @@
 
 export default function Detail() {
   return (
-    <>
+    <div className="flex items-center">
       <CardDetail />
-    </>
+    </div>
   );
 }
  
