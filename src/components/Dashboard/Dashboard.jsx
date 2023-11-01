@@ -75,7 +75,7 @@ export default function Dashboard() {
                 </div>
             <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap sm:w-4/5">
 
-            <div className="flex flex-col justify-center mt-2 mb-5">
+            <div className="flex flex-col text-blackFred-300 justify-center mt-2 mb-5">
                 {orders.length > 0 ? (
                     <>
                     <div>
