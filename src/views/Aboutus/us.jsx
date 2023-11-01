@@ -225,8 +225,8 @@ export default function Aboutus() {
                           />
 
                           <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <img class="h-16 mt-3" src={iconGit} alt="" />
-                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                            <img class="h-16 mt-2" src={iconGit} alt="" />
+                            <h1 class="text-4xl font-bebas text-blackFred-300 mt-0">
                               JulianBelmartino
                             </h1>
                           </div>
@@ -269,8 +269,8 @@ export default function Aboutus() {
                           />
 
                           <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <img class="h-16 mt-3" src={iconGit} alt="" />
-                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                            <img class="h-16 mt-2" src={iconGit} alt="" />
+                            <h1 class="text-4xl font-bebas text-blackFred-300 mt-0">
                               cerramaximiliano
                             </h1>
                           </div>
@@ -357,8 +357,8 @@ export default function Aboutus() {
                           />
 
                           <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <img class="h-16 mt-3" src={iconGit} alt="" />
-                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                            <img class="h-16 mt-2" src={iconGit} alt="" />
+                            <h1 class="text-4xl font-bebas text-blackFred-300 mt-0">
                               JuanLeonelPogonza
                             </h1>
                           </div>
