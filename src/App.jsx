@@ -46,12 +46,26 @@ function App() {
   useEffect(() => {
     if (isAuthenticated) {
       const user_cart = localStorage.getItem("user-cart")
+      console.log("user_cart")
       console.log(user_cart)
+      console.log(user.sub)
       if (!user_cart) {
-        localStorage.setItem("user-cart", JSON.stringify({ user: user.sub, cart: productsInCart }))
+        localStorage.setItem("user-cart", JSON.stringify([{ user: user.sub, cart: productsInCart }]))
       } else {
-        const user_cart_obj = JSON.parse(user_cart)
-        if (user_cart_obj.user == user.sub) localStorage.setItem("user-cart", JSON.stringify({ user: user.sub, cart: productsInCart }))
+        const user_cart_arr = JSON.parse(user_cart)
+        const loggedUserCart = user_cart_arr.filter((cart) => cart.user == user.sub)
+        console.log(loggedUserCart);
+        console.log(loggedUserCart[0]?.user);
+        if (loggedUserCart.length > 0) {
+          const updatedUserCart = user_cart_arr.map(item => {
+            if (item.user === user.sub) {
+              return { ...item, cart: productsInCart };
+            }
+            return item;
+          });
+          localStorage.setItem("user-cart", JSON.stringify(updatedUserCart))
+        } 
+        else localStorage.setItem("user-cart", JSON.stringify( [...user_cart_arr, {user: user.sub, cart: productsInCart}] ))
     }}
     localStorage.setItem("cart", JSON.stringify(productsInCart))
   }, [productsInCart])
