@@ -36,11 +36,13 @@ module.exports = {
         monse: "Montserrat",
       },
       fontSize: {
+        "4xl": "15px",
         "9xl": "20px",
         "10xl": "25px",
         "30xl": "30px",
         "31xl": "50px",
         "21xl": "40px",
+        "25xl":"55px",
         "51xl": "70px",
         inherit: "inherit",
       },

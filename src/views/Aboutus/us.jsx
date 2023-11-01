@@ -10,365 +10,375 @@ import sofi from "../../assets/Perfiles/sofi.png"
 
 export default function Aboutus() {
   return (
-    <div>
-      <section className="text-gray-400 bg-whiteFred-100 body-font">
-        <div className="container px-8 py-24 mx-auto ">
-          <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="text-2xl font-medium title-font mb-4 text-orangeFred-300 tracking-widest">
-              JENSHY TEAM
+    <section class="text-gray-600 body-font">
+      <div class="flex flex-col mt-8 mx-0 items-center ">
+        <div class="flex flex-col text-center w-full h-64 mx-0 mb-16 relative sm:h-80">
+          <div class="absolute inset-0 bg-[url('https://messagemedia.com/us/wp-content/uploads/sites/4/2020/04/Fitness-header-1.jpg')] blur-sm"></div>
+          <div class="xl:flex-col z-10 justify-center lg:mt-10 md:mb-4">
+            <h1 class="xl:text-25xl  lg:text-21xl font-bebas mb-4 text-orangeFred-100 md:mt-12">
+              Jenshy Team
             </h1>
-            <p className="lg:w-2/3 mx-auto leading-relaxed text-orangeFred-100">
-              Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-              gentrify, subway tile poke farm-to-table. Franzen you probably
-              haven't heard of them.
+            <p class="xl:w-70 mx-10 text-orangeFred-100 font-monse ">
+            Greetings! We are a passionate team of 8 dedicated developers committed to creating the best online experience for fitness enthusiasts and sports supplement seekers. Together, we blend technology with a love for wellness to bring you an intuitive and functional platform.
             </p>
           </div>
+        </div>
 
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+        <div class="xl:grid xl:grid-cols-4 xl:gap-6 xl:mb-16 lg:grid lg:grid-cols-4 lg:gap-6 lg:mb-16 md:grid md:grid-cols-2 md:gap-12 md:mb-16 sm:grid sm:grid-cols-1 sm:gap-6 sm:mb-16">
+          {/* lucas card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/FixGlitch">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={lucas}
                           alt=""
                         />
                       </div>
+
                       <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex  flex-col items-center justify-center">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-20 mt-10 "
-                            src={iconGit}
-                            alt="https://github.com/FixGlitch"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={lucas}
+                            alt="github de Lucas Blanco"
                           />
-                          <h1 class="text-21xl font-bebas text-blackFred-300 mt-0">
-                            FixGlitch
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              FixGlitch
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Lucas Blanco
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">UI Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Lucas Blanco
+                </h2>
+                <p class="text-gray-500">CTO</p>
               </div>
             </div>
           </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+          {/* juan card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/JuanUbaldi">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={juan}
                           alt=""
                         />
                       </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/JuanUbaldi"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={juan}
+                            alt="github de Juan Ubaldi"
                           />
-                          <h1 class="text-21xl font-bebas text-blackFred-100">
-                            JuanUbaldi
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              juanUbaldi
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Juan Ubaldi
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">UI Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Juan Ubaldi
+                </h2>
+                <p class="text-gray-500">frontend Dev</p>
               </div>
             </div>
           </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+          {/* mateo card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/mateoOA">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={mateo}
                           alt=""
                         />
                       </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/mateoOA"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={mateo}
+                            alt="github de Mateo Ossorio"
                           />
-                          <h1 class="text-21xl font-bebas text-blackFred-100">
-                            mateoOA
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              MateoOA
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Mateo Ossorio Arana
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">UI Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Mateo Ossorio Arana
+                </h2>
+                <p class="text-gray-500">CTO</p>
               </div>
             </div>
           </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+          {/* sofi card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/BlancSofia27">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={sofi}
                           alt=""
                         />
                       </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/BlancSofia27"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={sofi}
+                            alt="github de Sofia Blanc"
                           />
-                          <h1 class="text-9xl font-bebas text-blackFred-100">
-                            BlancSofia27
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              BlancSofia27
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Sofia Blanc
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">UI Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Sofia Blanc
+                </h2>
+                <p class="text-gray-500">frontend Dev</p>
               </div>
             </div>
           </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+          {/* juli card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/JulianBelmartino">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
-                          src={maxi}
-                          alt=""
-                        />
-                      </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
-                          <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/cerramaximiliano"
-                          />
-                          <h1 class="text-9xl font-bebas text-blackFred-100">
-                            cerramaximiliano
-                          </h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Maximo Cerra
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">backend Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
-                    <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                      <div class="absolute inset-0">
-                        <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={juli}
                           alt=""
                         />
                       </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/JulianBelmartino"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={juli}
+                            alt="github de Julian Belmartino"
                           />
-                          <h1 class="text-9xl font-bebas text-blackFred-100">
-                            JulianBelmartino
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              JulianBelmartino
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Julian Belmartino
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">backend Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Julian Belmartino
+                </h2>
+                <p class="text-gray-500">backend Dev</p>
               </div>
             </div>
           </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+          {/* maxi card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/cerramaximiliano">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
+                          src={maxi}
+                          alt=""
+                        />
+                      </div>
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
+                          <img
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={maxi}
+                            alt="github de Maximiliano Cerra "
+                          />
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              cerramaximiliano
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Maximiliano Cerra
+                </h2>
+                <p class="text-gray-500">CTO</p>
+              </div>
+            </div>
+          </div>
+          {/* willy card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/WVallejos">
+                  <div class="group h-32 w-32 ">
+                    <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                      <div class="absolute inset-0">
+                        <img
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={willy}
                           alt=""
                         />
                       </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/WVallejos"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={willy}
+                            alt="github de Willy Vallejos"
                           />
-                          <h1 class="text-9xl font-bebas text-blackFred-100">
-                            WVallejos
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              WVallejos
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Willy Vallejos
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">backend Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Willy Vallejos
+                </h2>
+                <p class="text-gray-500">CTO</p>
               </div>
             </div>
           </div>
-
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 lg:w-1/2">
-              <div class="h-60 flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <div class="flex min-h-screen items-center justify-center ">
-                  <div class="group h-60 w-60 [perspective:1000px]">
+          {/* leo card */}
+          <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+            <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+              <div class="flex items-center ">
+                <a href="https://github.com/JuanLeonelPogonza">
+                  <div class="group h-32 w-32 ">
                     <div class="relative h-full w-full rounded-full shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                       <div class="absolute inset-0">
                         <img
-                          class="h-full w-full rounded-full object-cover shadow-xl shadow-black/40"
+                          class="h-full w-full rounded-full object-cover shadow-sm shadow-black/40"
                           src={leo}
                           alt=""
                         />
                       </div>
-                      <div class="absolute inset-0  rounded-full bg-orangeFred-100 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                        <div class="flex min-h-full flex-col items-center justify-center">
+
+                      <div class="absolute inset-0  rounded-full  px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                        <div class="absolute inset-0">
                           <img
-                            class="h-45 w-40"
-                            src={iconGit}
-                            alt="https://github.com/JuanLeonelPogonza"
+                            class="h-full w-full blur-sm rounded-full object-cover shadow-sm "
+                            src={leo}
+                            alt="github de Juan Leonel Pogonza "
                           />
-                          <h1 class="text-9xl font-bebas text-blackFred-100">
-                            JuanLeonelPogonza
-                          </h1>
+
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <img class="h-16 mt-3" src={iconGit} alt="" />
+                            <h1 class="text-9xl font-bebas text-blackFred-300 mt-0">
+                              JuanLeonelPogonza
+                            </h1>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
+              </div>
 
-                <div class="flex-grow sm:pl-8">
-                  <h2 class="title-font font-medium text-lg text-blackFred-200">
-                    Juan Leonel Pogonza
-                  </h2>
-                  <h3 class="text-blackFred-200 mb-3">backend Developer</h3>
-                  <p class="mb-4 text-blackFred-100">
-                    DIY tote bag drinking vinegar cronut adaptogen squid fanny
-                    pack vaporware.
-                  </p>
-                </div>
+              <div class="flex-grow ml-6">
+                <h2 class="text-gray-900 title-font font-medium">
+                  Juan Leonel Pogonza
+                </h2>
+                <p class="text-gray-500">CTO</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }
