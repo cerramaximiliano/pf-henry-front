@@ -1,13 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect 
+} from "react";
 import { NavLink } from "react-router-dom";
 import bg from "../../assets/background-pf.png";
 import spam from "../../assets/SpamCalite.png";
-import { FiltersContext } from "../../context/filter";
 
 export default function Header() {
   const [fallAnimation, setFallAnimation] = useState(true);
-  const {filters, setFilters} = useContext(FiltersContext)
-
   useEffect(() => {
     setTimeout(() => {
       setFallAnimation(false);
