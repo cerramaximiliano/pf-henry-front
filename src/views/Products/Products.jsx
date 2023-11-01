@@ -7,7 +7,7 @@ import { FiltersContext } from "../../context/filter";
 import Loader from "../../components/Loader/Loader";
 import Featured from "../../components/Featured/Featured";
 import { useAuth0 } from "@auth0/auth0-react";
-import { loadCart } from "../../redux/Cart/cartActions";
+import { addProductToCart, loadCart } from "../../redux/Cart/cartActions";
 
 export default function Products() {
 
@@ -24,14 +24,22 @@ export default function Products() {
   }, [filters])
 
   useEffect(() => {
-   if (isAuthenticated) { 
-    const user_cart = localStorage.getItem("user-cart")
-    console.log(typeof user_cart);
-    if (user_cart) {
-      const userCart = JSON.parse(user_cart)
-      if (userCart.user === user.sub) dispatch(loadCart(userCart.cart))      
-    }}
-  }, [])
+    if (isAuthenticated) { 
+     const user_cart = localStorage.getItem("user-cart")
+     if (user_cart) {
+       const userCart = JSON.parse(user_cart)
+       const loggedUserCart = userCart.filter((cart) => cart.user == user.sub)
+      if (loggedUserCart.length) dispatch(loadCart(loggedUserCart[0].cart))
+       const localCart = localStorage.getItem("cart")
+       if (localCart != '{}'){
+         const local_Cart = JSON.parse(localCart)
+         const cartProducts = Object.entries(local_Cart)
+         cartProducts.forEach((prod) => { dispatch(addProductToCart({id: prod[0], product: prod[1] }))
+         })
+         
+       }      
+     }}
+   }, [])
 
   useEffect(() => {
     if (user_detail.role === "ADMIN") setFilters({
