@@ -16,7 +16,7 @@ export default function Aboutus() {
           <div class="absolute inset-0 bg-[url('https://messagemedia.com/us/wp-content/uploads/sites/4/2020/04/Fitness-header-1.jpg')] blur-sm"></div>
           <div class="xl:flex-col z-10 justify-center lg:mt-10 md:mb-4">
             <h1 class="xl:text-25xl  lg:text-21xl font-bebas mb-4 text-orangeFred-100 md:mt-12">
-              Jenshy Team
+              GENSHY TEAM
             </h1>
             <p class="xl:w-70 mx-10 text-orangeFred-100 font-monse ">
             Greetings! We are a passionate team of 8 dedicated developers committed to creating the best online experience for fitness enthusiasts and sports supplement seekers. Together, we blend technology with a love for wellness to bring you an intuitive and functional platform.
