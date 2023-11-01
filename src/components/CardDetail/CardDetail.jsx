@@ -123,4 +123,4 @@ export default function CardDetail() {
     </div>
   );
 }
-//?">"//sd/
+//:3
