@@ -8,24 +8,30 @@ import { FiltersContext } from "../../context/filter"
 export default function Hero() {
     const { filters, setFilters } = useContext(FiltersContext)
 
+    const shopHero = (category) => {
+        setFilters({
+            orderBy: "", diet: "", flavor: "", weightType: "", weightMin: "", weightMax: "", page: 1, name: "", priceMin: "", priceMax: "", category: category, active: true
+        })
+    }
+
     return (
         <div className=" mx-[auto] overflow-hidden">
-                <section className="flex bg-whiteFred-100 w-screen h-[960px]  items-center">
-                <NavLink to="/products"className="transition transform hover:scale-110 ml-[80px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
-                <img src={SPAM1} alt="" className="mt-[-30px] w-[500px] h-[500px]"/>
-                <p className=" font-impact text-30xl text-blackFred-100 mb-[0px]">SNAKS</p>
-                <NavLink to="/products" className=" font-impact  leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
-            </NavLink>
-            <NavLink to="/products" className="transition transform hover:scale-110 ml-[60px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
-                <img src={SPAM2} alt="" className="mt-[-30px] w-[500px] h-[500px]"/>
-                <p className=" font-impact text-30xl text-blackFred-100 mb-[0px]">SUPPLEMENTS</p>
-                <NavLink to="/products" className=" font-impact  leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
-            </NavLink>
-            <NavLink to="/products" className=" transition transform hover:scale-110 ml-[60px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
-                <img src={SPAM3} alt="" className="mt-[-30px] w-[500px] h-[500px]"/><br/>
-                <p className=" font-impact text-30xl text-blackFred-100 mb-[0px]">VITAMINS</p>
-                <NavLink to="/products" onClick={() => setFilters({...filters, category: 'Beverages'})} className=" font-impact  leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
-            </NavLink>
+            <section className="flex bg-whiteFred-100 w-screen h-[960px]  items-center">
+                <NavLink to="/products" onClick={() => shopHero('Food')} className="transition transform hover:scale-110 ml-[80px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
+                    <img src={SPAM1} alt="" className="mt-[-30px] w-[500px] h-[500px]" />
+                    <p className=" font-impact text-30xl text-blackFred-100 mb-[0px]">SNAKS</p>
+                    <NavLink to="/products" onClick={() => shopHero('Food')} className=" font-impact  leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
+                </NavLink>
+                <NavLink to="/products" onClick={() => shopHero("Vitamins and Minerals")}className="transition transform hover:scale-110 ml-[60px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
+                    <img src={SPAM2} alt="" className="mt-[-30px] w-[500px] h-[500px]" />
+                    <p className=" font-impact text-30xl text-blackFred-100 mb-[0px]">SUPPLEMENTS</p>
+                    <NavLink to="/products" onClick={() => shopHero("Vitamins and Minerals")} className=" font-impact  leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
+                </NavLink>
+                <NavLink to="/products" onClick={() => shopHero("Vitamins and Minerals")} className=" transition transform hover:scale-110 ml-[60px] rounded-lg mb-[40px] bg-graym w-[540px] h-[600px]">
+                    <img src={SPAM3} alt="" className="mt-[-30px] w-[500px] h-[500px]" /><br />
+                    <p className=" font-impact text-30xl text-blackFred-100 mb-[0px]">VITAMINS</p>
+                    <NavLink to="/products"onClick={() => shopHero("Vitamins and Minerals")} className=" font-impact  leading-[32px] text-orangeFred-300 hover:text-redFred-300">SHOP NOW</NavLink>
+                </NavLink>
             </section>
         </div>
     );
