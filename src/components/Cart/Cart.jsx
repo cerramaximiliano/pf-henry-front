@@ -137,10 +137,10 @@ export default function Cart() {
                                     </div>
                                   </div>
                                   <div>
-                                    <p className="-mt-2 first-letter:font-roboto-bold text-[15px] text-blackFred-100">
+                                    <p className="mt-2 first-letter:font-roboto-bold text-[15px] text-blackFred-100">
                                       Stock {productsInCart[productId].stock}{" "}
                                     </p>
-                                    <p className="-mt-4 font-roboto-bold text-[15px] text-blackFred-100 text-white-300">
+                                    <p className="mt-4 font-roboto-bold text-[15px] text-blackFred-100 text-white-300">
                                       Quantity:{" "}
                                     </p>
                                   </div>
