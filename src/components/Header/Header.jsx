@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect 
+} from "react";
 import { NavLink } from "react-router-dom";
 import bg from "../../assets/background-pf.png";
 
 export default function Header() {
   const [fallAnimation, setFallAnimation] = useState(true);
-
   useEffect(() => {
     setTimeout(() => {
       setFallAnimation(false);
@@ -41,5 +41,6 @@ export default function Header() {
         </div>
       </div>
     </div>
+  );
   );
 }  
