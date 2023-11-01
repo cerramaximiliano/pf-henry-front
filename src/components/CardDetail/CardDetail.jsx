@@ -123,4 +123,4 @@ export default function CardDetail() {
     </div>
   );
 }
-//:3
+//:3//2d
