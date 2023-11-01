@@ -11,6 +11,8 @@ import { loadCart } from "../../redux/Cart/cartActions";
 
 export default function Products() {
 
+
+
   const dispatch = useDispatch()
   const { filters, setFilters } = useContext(FiltersContext)
   const [isLoading, setIsLoading] = useState(false)

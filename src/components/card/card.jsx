@@ -34,7 +34,7 @@ export function Card({ image, title, category, price, id, stock }) {
   }
 
   return (
-    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym sm:p-2 sm:w-[160px]   md:w-[160px] lg:w-[250px] xl:w-[250px] sm:h-[300px] md:h-[300px]  lg:h-[350px] xl:h-[400px]  mx-[auto] mt-[2%]">
+    <span className="grid justify-center rounded-sm items-center pb-4 transition transform hover:scale-110 bg-graym sm:p-2 md:p-2 lg:p-4 xl:p-5 sm:w-[160px]   md:w-[160px] lg:w-[250px] xl:w-[250px] sm:h-[300px] md:h-[300px]  lg:h-[350px] xl:h-[400px]  mx-[auto] mt-[2%]">
       <div className="flex flex-col justify-between h-full">
         <div>
           <NavLink to={`/Detail/${id}`}>
