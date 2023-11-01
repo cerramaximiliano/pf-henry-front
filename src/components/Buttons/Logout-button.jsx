@@ -13,26 +13,36 @@ export const LogoutButton = () => {
   const { user, logout } = useAuth0();
   const { pathname } = useLocation();
   const { productsInCart } = useSelector((state) => state.cart)
-
+  
   const handleLogout = () => {
     // localStorage.clear()
+    if(pathname !== '/callback') {
+      MySwal.fire({
+        title: 'Are you sure you want to log out?',
+        icon:'info',
+        showCancelButton: true,
+        confirmButtonColor: '#a5dc86',
+        cancelButtonColor: '#E83B46',
+        confirmButtonText: 'Yes, log out'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          logout({
+            logoutParams: {
+              returnTo: window.location.origin,
+            },
+          });
+        }
+      });  
+    }
+    else {
+      logout({
+        logoutParams: {
+          returnTo: window.location.origin,
+        },
+      });
+    }
     localStorage.setItem("cart", "{}");
-    MySwal.fire({
-      title: 'Are you sure you want to log out?',
-      icon:'info',
-      showCancelButton: true,
-      confirmButtonColor: '#a5dc86',
-      cancelButtonColor: '#E83B46',
-      confirmButtonText: 'Yes, log out'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        logout({
-          logoutParams: {
-            returnTo: window.location.origin,
-          },
-        });
-      }
-    });
+    // localStorage.setItem("user-cart", "[]");
   };
   
   

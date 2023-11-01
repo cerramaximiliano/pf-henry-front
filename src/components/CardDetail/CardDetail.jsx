@@ -123,4 +123,4 @@ export default function CardDetail() {
     </div>
   );
 }
-//?">" mM
+//:3
