@@ -1,14 +1,21 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import OrderCard from "../OrderCard/OrderCard";
 import AllOrdersCards from "../AllOrderCards/AllOrderCards";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { useSelector } from "react-redux";
 
 export default function Dashboard() {
+    const MySwal = withReactContent(Swal);
+
     const { pathname } = useLocation();
-    const {id} = useParams();
+    
+    const [searchParams] = useSearchParams()
+    const id = searchParams.get('id')
+    const error = searchParams.get('error')
     const {user_detail} = useSelector((state) => state.users);
 
     const URLBASE = import.meta.env.VITE_URL_BASE;
@@ -20,15 +27,33 @@ export default function Dashboard() {
 
     useEffect( () => {
         if( id  ){
-            const data = axios(`${URLBASE}/orders/update/${id}`)
-            .then(({data}) => {
-                setDate(data.order.createdAt)
-                setStatus(data.order.status)
-                setOrders(data.order.products)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            if(error){
+                console.log('error');
+                MySwal.fire(
+                    'Payment Failed',
+                    'We encountered an issue processing your payment. Please try again.',
+                    'error'
+                  );
+                const data = axios(`${URLBASE}/orders/${id}`)
+                .then(({data}) => {
+                    setDate(data.order.createdAt);
+                    setStatus(data.order.status);
+                    setOrders(data.order.products);
+                })
+                .catch(err => {
+                    console.log(err)
+                })                  
+            }else{
+                const data = axios(`${URLBASE}/orders/update/${id}`)
+                .then(({data}) => {
+                    setDate(data.order.createdAt);
+                    setStatus(data.order.status);
+                    setOrders(data.order.products);
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            };
         }else {
             const data = axios(`${URLBASE}/orders/userId/${user_detail._id}`)
             .then(({data}) => {
@@ -44,13 +69,13 @@ export default function Dashboard() {
 
     return (
             <div>
-                <div className="flex justify-between m-auto w-1/2">
+                <div className="flex justify-between m-auto w-1/2 sm:w-4/5">
                     <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/users">Your Profile</a>
                     <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">Orders</a>
                 </div>
-            <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap">
+            <div className="flex justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap sm:w-4/5">
 
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center mt-2 mb-5">
                 {orders.length > 0 ? (
                     <>
                     <div>
@@ -63,7 +88,7 @@ export default function Dashboard() {
                     </div>
                     <div>
                         <h4>Status</h4>
-                        <p>{status.toUpperCase(0)}</p>
+                        <span className={`inline-block leading-[0.4rem] px-4 py-2 bg-blue-500 text-white uppercase whitespace-nowrap rounded text-sm ${status == 'complete' ? 'bg-green-400 ' : 'bg-red-500'} `}>{status.toUpperCase(0)}</span>
                     </div>
                     </>
                 ) : (
@@ -110,7 +135,7 @@ export default function Dashboard() {
                                                     />
                                                 )))
                                                 : (
-                                                    <p>Orders Not Found</p>
+                                                    <p className="m-auto">Orders Not Found</p>
                                                 )
                         }
                     </div>
