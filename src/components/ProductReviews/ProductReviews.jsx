@@ -25,16 +25,16 @@ const ProductReview = () => {
   }, [ratings]);
   
   return (
-    <div className='max-w-[90vw] bg-white'>
+    <div className='lg:w-[90vw] xl:w-[70vw] md:w-[80vw] md:self-center md:mt-[3vh] bg-white xl:flex xl:self-center lg:flex lg:self-center	sm:w-[70vw] sm:flex sm:self-center '>
       {isLoading ? (
         <p>Loading...</p>
       ) : reviews.length > 0 ? (
-        <div className='grid grid-cols-3 place-content-evenly mx-[20px]  '>
+        <div className='grid grid-cols-3 place-content-evenly mx-[20px] sm:grid-cols-1 sm:h-[100px] sm:my-[20px] lg:mx-[auto]  '>
           {reviews.map((review, index) => {
             ratings.push(review.rating);
             return(
-              <span key={index} className='flex-row overflow-auto w-[400px]	 m-[10px] bg-graym rounded-none	'>
-                <span className='flex items-center ml-[25px] mt-[25px]  '>
+              <span key={index} className='flex-row overflow-auto w-[400px] md:w-[270px]	md:mx-[auto] xl:mx-[auto] bg-graym rounded-none md:mb-[5vh] sm:w-[296px] lg:w-[350px] lg:mx-[20px]	'>
+                <span className='flex items-center ml-[25px] mt-[25px] md:ml-[15px] md:mt-[10px] sm:mt-[10px] sm:ml-[15px]  '>
                   
                   <span className='grid justify-items-start	'>
                                 
@@ -47,13 +47,13 @@ const ProductReview = () => {
                     />
                   </span>
                 </span>
-                <p className='font-bayon-bold flex items-center px-[20px] font-monse text-blackFred-300 text-left	mt-0	 overflow-auto	 h-[70px] 	'> {review.comments}</p>
+                <p className='font-bayon-bold flex items-center px-[20px] font-monse text-blackFred-300 text-left	mt-0	 overflow-auto	 h-[70px] md:h-[30px]	sm:h-[35px]'> {review.comments}</p>
               </span>
             )
           })}
         </div>
       ) : (
-        <p className=' font-impact text-black'>No reviews available.</p>
+        <p className=' xl:mx-[auto] xl:mb-[13%] text-[30px] font-impact text-black xl:flex xl:justify-center xl:text-center md:text-[45px]'>No reviews available.</p>
       )}
     </div>
   );
