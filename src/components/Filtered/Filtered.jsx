@@ -41,12 +41,12 @@ export default function Filtered() {
 
   return (
     <>
-      <div
+      <button
         onClick={handleTransition}
-        className="sm:flex md:flex  lg:hidden xl:hidden sm:mb-100  "
+        className="sm:flex md:flex  lg:hidden xl:hidden sm:mb-100 rounded-sm bg-redFred-100 text-whiteFred-100 "
       >
-        boton
-      </div>
+        Filters
+      </button>
       {appear ? (
         <div
           className={` md relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[100%] h-[650px] ${
