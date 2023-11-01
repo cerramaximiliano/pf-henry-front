@@ -8,7 +8,7 @@ export default function MyAccount() {
     const { pathname } = useLocation();
     return (
         <div>
-            <h3>My Account</h3>
+            <h3 className="font-impact text-blackFred-300 ">My Account</h3>
             {   pathname.startsWith('/myaccount/users') && <UserMyAccount/>  }
             {   pathname.startsWith('/myaccount/orders') && <Dashboard/>  }
         </div>

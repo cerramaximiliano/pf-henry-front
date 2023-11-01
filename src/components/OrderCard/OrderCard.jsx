@@ -1,12 +1,11 @@
 import { NavLink, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 export default function OrderCard({ orderId, image, title, price, productId, review }) {
 
   return (
-    <span className="flex justify-evenly">
+    <span className="flex justify-evenly text-blackFred-300">
       <span className="w-full flex justify-between items-center">
-        <span className="grid justify-start text-left	 text-whiteFred-100">
+        <span className="grid justify-start text-left	 text-blackFred-100">
           <NavLink to={`/Detail/${productId}`}>
             <span className="justify-start text-orangeFred-100 text-[25px] font-bebas">
               <span>{title}</span>
