@@ -18,7 +18,7 @@ export default function Aboutus() {
             <h1 class="xl:text-25xl  lg:text-21xl font-bebas mb-4 text-orangeFred-100 md:mt-12">
               GENSHY TEAM
             </h1>
-            <p class="xl:w-70 mx-10 text-orangeFred-100 font-monse ">
+            <p class="xl:w-70 absolute mx-10 text-orangeFred-100 font-monse ">
             Greetings! We are a passionate team of 8 dedicated developers committed to creating the best online experience for fitness enthusiasts and sports supplement seekers. Together, we blend technology with a love for wellness to bring you an intuitive and functional platform.
             </p>
           </div>
