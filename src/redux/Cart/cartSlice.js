@@ -7,6 +7,9 @@ const cartSlice = createSlice({
     totalPrice: 0,
   },
   reducers: {
+    loadProducts: (state, action) => {
+      state.productsInCart = action.payload
+    },
     addProduct: (state, action) => {
       const { id, product } = action.payload;
       if (state.productsInCart[id]) {
@@ -14,7 +17,7 @@ const cartSlice = createSlice({
       } else {
         state.productsInCart[id] = { ...product, quantity: 1 };
       }
-      state.totalPrice += product.price;
+      state.totalPrice += (product.price);
     },
     deleteProduct: (state, action) => {
       const id = action.payload;
@@ -28,6 +31,7 @@ const cartSlice = createSlice({
     updateProductQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       if (state.productsInCart[id]) {
+        
         state.productsInCart[id].quantity = quantity;
         state.totalPrice = Object.values(state.productsInCart).reduce(
           (total, product) => total + product.price * product.quantity,
@@ -38,7 +42,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, deleteProduct, updateProductQuantity } =
+export const { addProduct, deleteProduct, updateProductQuantity, loadProducts } =
   cartSlice.actions;
 const cartReducer = cartSlice.reducer;
 export default cartReducer;

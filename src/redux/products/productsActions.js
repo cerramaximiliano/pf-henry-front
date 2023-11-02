@@ -3,6 +3,7 @@ import {
   getProductById,
   getProductsByFilter,
   addProduct,
+  setProperty,
 } from "./productSlice.js";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -13,7 +14,7 @@ export const getProductId = (id) => {
     axios
       .get(`${URLBASE}/products/${id}`)
       .then((res) => {
-        console.log(res.data);
+        console.log("esto esaction" +res.data)
         dispatch(getProductById(res.data));
       })
       .catch((e) => console.log(e));
@@ -54,3 +55,30 @@ export const postProduct = (product) => {
       .catch((e) => console.log(e));
   };
 };
+
+export const deleteProduct = (id) => {
+  return async (dispatch) => {
+    axios
+      .put(`${URLBASE}/products/desactivate/${id}`)
+      .catch((e) => console.log(e))
+  }
+}
+
+export const activateProduct = (id) => {
+  return async (dispatch) => {
+    axios
+      .put(`${URLBASE}/products/activate/${id}`)
+      .catch((e) => console.log(e))
+  }
+}
+
+export const getProperty = (property) => {
+  return async (dispatch) => {
+    axios
+    .get(`${URLBASE}/products/props/${property}`)
+    .then((res) => {
+      dispatch(setProperty({property: property, data: res.data}))
+    })
+    .catch((e) => console.log(e))
+  }
+}

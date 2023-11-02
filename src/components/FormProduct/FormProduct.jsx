@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form"
-import { NavLink } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { postProduct } from "../../redux/products/productsActions"
-import React from "react";
+import { NavLink, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { getProductId, getProperty, postProduct } from "../../redux/products/productsActions"
+import React, { useEffect } from "react";
 //import fs from "fs"
 
 
@@ -10,10 +10,45 @@ export default function Form() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm()
 
   const dispatch = useDispatch()
+  const params = useParams()
+  const { detail, category, diet, flavor, weightType } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    if (params.id) {
+      dispatch(getProductId(params.id));
+    }
+  }, [params.id, dispatch]);
+
+  useEffect(() => {
+    // Set default values for the form fields when product_detail changes
+    if (detail && params.id) {
+      setValue('title', detail.title);
+      setValue('file', detail.image); // You may need to handle file inputs differently
+      setValue('price', detail.price);
+      setValue('category', detail.category);
+      setValue('stock', detail.stock);
+      setValue('diet', detail.diet);
+      setValue('flavor', detail.flavor);
+      setValue('value', detail.weight?.value);
+      setValue('type', detail.weight?.type);
+    }
+  }, [detail, setValue]);
+  console.log(setValue)
+
+  useEffect(() => {
+    dispatch(getProperty('category'))
+    dispatch(getProperty('diet'))
+    dispatch(getProperty('flavor'))
+    dispatch(getProperty('weight.type'))
+  }, []);
+
+  console.log(detail);
+  console.log(detail.category);
  
 
   const onSubmit = handleSubmit((data) => {
@@ -40,18 +75,32 @@ export default function Form() {
   })
 
   return (
-    <div className="bg-graym w-[600px] h-[800px] mt-5 mb-5 ml-[35%] px-5 py-5">
-      <form onSubmit={onSubmit}>
+    <div className="bg-graym rounded-md flex flex-col m-auto sm:pr-[60px] sm:w-[250px] md:w-[350px] my-[20px] p-[50px] w-[600px]">
+      <form className="text-blackFred-100 font-roboto text-left" onSubmit={onSubmit}>
         <NavLink to="/products">
-          <button className="absolute ml-[-320px] mt-[-10px] rounded-none bg-orangeFred-300 py-[8px] px-[24px]  text-blackFred-300 outline-none hover:border-transparent">⇦back</button>
+          <button className="bg-redFred-100 text-blackFred-100 text-[15px] hover:text-orangeFred-100">⇦back</button>
         </NavLink>
-        <div className="relative mt-[-30px]">
-        <h1 className="font-impact text-30xl mb-[10px] ">Add new Product</h1>
-        <div>
-          <label className="font-impact text-9xl mt-0">Title: </label>
+        <div className="flex flex-col">
+        <h1 className="-mt-12 ml-[100px]">Add new Product</h1>
+        <div className="bg-white rounded-md p-2 ">
+          <label className=" text-9xl">Product Image</label>
           <br/>
           <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+            className=""
+            type="file"
+            {...register("file", {
+              required: {
+                value: true,
+                message: "required",
+              },
+            })}
+          />
+          {errors.file && <span>{errors.file.message}</span>}
+        </div>
+        <div className="sm:m-0 md:mt-0 md:ml-0 -mt-[70px] ml-[300px]">
+          <label className="text-9xl">Title: </label>
+          <input
+          className="w-[280px] h-[30px]"
             type="text"
             onInput={(e) =>
               (e.target.value = e.target.value.replace(/\s/g, ""))
@@ -75,27 +124,10 @@ export default function Form() {
           ></input>
           {errors.title && <span>{errors.title.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl ">Product Image</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Price : </label>
           <input
-            className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
-            type="file"
-            {...register("file", {
-              required: {
-                value: true,
-                message: "required",
-              },
-            })}
-          />
-          {errors.file && <span>{errors.file.message}</span>}
-        </div>
-
-        <div>
-          <label className="font-impact text-9xl mt-0 ">Price</label>
-          <br/>
-          <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[30px]"
             type="number"
             min="1"
             {...register("price", {
@@ -112,11 +144,10 @@ export default function Form() {
           {errors.price && <span>{errors.price.message}</span>}
         </div>
 
-        <div>
-          <label className="font-impact text-9xl ">Category</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Category : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             {...register("category", {
               required: {
                 value: true,
@@ -125,19 +156,19 @@ export default function Form() {
             })}
             defaultValue="food"
           >
-           <option value="food">Food</option>
-            <option value="suplement">Suplement</option>
-            <option value="beverages">Beverages</option>
-            <option value="vitaminAndMinerals">vitamins and minerals</option>
+           {category.map((category, index) => (
+                            <option key={index} value={category}>
+                                {category}
+                            </option>
+                        ))}
           </select>
           {errors.category && <span>{errors.category.message}</span>}
         </div>
 
-        <div>
-          <label className="font-impact text-9xl ">Stock</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Stock : </label>
           <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[30px]"
             type="number"
             min="1"
             {...register("stock", {
@@ -153,11 +184,10 @@ export default function Form() {
           ></input>
           {errors.stock && <span>{errors.stock.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl ">Diet</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Diet : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             placeholder="Unspecified"
             {...register("diet", {
               required: {
@@ -167,19 +197,18 @@ export default function Form() {
             })}
             defaultValue="Unspecified"
           >
-            <option value="vegan">Vegan</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="keto">Keto</option>
-            <option value="gluten Free">Gluten Free</option>
-            <option value="Unspecified">Unspecified</option>
+            {diet.map((diet, index) => (
+                            <option key={index} value={diet}>
+                                {diet}
+                            </option>
+                        ))}
           </select>
           {errors.diet && <span>{errors.diet.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl ">Flavor</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Flavor : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             placeholder="Unspecified"
             {...register("flavor", {
               required: {
@@ -189,21 +218,19 @@ export default function Form() {
             })}
             defaultValue="Unspecified"
           >
-            <option value="vainilla">Vainilla</option>
-            <option value="chocolate">Chocolate</option>
-            <option value="strawberry">Strawberry</option>
-            <option value="fruity">Fruity</option>
-            <option value="without Flavor">Without flavor</option>
-            <option value="Unspecified">Unspecified</option>
+            {flavor.map((flavor, index) => (
+                            <option key={index} value={flavor}>
+                                {flavor}
+                            </option>
+                        ))}
           </select>
           {errors.flavor && <span>{errors.flavor.message}</span>}
         </div>
 
-        <div>
-          <label className="font-impact text-9xl ">Weight Value</label>
-          <br/>
+        <div className="mt-[20px]">
+          <label className="text-9xl">Weight Value : </label>
           <input
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[30px]"
             type="number"
             min="1"
             {...register("value", {
@@ -219,11 +246,10 @@ export default function Form() {
           ></input>
           {errors.value && <span>{errors.value.message}</span>}
         </div>
-        <div>
-          <label className="font-impact text-9xl " >Type</label>
-          <br/>
+        <div className="my-[20px]">
+          <label className="text-9xl" >Type : </label>
           <select
-          className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium"
+          className="w-[280px] h-[40px]"
             {...register("type", {
               required: {
                 value: true,
@@ -232,15 +258,19 @@ export default function Form() {
             })}
             defaultValue="gr"
           >
-            <option value="gr">gr</option>
-            <option value="ml">ml</option>
-            <option value="kg">kg</option>
+            {weightType.map((weight, index) => (
+                            <option key={index} value={weight}>
+                                {weight}
+                            </option>
+                        ))}
           </select>
           {errors.type && <span>{errors.type.message}</span>}
         </div>
 
-        <button className="border-2 w-[300px] bg-graym border-orangeFred-100 h-10 pr-2 text-orangeFred-100 hover: hover:text-orangeFred-100 rounded-sm px-3 py-2 text-9xl font-medium" type="submit">Add Product</button>
-        </div>
+        {params.id 
+        ? <button className="bg-redFred-100 text-blackFred-300 text-[20px] font-roboto" type="submit">Edit Product</button> 
+        : <button className="bg-redFred-100 text-blackFred-300 text-[20px] font-roboto" type="submit">Add Product</button>
+        }</div>
       </form>
     </div>
   )
