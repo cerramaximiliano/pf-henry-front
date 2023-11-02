@@ -96,14 +96,14 @@ export default function ProductDashboard() {
               <table className="min-w-full">
                 <thead>
                   <tr>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('title')}> Title {filters.orderBy === 'title' ? '↑' : (filters.orderBy === '-title' ? '↓' : '')}</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('category')}> Category {filters.orderBy === 'category' ? '↑' : (filters.orderBy === '-category' ? '↓' : '')}</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('price')}> Price {filters.orderBy === 'price' ? '↑' : (filters.orderBy === '-price' ? '↓' : '')}</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('flavor')}> Flavor {filters.orderBy === 'flavor' ? '↑' : (filters.orderBy === '-flavor' ? '↓' : '')}</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('stock')}>Stock {filters.orderBy === 'stock' ? '↑' : (filters.orderBy === '-stock' ? '↓' : '')}</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4" onClick={() => sortColumn('sold')}>Sold {filters.orderBy === 'sold' ? '↑' : (filters.orderBy === '-sold' ? '↓' : '')}</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4">Status</th>
-                    <th className="py-3 text-blackFred-300 bg-graym px-4">Actions</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer" onClick={() => sortColumn('title')}> Title {filters.orderBy === 'title' ? '↑' : (filters.orderBy === '-title' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer" onClick={() => sortColumn('category')}> Category {filters.orderBy === 'category' ? '↑' : (filters.orderBy === '-category' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer" onClick={() => sortColumn('price')}> Price {filters.orderBy === 'price' ? '↑' : (filters.orderBy === '-price' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer" onClick={() => sortColumn('flavor')}> Flavor {filters.orderBy === 'flavor' ? '↑' : (filters.orderBy === '-flavor' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer" onClick={() => sortColumn('stock')}>Stock {filters.orderBy === 'stock' ? '↑' : (filters.orderBy === '-stock' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer" onClick={() => sortColumn('sold')}>Sold {filters.orderBy === 'sold' ? '↑' : (filters.orderBy === '-sold' ? '↓' : '')}</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer">Status</th>
+                    <th className="py-3 text-blackFred-300 bg-redFred-100 px-4 cursor-pointer">Actions</th>
                   </tr>
                 </thead>
                 <tbody>

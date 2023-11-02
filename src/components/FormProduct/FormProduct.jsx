@@ -76,7 +76,7 @@ export default function Form() {
 
   return (
     <div className="bg-graym rounded-md flex flex-col m-auto sm:pr-[60px] sm:w-[250px] md:w-[350px] my-[20px] p-[50px] w-[600px]">
-      <form className="text-blackFred-100 font-roboto text-left" onSubmit={onSubmit}>
+      <form className="text-blackFred-100 font-roboto text-left" onSubmit={() => onSubmit}>
         <NavLink to="/products">
           <button className="bg-redFred-100 text-blackFred-100 text-[15px] hover:text-orangeFred-100">⇦back</button>
         </NavLink>
