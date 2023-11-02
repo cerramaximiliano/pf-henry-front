@@ -72,14 +72,6 @@ export default function NavBar() {
                         About Us
                       </NavLink>
                     )}
-                    {pathname !== "/" && (
-                      <NavLink
-                        to="/myaccount/users"
-                        className="block px-4 py-2 text-blackFred-300 hover:text-orangeFred-300"
-                      >
-                        My Account
-                      </NavLink>
-                    )}
                   </div>
                 </Menu.Items>
               </Transition>
