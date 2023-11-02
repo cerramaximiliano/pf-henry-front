@@ -10,6 +10,7 @@ export default function Form() {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm()
 
@@ -37,6 +38,7 @@ export default function Form() {
       setValue('type', detail.weight?.type);
     }
   }, [detail, setValue]);
+  console.log(setValue)
 
   useEffect(() => {
     dispatch(getProperty('category'))
