@@ -28,20 +28,23 @@ export default function Dashboard() {
     useEffect( () => {
         if( id  ){
             if(error){
-                console.log('error');
                 MySwal.fire(
                     'Payment Failed',
                     'We encountered an issue processing your payment. Please try again.',
                     'error'
                   );
-                const data = axios(`${URLBASE}/orders/${id}`)
+                const data = axios(`${URLBASE}/orders/order/?id=${id}`)
                 .then(({data}) => {
-                    setDate(data.order.createdAt);
-                    setStatus(data.order.status);
-                    setOrders(data.order.products);
+                    setDate(data.order[0].createdAt);
+                    setStatus(data.order[0].status);
+                    setOrders(data.order[0].products);
                 })
                 .catch(err => {
-                    console.log(err)
+                    MySwal.fire(
+                        'Payment Failed',
+                        'We encountered an issue processing your payment. Please try again.',
+                        'error'
+                      );
                 })                  
             }else{
                 const data = axios(`${URLBASE}/orders/update/${id}`)
@@ -51,7 +54,11 @@ export default function Dashboard() {
                     setOrders(data.order.products);
                 })
                 .catch(err => {
-                    console.log(err)
+                    MySwal.fire(
+                        'Server Error',
+                        'Please try again later.',
+                        'error'
+                      );
                 })
             };
         }else {
@@ -61,7 +68,11 @@ export default function Dashboard() {
                 setAllOrders(data.orders);
             })
             .catch(err => {
-                console.log(err)
+                MySwal.fire(
+                    'Server Error',
+                    'Please try again later.',
+                    'error'
+                  );
             })
         }
       }, [user_detail._id])
