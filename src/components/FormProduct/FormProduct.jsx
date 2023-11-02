@@ -10,7 +10,6 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm()
 

@@ -5,6 +5,7 @@ import {
   addProduct,
   setProperty,
 } from "./productSlice.js";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const URLBASE = import.meta.env.VITE_URL_BASE;
 

@@ -12,5 +12,5 @@ export default function MyAccount() {
             {   pathname.startsWith('/myaccount/users') && <UserMyAccount/>  }
             {   pathname.startsWith('/myaccount/orders') && <Dashboard/>  }
         </div>
-    )
+      )
 }

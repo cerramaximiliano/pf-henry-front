@@ -11,15 +11,11 @@ import { LogoutButton } from "../Buttons/Logout-button";
 import Cart from "../Cart/Cart";
 import Profile from "../../assets/Profile.png";
 import { LoginButton } from "../Buttons/Login-button";
-import { useSelector } from "react-redux";
 
 export default function NavBar() {
   const { pathname } = useLocation();
   const { isAuthenticated } = useAuth0();
   const [toggleCart, setToggleCart] = useState(false);
-  const { user_detail } = useSelector(
-    (state) => state.users
-  );
 
 
   const desplegarCart = () => {
