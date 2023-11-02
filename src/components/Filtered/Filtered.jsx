@@ -52,10 +52,10 @@ export default function Filtered() {
   return (
     <>
       <div className={"lg:hidden xl:hidden"}>
-        <button  onClick={handleFilters}>filters</button>
+        <button className="bg-redFred-100"  onClick={handleFilters}>filters</button>
         {showFilters ? (
           <div
-            className={`lg:hidden xl:hidden sm:sticky md:sticky relative shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[710px] ${
+            className={` md:m-auto sm:m-auto lg:hidden xl:hidden sticky shadow-md px-5 text-blackFred-100 py-1 ml-4 mt-[80px] bg-graym font-bayon-bold w-[280px] h-[710px] ${
               transitionApplied
                 ? "transform translate-x-0 transition-transform duration-500 ease-in-out"
                 : "transform -translate-x-full"
@@ -98,7 +98,7 @@ export default function Filtered() {
                   name="category"
                   onChange={handleChange}
                   value={filters.category}
-                  className=" w-[280px] h-[35px]"
+                  className="w-[280px] h-[35px]"
                 >
                   <option value="">All</option>
                   {category.map((category, index) => (
