@@ -72,7 +72,7 @@ function App() {
       ) : (
         <>
           {" "}
-          <div class="sticky top-0 z-10">
+          <div class="sticky top-0 z-99">
             {pathname !== "/" &&
               (user_detail.role === "ADMIN" ? <NavBarAdmin /> : <NavBar />)}
           </div>
