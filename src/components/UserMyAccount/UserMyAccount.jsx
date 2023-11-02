@@ -10,7 +10,7 @@ export default function UserMyAccount () {
                 <div className="flex justify-end m-auto w-1/2">
                     <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href="/myaccount/orders">Orders</a>
                 </div>
-                <div className="flex flex-col text-blackFred-300 justify-around w-1/2 m-auto h-[500px] rounded-sm bg-graym p-[20px] flex-wrap">
+                <div className="flex flex-col text-blackFred-300 justify-around w-1/2 m-auto rounded-sm bg-graym p-[20px] flex-wrap">
                     <div>
                         <img src={user_detail.picture} alt="" />
                     </div>
