@@ -26,8 +26,10 @@ export default function Products() {
   useEffect(() => {
     if (isAuthenticated) { 
      const user_cart = localStorage.getItem("user-cart")
+      console.log(user_cart)
      if (user_cart) {
        const userCart = JSON.parse(user_cart)
+console.log(userCart)
        const loggedUserCart = userCart.filter((cart) => cart.user == user.sub)
       if (loggedUserCart.length) dispatch(loadCart(loggedUserCart[0].cart))
        const localCart = localStorage.getItem("cart")
