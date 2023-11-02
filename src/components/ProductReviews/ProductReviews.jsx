@@ -25,11 +25,11 @@ const ProductReview = () => {
   }, [ratings]);
   
   return (
-    <div className='lg:w-[90vw] xl:w-[70vw] md:w-[80vw] md:self-center md:mt-[3vh] bg-white xl:flex xl:self-center lg:flex lg:self-center	sm:w-[70vw] sm:flex sm:self-center '>
+    <div className='lg:w-[90vw] xl:w-[70vw]  md:self-center md:mt-[3vh] bg-white xl:flex xl:self-center lg:flex lg:self-center	sm:w-[70vw] sm:flex sm:self-center md:w-[70vw] md:flex '>
       {isLoading ? (
         <p>Loading...</p>
       ) : reviews.length > 0 ? (
-        <div className='grid grid-cols-3 place-content-evenly mx-[20px] sm:grid-cols-1 sm:h-[100px] sm:my-[20px] lg:mx-[auto]  '>
+        <div className='grid grid-cols-3 place-content-evenly mx-[20px] sm:grid-cols-1 md:grid-cols-1 md:mx-[auto] sm:h-[100px] sm:my-[20px] lg:mx-[auto]  '>
           {reviews.map((review, index) => {
             ratings.push(review.rating);
             return(

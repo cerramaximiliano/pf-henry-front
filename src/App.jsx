@@ -8,7 +8,7 @@ import Profile from "./views/AddProduct/AddProduct";
 import Us from "./views/Aboutus/us";
 import NavBar from "./components/navBar/navBar";
 import NavBarAdmin from "./components/Admin/navBarAdmin/navBarAdmin";
-import Admin from './views/Admin/Admin';
+import Admin from "./views/Admin/Admin";
 import { Footer } from "./components/Footer/Footer";
 import { CallbackPage } from "./components/Callback/callback";
 import Loader from "./components/Loader/Loader";
@@ -22,26 +22,25 @@ import Form from "./components/FormProduct/FormProduct";
 import { loadCart } from "./redux/Cart/cartActions";
 
 const cartFromLocalStorageRaw = localStorage.getItem("cart");
-const cartFromLocalStorage = JSON.parse(cartFromLocalStorageRaw || '{}');
+const cartFromLocalStorage = JSON.parse(cartFromLocalStorageRaw || "{}");
 
 function App() {
-
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { isLoading, user, isAuthenticated } = useAuth0();
-  const { productsInCart } = useSelector((state) => state.cart)
+  const { productsInCart } = useSelector((state) => state.cart);
   const { user_detail } = useSelector((state) => state.users);
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(postUser(user)).then(() => console.log(user_detail))
+      dispatch(postUser(user)).then(() => console.log(user_detail));
     }
   }, [user, dispatch]);
 
   useEffect(() => {
     console.log(cartFromLocalStorageRaw);
-  dispatch(loadCart(cartFromLocalStorage))
-  }, [])
+    dispatch(loadCart(cartFromLocalStorage));
+  }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -80,21 +79,25 @@ function App() {
         </div>
       ) : (
         <>
-          {pathname !== "/" && (user_detail.role === 'ADMIN' ? <NavBarAdmin /> : <NavBar />)}
+          {" "}
+          <div class="sticky top-0 z-10">
+            {pathname !== "/" &&
+              (user_detail.role === "ADMIN" ? <NavBarAdmin /> : <NavBar />)}
+          </div>
           <Routes>
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/products" element={
-              user_detail.role === 'ADMIN' ? <Admin /> : <Product />
-            } />
-            <Route path="/createReview" element={<CreateReview/>}/>
+            <Route
+              path="/products"
+              element={user_detail.role === "ADMIN" ? <Admin /> : <Product />}
+            />
+            <Route path="/createReview" element={<CreateReview />} />
             <Route path="/aboutus" element={<Us />} />
-            <Route path="/addproduct" element={<Form />} />
-            <Route path="/edit/:id" element={<Form />} />
+            <Route path="/addproduct" element={<Profile />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/myaccount/orders/:id" element={<MyAccount />} />
             <Route path="/myaccount/orders" element={<MyAccount />} />
-            <Route path="/myaccount/users" element={<MyAccount/>} />
+            <Route path="/myaccount/users" element={<MyAccount />} />
             <Route path="/Detail/:id" element={<CardDetail />} />
             <Route path="/*" element={<Error />} />
           </Routes>

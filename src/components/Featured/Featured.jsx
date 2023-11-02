@@ -32,29 +32,63 @@ export default function Featured() {
     return randomDisplayedProducts;
   };
 
-  const displayedProducts = getRandomProducts(2);
+  const displayedProducts1 = getRandomProducts(1);
+  const displayedProducts2 = getRandomProducts(2);
 
   return (
-    <div
-      className={`relative mt-[-50px] shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 top-[80px] font-bayon-bold w-[250px] h-[700px] ${
-        displayedProducts.length > 0 ? 'fall-and-bounce' : ''
-      }`}
-      style={{
-        display: displayedProducts.length > 0 ? "block" : "none",
-      }}
-    >
-      <p className="font-bayon-bold text-[20px] -mt-10">Featured Products</p>
-      {displayedProducts.length > 0 ? (
-        displayedProducts.map((product) => (
-          <Card
-            key={product._id}
-            id={product._id}
-            image={product.image ?? null}
-            title={product.title}
-            price={product.price}
-          />
-        ))
-      ) : null}
-    </div>
+    <>
+      <div className={" lg:ml-10 xl:ml-10 "}>
+        <div className={"xl:hidden lg:hidden "}>
+          <div
+            className={` relative  shadow-md sm:px-0  ml-30  text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold w-screen h-[300px] ${
+              displayedProducts1.length > 0 ? "fall-and-bounce" : ""
+            }`}
+            style={{
+              display: displayedProducts1.length > 0 ? "block" : "none",
+            }}
+          >
+            <p className="font-bayon-bold text-[20px] sm:text-[10px]  -mt-10">
+              Featured Products
+            </p>
+            {displayedProducts1.length > 0
+              ? displayedProducts1.map((product) => (
+                  <Card
+                    key={product._id}
+                    id={product._id}
+                    image={product.image ?? null}
+                    title={product.title}
+                    price={product.price}
+                  />
+                ))
+              : null}
+          </div>
+        </div>
+        <div className={` sm:hidden md:hidden lg:flex lg:col xl:flex xl:col`}>
+          <div
+            className={` relative  shadow-md px-10 text-blackFred-100 py-20 bg-graym right-5 mt-[50px] font-bayon-bold  h-[1000px] ${
+              displayedProducts2.length > 0 ? "fall-and-bounce" : ""
+            }`}
+            style={{
+              display: displayedProducts2.length > 0 ? "block" : "none",
+            }}
+          >
+            <p className="font-bayon-bold text-[20px] -mt-10">
+              Featured Products
+            </p>
+            {displayedProducts2.length > 0
+              ? displayedProducts2.map((product) => (
+                  <Card
+                    key={product._id}
+                    id={product._id}
+                    image={product.image ?? null}
+                    title={product.title}
+                    price={product.price}
+                  />
+                ))
+              : null}
+          </div>
+        </div>
+      </div>
+    </>
   );
-}  
+}

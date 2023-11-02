@@ -33,6 +33,7 @@ export default function Cart() {
       setCantidad(cantidad - 1);
     }
   }
+  
   const handleDeleteClick = (productId) => {
     MySwal.fire({
       title: 'Are you sure?',
@@ -75,8 +76,8 @@ export default function Cart() {
           <div className="fixed inset-0 bg-blackFred-100 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-hidden">
-          <div className="relative inset-0 overflow-hidden">
+        <div className="fixed inset-0">
+          <div className="relative inset-0">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
                 as={Fragment}
@@ -111,7 +112,7 @@ export default function Cart() {
                           <ul role="list" className="m-0 p-0">
                             {Object.keys(productsInCart).map((productId) => (
                               <li key={productId} className="flex">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-redFred-200">
+                                <div className="h-24 w-24 flex-shrink-0 rounded-md border border-redFred-200">
                                   <img
                                     src={productsInCart[productId].imageSrc}
                                     alt={productsInCart[productId].imageAlt}

@@ -11,6 +11,8 @@ import { addProductToCart, loadCart } from "../../redux/Cart/cartActions";
 
 export default function Products() {
 
+
+
   const dispatch = useDispatch()
   const { filters, setFilters } = useContext(FiltersContext)
   const [isLoading, setIsLoading] = useState(false)
@@ -58,12 +60,17 @@ console.log(userCart)
   }, [])
 
   return (
-    <div className="flex flex-row">
-      <span className="w-[0%]"></span>
-      <Filtered/>
-      {!isLoading && <Cards />}
-      <Featured/>
-      <span className="min-h-[900px]"></span>
-    </div>
+    <>
+      <div>
+        <span className="w-[0%]"></span>
+        <div className="lg:flex lg:flex-row lg:ml-10 xl:flex xl:flex-row ">
+          <Filtered />
+          {!isLoading && <Cards />}
+          <Featured />
+        </div>
+
+        <span className="min-h-[900px]"></span>
+      </div>
+    </>
   );
-  }  
+}
