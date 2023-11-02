@@ -4,7 +4,7 @@ const productSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    detail: [],
+    detail: {},
     currentPage: "",
     totalPages: "",
     totalResults: "",
@@ -16,7 +16,7 @@ const productSlice = createSlice({
   },
   reducers: {
     getProductById: (state, action) => {
-      state.detail = [...action.payload];
+      state.detail = action.payload;
     },
     getProductsByFilter: (state, action) => {
       state.totalPages = action.payload.totalPages;

@@ -28,7 +28,7 @@ export const CheckoutButton = ({ products, totalPrice, userId }) => {
       }}
       >
       Checkout
-    </button>
+    </button> 
   );
 };
 

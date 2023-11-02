@@ -31,7 +31,6 @@ export default function ProductDashboard() {
     else setFilters({ ...filters, orderBy: target })
   }
 
-
   const deleteProductById = (productId) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -48,7 +47,9 @@ export default function ProductDashboard() {
         dispatch(deleteProduct(productId))
           .then(() => {
             setIsLoading(true)
-            dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) })
+            setTimeout(() => {
+              dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) });
+            }, 2000);
           })
           .catch((error) => {
             console.error("Error al eliminar el producto: ", error);
@@ -73,7 +74,9 @@ export default function ProductDashboard() {
         dispatch(activateProduct(productId))
           .then(() => {
             setIsLoading(true)
-            dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) })
+            setTimeout(() => {
+              dispatch(getProductFiltered({ ...filters, limit: 13 })).then(() => { setIsLoading(false) });
+            }, 2000);
           })
           .catch((error) => {
             console.error("Error al activar el producto: ", error);
@@ -81,9 +84,6 @@ export default function ProductDashboard() {
       }
     });
   };
-
-
-
 
   return (
     <div className="overflow-x-auto m-auto z-1 sm:mt-20 md:mt-20 lg:mt-20">

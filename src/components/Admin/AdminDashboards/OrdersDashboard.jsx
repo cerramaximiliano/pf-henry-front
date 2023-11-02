@@ -26,7 +26,7 @@ export default function OrdersDashboard() {
       {isLoading ? <Loader /> : <div className="relative m-auto p-5 my-10 rounded-md bg-blackFred-100 w-1200">
         <div className="min-w-full">
           <div className="overflow-x-auto">
-            <table className=" min-w-full xl:mb-[500px] ">
+            <table className=" min-w-full xl:mb-[40px] ">
               <thead>
                 <tr>
                   <th className="bg-graym rounded-lg text-blackFred-100 py-[20px] px-[80px]">Order Id</th>
