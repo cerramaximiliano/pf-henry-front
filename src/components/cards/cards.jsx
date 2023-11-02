@@ -29,7 +29,7 @@ export function Cards() {
       ) : (
         <div className="sm:grid sm:grid-cols-2 sm:gap-2 md:grid md:grid-cols-3 md:gap-2 lg:grid lg:grid-cols-2 lg:gap-20 xl:grid xl:grid-cols-3 xl:gap-20  ">
           {products.length > 0 ? (
-            products.map((product) => (
+            products.map((product) => ( 
               <Card
                 key={product._id}
                 id={product._id}
@@ -45,7 +45,7 @@ export function Cards() {
           )}
         </div>
       )}
-      <Paginated />
+      <Paginated  currentPage={currentPage} totalPages={totalPages} />
     </div>
   );
 }

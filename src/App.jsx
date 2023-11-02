@@ -94,6 +94,7 @@ function App() {
             <Route path="/createReview" element={<CreateReview />} />
             <Route path="/aboutus" element={<Us />} />
             <Route path="/addproduct" element={<Profile />} />
+            <Route path="/edit/:id" element={<Form />} />
             <Route path="/callback" element={<CallbackPage />} />
             <Route path="/myaccount/orders/:id" element={<MyAccount />} />
             <Route path="/myaccount/orders" element={<MyAccount />} />
