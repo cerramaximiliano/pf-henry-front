@@ -1,4 +1,19 @@
+import axios from 'axios';
+
 export default function AllOrdersCards({id,total,date,status}) {
+  const URLBASE = import.meta.env.VITE_URL_BASE;
+
+  const handleClick = async (id) => {
+    try {
+    const { data } = await axios.post(
+      `${URLBASE}/payment/update/session`, {id})
+      window.open(data, "_self");
+      dispatch(loadCart({}))
+  } catch (error) {
+      console.error("Error al realizar la solicitud:", error);
+  }
+  };
+
     return (
         <div className="flex justify-evenly p-4">
         <span className="w-full flex justify-between items-center">
@@ -23,7 +38,7 @@ export default function AllOrdersCards({id,total,date,status}) {
                   (
                     <a className="text-blackFred-300 hover:text-orangeFred-300 cursor-pointer" href={`/myaccount/orders/?id=${id}`} >View</a>
                   ) :
-                  false
+                    <button type="button" className="mt-2 font-bebas py-[8px] px-[24px] rounded-sm bg-redFred-300 text-blackFred-300 outline-none hover:border-transparent" onClick={() => handleClick(id)} >Checkout</button>
                   } 
 
                 </div>
