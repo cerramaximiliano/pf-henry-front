@@ -65,7 +65,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Lucas Blanco
                 </h2>
-                <p class="text-gray-500">CTO</p>
+                <p class="text-gray-500">Software Dev</p>
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Juan Ubaldi
                 </h2>
-                <p class="text-gray-500">frontend Dev</p>
+                <p class="text-gray-500">Frontend Dev</p>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Mateo Ossorio Arana
                 </h2>
-                <p class="text-gray-500">CTO</p>
+                <p class="text-gray-500">Frontend Dev</p>
               </div>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Sofia Blanc
                 </h2>
-                <p class="text-gray-500">frontend Dev</p>
+                <p class="text-gray-500">Frontend Dev</p>
               </div>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Julian Belmartino
                 </h2>
-                <p class="text-gray-500">backend Dev</p>
+                <p class="text-gray-500">Fullstack Dev</p>
               </div>
             </div>
           </div>
@@ -285,7 +285,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Maximiliano Cerra
                 </h2>
-                <p class="text-gray-500">CTO</p>
+                <p class="text-gray-500">Fullstack dev</p>
               </div>
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Willy Vallejos
                 </h2>
-                <p class="text-gray-500">CTO</p>
+                <p class="text-gray-500">Fullstack dev</p>
               </div>
             </div>
           </div>
@@ -373,7 +373,7 @@ export default function Aboutus() {
                 <h2 class="text-gray-900 title-font font-medium">
                   Juan Leonel Pogonza
                 </h2>
-                <p class="text-gray-500">CTO</p>
+                <p class="text-gray-500">Fullstack dev</p>
               </div>
             </div>
           </div>
