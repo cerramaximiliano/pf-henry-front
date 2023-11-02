@@ -51,7 +51,7 @@ module.exports = {
       'sm': { 'max': '480px', 'min': '0px' },
       'md': { 'max': '1200px', 'min': '481px' },
       'lg': { 'max': '1440px', 'min': '1201px' },
-      'xl': { 'max': '1920px', 'min': '1441px' },
+      'xl': { 'min': '1441px' },
     }    
   },
   corePlugins: {
