@@ -119,8 +119,8 @@ export default function UsersDashboard() {
                     <td className="px-4 bg-gray-200 text-blackFred-100 rounded-sm py-2">{user.isActive ? "Active" : "Not Active"}</td>
                     <td className="px-4 bg-gray-200 text-blackFred-100 rounded-sm py-2">
                       <div>
-                        <button className="mx-2" onClick={() => banUser(user._id)}>Ban User</button>
-                        <button className="mx-2" onClick={() => unbanUser(user._id)}>Unban User</button>
+                        <button className="mx-2 text-white" onClick={() => banUser(user._id)}>Ban User</button>
+                        <button className="mx-2 text-white" onClick={() => unbanUser(user._id)}>Unban User</button>
                       </div>
                     </td>
                   </tr>
