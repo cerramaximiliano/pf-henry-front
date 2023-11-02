@@ -118,9 +118,9 @@ export default function ProductDashboard() {
                       <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">{product.isActive ? 'Active' : 'Not Active'}</td>
                       <td className="py-2 rounded-sm text-blackFred-300 bg-graym px-4">
                         <div className="flex">
-                          <button className="mx-1" onClick={() => navigate(`/edit/${product._id}`)}>Edit</button>
-                          <button className="mx-1" onClick={() => deleteProductById(product._id)}>Delete</button>
-                          <button className="mx-1" onClick={() => activateProductById(product._id)}>Activate</button>
+                          <button className="mx-1  text-white" onClick={() => navigate(`/edit/${product._id}`)}>Edit</button>
+                          <button className="mx-1  text-white" onClick={() => deleteProductById(product._id)}>Delete</button>
+                          <button className="mx-1  text-white" onClick={() => activateProductById(product._id)}>Activate</button>
                         </div>
                       </td>
                     </tr>

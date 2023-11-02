@@ -12,7 +12,7 @@ export default function Form() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const dispatch = useDispatch()
   const params = useParams()
@@ -57,7 +57,7 @@ export default function Form() {
     // });
     // const formData = new FormData();
     // formData.append('imagen', file, 'nombre-de-la-imagen.jpg');
-
+    console.log(data)
     let formData = new FormData();
     formData.append("file", data.file[0]);
     formData.append("title",data.title)
